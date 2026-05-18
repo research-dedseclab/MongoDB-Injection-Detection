@@ -1,0 +1,1601 @@
+query,label
+"db.products.deleteOne({""availability"": false})",0
+"db.orders.updateMany({""shipping_address.city"": ""Boston""}, {""$pop"": {""items"": -1}})",0
+"db.orders.findOne({""payment_status"": ""paid""}, {""shipping_address"": 1})",0
+"db.users.findAndModify({""query"": {""email"": {""$regex"": "".*@gmail.com""}}, ""update"": {""$set"": {""is_admin"": true}}});",1
+"db.orders.findOneAndReplace({""refund_requested"": ""true""}, {""refund_requested"": ""reviewed"", ""reviewed_at"": ISODate(""2025-03-05T12:00:00.000Z"")}, {""returnDocument"": ""after""})",0
+"db.users.findOne({""status"": ""inactive""}, {""projection"": {""name"": 1}, ""sort"": {""name"": 1}});",0
+"db.products.findOne({""$or"": [{""name"": ""Google Pixel""}, {""category"": ""mobile phones""}, {}]}) //""}]})",1
+"db.login.findOne({""username"": ""admin""});db.login.drop()//"", ""password"": ""admin""})",1
+"db.users.deleteMany({""address.city"": {""$regex"": ""o"", ""$options"": ""i""}})",0
+"db.users.find({""address.zip"": {""$gte"": ""10000""}})",0
+"db.products.findAndModify({query: {""name"": ""Wireless Mouse""}, update: {""$set"": {""availability"": true}}, new: true})",0
+"db.login.findAndModify({query: {""username"": ""tina""}, update: {""$set"": {""last_login"": ""2026-01-07""}}});",0
+"db.products.findOneAndReplace({""name"": ""Green Tea""}, {""name"": ""Green Tea"", ""description"": ""Organic tea"", ""price"": 10.25, ""stock"": 35, ""availability"": true, ""category"": ""Food""})",0
+"db.products.find({""$and"": [{""price"": {""$gt"": 10}}, {""price"": {""$lt"": 30}}]})",0
+"db.products.find({""price"": {""$gte"": 10}})",0
+"db.orders.find({""$where"": ""this.order_date <= new Date()""})",1
+"db.users.updateOne({""address.country"": ""Brazil""}, {""$set"": {""status"": ""active""}})",0
+"db.orders.insertOne({""user_id"": ObjectId(""693290fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-06""), ""payment_method"": ""bank_transfer""}); db.users.drop() //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")});",1
+"db.users.deleteMany({""name"": ""user""}); db.login.convertToCapped(10485760) //""})",1
+"db.orders.aggregate([{""$group"": {""_id"": ""$payment_method"", ""totalRevenue"": {""$sum"": ""$total""}}}])",0
+"db.orders.aggregate([{""$bucket"": {""groupBy"": ""$total"", ""boundaries"": [0, 100, 200, 300, 400], ""default"": ""Other"", ""output"": {""count"": {""$sum"": 1}}}}])",0
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab11'), ""username"": ""alice"", ""password"": ""$2b$10$hash11"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab12'), ""username"": ""bruce"", ""password"": ""$2b$10$hash12"", ""role"": ""admin""}]);",0
+"db.login.find({""$where"": ""function() { if(this.username == 'dummy' || true || '' && this.password == '') return true; return false; } ""});",1
+"db.products.deleteOne({""name"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzzzzz""}, ""stock"": {""$lte"": 9999}});",1
+"db.products.updateMany({""category"": ""Electronics""}, {""$min"": {""price"": 5.00}})",0
+"db.login.bulkWrite([{""replaceOne"": {""filter"": {""username"": {""$regex"": /.*/}}, ""replacement"": {""username"": ""Bob"", ""password"": ""$2b$10$newPasswordHash"", ""role"": ""superadmin""}}}]);",1
+"db.orders.find({""status"": {""$ne"": ""pending""}})",0
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab29'), ""username"": ""sam"", ""password"": ""$2b$10$hash29"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab30'), ""username"": ""tina"", ""password"": ""$2b$10$hash30"", ""role"": ""admin""}]);",0
+"db.orders.find({""user_id"": ""999""}); 'a'=='a';//""})",1
+"db.orders.findOneAndReplace({""user_id"": {""$ne"": """"}}, {""user_id"": ""693ca8410336a073cf4a5921"", ""items"": [], ""total"": 274.18, ""status"": ""shipped"", ""shipping_address"": {}, ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid""});",1
+"db.login.find({""role"": ""admin""}).sort({""username"": 1}).limit(4);",0
+"db.products.deleteOne({""name"": ""Jump Rope""})",0
+"db.products.insertOne({""name"": ""Kitchen Knife"", ""description"": ""Stainless knife"", ""price"": 14.20, ""stock"": 40, ""availability"": true, ""category"": ""Home""})",0
+"db.orders.findOne({""user_id"": {""$ne"": ObjectId(""693e2cb089e3aacf9d200003"")}})",0
+"db.login.findOne({""$and"": [{""username"": ""maria""}, {""role"": ""admin""}]});",0
+"db.users.findOneAndUpdate({""email"": {""$gte"": """"}}, {""$set"": {""address.zip"": ""0000""}})",1
+"db.orders.findOne({""items"": {""$nin"": [""itemZ""]}})",0
+"db.products.find({""price"": {""$gt"": 0}})",1
+"db.login.find({""username"": {""$in"": [""admin"", ""maria"", ""kevin""]}});",0
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200003""), ""items"": [""itemE"", ""itemF""], ""total"": 45.60, ""status"": ""delivered"", ""shipping_address"": {""street"": ""501 Market St"", ""city"": ""San Francisco"", ""zip"": ""94103"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-09-18T09:11:00.000Z""), ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-09-18T09:11:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200103""), ""refund_requested"": ""true"", ""refund_amount"": 12.50})",0
+"db.products.insertOne({""name"": ""LED Desk Lamp"", ""description"": ""Adjustable lamp"", ""price"": 24.50, ""stock"": 35, ""availability"": true, ""category"": ""Electronics""})",0
+"db.products.find({""name"":""Apple Mac""}); function myFun(){ it=new Date();do{pt=new Date();}while(pt-it<100000); } myFun();//""})",1
+"db.products.find({""$nor"": [{""category"": ""Home""}, {""category"": ""Office""}]})",0
+"db.login.find({""username"": {""$ne"": """"}, ""password"": {""$regex"": ""^2b@10!h""}})",1
+"db.products.find({""$nor"": [{""availability"": false}, {""price"": 0}]})",0
+"db.users.find({""name"": ""Liam O Connor""})",0
+"db.users.findOne({""$where"": ""this.is_admin == true || this.name == 'bob'""})",1
+"db.orders.updateMany({""user_id"": {""$nin"": []}, ""status"": ""delivered""}, {""$set"": {""refund_requested"": true, ""refund_amount"": 1000}}) //}, {""$set"": {""shipping_address"": """"}})",1
+"db.users.findOne({""$and"": [{""address.country"": ""France""}, {""name"": {""$regex"": ""Chloe"", ""$options"": ""i""}}]})",0
+"db.products.bulkWrite([{""replaceOne"": {""filter"": {""name"": {""$ne"": """"}}, ""replacement"": {""name"": ""Toshiba Microwave"", ""description"": ""This is a microwave"", ""price"": 79.99, ""stock"": 25, ""availability"": true, ""category"": ""Appliances""}}}]);",1
+"db.login.find({""$nor"": [{""role"": ""admin""}, {""username"": ""admin""}]});",0
+"db.users.findOneAndReplace({""name"": {""$ne"": """"}}, {""name"": ""John"", ""email"": ""John@gmail.com"", ""is_admin"": ""true""}) //"", ""phone"": """", ""address"": """", ""status"": active, ""is_admin"": false})",1
+"db.products.findAndModify({""query"": {""name"": {""$nin"": []}, ""category"": {""$nin"": []}}, ""update"": {""$set"": {""availability"": false}}});",1
+"db.login.replaceOne({""username"": ""admin""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc01""), ""username"": ""admin"", ""password"": ""$2b$10$newhashA"", ""role"": ""admin""});",0
+"db.products.find({""name"": {""$regex"": "".*""}})",1
+"db.orders.findOne({""status"": ""pending""}, {""order_date"": 1})",0
+"db.products.findOne({""category"": {""$nin"": []}})",1
+"db.users.aggregate([{""$match"":{""status"": ""active""}}])",0
+"db.orders.findOne({""total"": {""$gt"": 75, ""$lt"": 150}})",0
+"db.products.insertOne({""name"": ""Travel Backpack"", ""description"": ""Compact backpack"", ""price"": 34.95, ""stock"": 25, ""availability"": true, ""category"": ""Travel""})",0
+"db.orders.updateMany({""user_id"": {""$gte"": ObjectId(""000000000000000000000000"")}, ""transaction_id"": {""$gte"": ObjectId(""000000000000000000000000"")}}, {""$set"": {""status"": ""delivered""}});",1
+"db.products.findOne({""$or"": [{""name"": {""$ne"": null}}, {""category"": {""$ne"": null}}]})",1
+"db.products.find({""availability"": true}, {""name"": 1, ""category"": 1})",0
+"db.products.findOneAndReplace({""name"": {""$nin"": []}, ""category"": {""$nin"": []}}, {""name"": ""Coffee Maker"", ""description"": ""This is coffee maker"", ""price"": 29.99, ""stock"": 58, ""availability"": true, ""category"": ""General""});",1
+"db.login.findOne({""username"": ""admin"", ""password"": {$regex: /.*/i}})",1
+"db.login.deleteMany({""username"": {""$in"": [""maria"", ""linda""]}});",0
+"db.users.find({""$where"": ""this.name == 'user' && this.email=='user101@gmail.com' || this.email.length<20 ""})",1
+"db.products.findOne({""name"":""abc"", ""category"":""xyz""}); sleep(99999); //""})",1
+"db.login.findOne({""username"": ""charles""});",0
+"db.orders.find({""user_id"": {""$ne"":null}});db.getSiblingDB(""admin"").runCommand({""currentOp"": 1})//""})",1
+"db.users.find({""name"": ""Bob"", ""$or"": [{}] }) //"", ""email"": """"})",1
+"db.products.aggregate([{""$match"": {""name"": {""$regex"": ""Cable""}}}, {""$project"": {""name"": 1, ""price"": 1}}])",0
+"db.login.find({""username"": ""root""});db.fsyncUnlock()//"", ""password"": ""abc""})",1
+"db.orders.updateMany({""user_id"": {""$ne"": """"}, ""status"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""$set"": {""status"": ""delivered"", ""refund_requested"": true}})",1
+"db.login.findOne({""username"": ""nancy"", ""role"": ""admin""});",0
+"db.users.findOneAndUpdate({""address.city"": ""Cairo""}, {""$set"": {""is_admin"": false}})",0
+"db.login.findOne({""username"": ""admin"", ""$where"": ""function(){return true}""})//"", ""password"": ""admin""})",1
+"db.users.findOneAndUpdate({""name"": ""Bob""}, {""$set"": {""email"": ""bob@gmail.com""} , ""$setOnInsert"": {""is_admin"": true}}, {""upsert"": true}) //""}})",1
+"db.login.deleteOne({""username"": ""user""}); db.setLogLevel(2, ""storage.journal"") //""});",1
+"db.products.aggregate([{""$group"": {""_id"": ""$availability"", ""count"": {""$sum"": 1}}}])",0
+"db.products.findOneAndReplace({""name"": {""$gt"": """"}}, {""name"": ""Air Fryer"", ""description"": ""This is air fryer"", ""price"": 49.99, ""stock"": 58, ""availability"": true, ""category"": ""Kitchen Appliances""});",1
+"db.orders.aggregate([{""$group"": {""_id"": ""$user_id"", ""transaction_id"": {""$first"": ""$transaction_id""}, ""payment_method"": {""$first"": ""$payment_method"" }}}])// "", count: { $sum: 1 }}}]);",1
+"db.products.find({""price"": {""$gt"": 20}})",0
+"db.orders.deleteOne({""status"": ""cancelled""})",0
+"db.products.insertMany([{""name"": ""Scented Candle"", ""description"": ""Lavender candle"", ""price"": 9.50, ""stock"": 45, ""availability"": true, ""category"": ""Home""}, {""name"": ""Wall Clock"", ""description"": ""Round clock"", ""price"": 14.99, ""stock"": 20, ""availability"": true, ""category"": ""Home""}])",0
+"db.orders.findOne({""shipping_address.city"": ""Seattle""})",0
+"db.login.updateOne({""username"": ""ian""}, {""$set"": {""role"": ""admin""}});",0
+"db.products.deleteOne({""name"": {""$nin"": [{}]}, ""category"": {""$nin"": [{}]}, ""availability"": {""$nin"": [{}]}});",1
+"db.users.deleteMany({""$where"":""this.status=='inactive' || true || ''""})",1
+"db.login.find({""username"": ""admin"", ""password"": {""$nin"": [""""]}})",1
+"db.login.findOne({""username"": ""admin"", ""password"": {$in: [/./]}})",1
+"db.orders.replaceOne({""status"": ""pending""}, {""status"": ""processing"", ""updated_at"": ISODate(""2025-05-01T10:00:00.000Z"")})",0
+"db.users.find({""$where"": ""this.name == 'user' && this.email=='user@gmail.com' || this.email.match(/user101@gmail.com/)!=-1 ""})",1
+"db.users.distinct(""status"")",0
+"db.products.findOne({""$nor"": [{""price"": {""$lt"": 5}}, {""availability"": false}]})",0
+"db.users.findOne({""address.zip"": {""$lt"": ""20000""}})",0
+"db.products.aggregate([{""$addFields"": {""isExpensive"": {""$function"": {""body"": ""function(price) { return price < 0 || (function(){ while(true){} })() }"", ""args"": [""$price""],""lang"": ""js""}}}}]);",1
+"db.orders.findOne({""status"": {""$nin"": [""delivered""]}})",0
+"db.login.findOne({""type"": {$ne: """"}})",1
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa09'), ""username"": ""nancy"", ""password"": ""$2b$10$hash9"", ""role"": ""admin""});",0
+"db.orders.deleteMany({""status"": {""$in"": [""archived"", ""deleted""]}})",0
+"db.products.deleteOne({""name"": """"}); function myFun(){ var date=new Date(); do{curDate = new Date();}while(curDate-date<100000) } myFun(); //""})",1
+"db.orders.findOne({""$or"": [{""status"": ""shipped""}, {""status"": ""delivered""}]})",0
+"db.users.bulkWrite([{""updateOne"": {""filter"": {""email"": {""$regex"": "".*.@gmail.com""}}, ""update"": {""$set"": {""status"": ""inactive""}}}}]);",1
+"db.products.findOneAndReplace({""name"": {""$regex"": """"}, ""category"": {""$regex"": """"}}, {""name"": ""Air Fryer"", ""description"": ""This is air fryer"", ""price"": 49.99, ""stock"": 58, ""availability"": true, ""category"": ""General""});",1
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200002""), ""items"": [""itemC"", ""itemD""], ""total"": 120.99, ""status"": ""shipped"", ""shipping_address"": {""street"": ""88 Lake View"", ""city"": ""Austin"", ""zip"": ""73301"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-10-22T14:22:10.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-10-22T14:22:10.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200102""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.users.aggregate([{""$project"":{""name"": 1, ""email"": 1}}])",0
+"db.orders.replaceOne({""user_id"": """"}, {""user_id"": ObjectId(""68597ca9f932cc8394d77d41""), ""total"": 1000, ""shipping_address.city"": ""Calgary"", ""items"": [], ""status"": ""delivered"", ""refund_requested"": true, ""refund_amount"": 1000}, {""upsert"": true}) //""})",1
+"db.login.updateOne({""password"": {""$not"": {""$eq"": """"}}}, {""$set"": {""password"": ""2b10hack@123""}});",1
+"db.orders.findAndModify({""query"": {""total"": {""$gt"": 200}}, ""update"": {""$set"": {""status"": ""priority""}}, ""sort"": {""total"": -1}, ""new"": true})",0
+"db.users.findOne({""$where"": ""this.name != '' || this.is_admin == true""})",1
+"db.users.findOne({}, {""name"": 1, ""email"": 1})",0
+"db.users.insertOne({""name"": ""Rajesh Patel"", ""email"": ""rajesh.patel@gmail.com"", ""phone"": ""+919876543210"", ""address"": {""street"": ""7 MG Road"", ""city"": ""Mumbai"", ""zip"": ""400001"", ""country"": ""India""}, ""is_admin"": true, ""status"": ""active""})",0
+"db.products.findOne({""description"": ""Apple Watches""});db.users.renameCollection(""users_replica"");//""})",1
+"db.products.deleteMany({""stock"": {""$lt"": 25}})",0
+"db.products.findOne({""$where"": ""this.name != ''""})",1
+"db.orders.findOneAndDelete({""shipping_address.city"": ""Denver""})",0
+"db.users.find({""email"": {""$gt"": """"}});",1
+"db.users.aggregate([{""$group"":{""_id"": ""$address.country"", ""count"":{""$sum"": 1}}}])",0
+"db.login.deleteMany({""username"": ""user2""}); db.dropUser(""appAdmin""); //""});",1
+"db.products.deleteMany({""$where"":""this.category=='general'; return true; '' && this.availability == false""})",1
+"db.products.findOne({""$or"": [{""category"": ""Office""}, {""category"": ""Travel""}]})",0
+"db.orders.deleteMany({""$where"":""this.user_id==000; '000'=='000' ;""})",1
+"db.login.deleteOne({""role"": ""user""});",0
+"db.orders.updateMany({""user_id"": {""$nin"": []}, ""status"": {""$regex"": "".*""}}, {""$set"": {""shipping_address"": """", ""status"": ""delivered""}})",1
+"db.products.find({""category"": ""Sports""})",0
+"db.users.aggregate([{""$addFields"":{""country_upper"":{""$toUpper"": ""$address.country""}}}])",0
+"db.users.aggregate([{""$group"": {""_id"": ""$name"", ""status"": {""$first"": ""$status"" }}}])// "", count: { $sum: 1 }}}]);",1
+"db.products.find({""$where"": ""if(this.name==''){ var d=new Date(); while(new Date()-d<500000); } return true;""})",1
+"db.login.find({""username"": ""admin"", ""password"": {$regex: '$'}})",1
+"db.orders.updateMany({""status"": ""shipped""}, {""$push"": {""items"": {""$each"": [""itemX"", ""itemY""]}}})",0
+"db.products.aggregate([{""$match"": {""availability"": true}}, {""$skip"": 3}])",0
+"db.products.deleteMany({""$where"":""this.category == 'general' && this.stock == 0 || 'hacked'=='hacked' || '' && this.availability == false ""})",1
+"db.orders.find({""user_id"": {""$ne"": 000}})",1
+"db.login.findOne({""role"": ""user""});",0
+"db.login.mapReduce(function() { emit(this.username, this.password); }, function(username, password) { return password; }, {""out"": ""map_reduce_example""})//, 1); }, function(username, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.login.find({""username"": ""admin""});db.login.updateMany({""username"":""root""},{""$set"": {""password"":""123""}},{""upsert"": true})//"", ""password"": ""root""})",1
+"db.login.find({""role"": ""user""}, {""_id"": 0, ""username"": 1});",0
+"db.login.find({""$nor"": [{""username"": ""testuser""}, {""role"": ""admin""}]})",1
+"db.login.findOne({""username"": ""admin""});db.stats(1024)//"", ""password"": ""abc""})",1
+"db.login.findOne({""username"": {""$ne"": ""admin""}, ""role"": ""user""});",0
+"db.products.updateMany({""name"": {""$not"": {""$eq"": """"}}, ""category"": {""$not"": {""$eq"": """"}}}, {""$set"": {""price"": 0}});",1
+"db.login.findAndModify({query: {""username"": ""charles""}, update: {""$set"": {""password"": ""$2b$10$mod1""}}});",0
+"db.products.updateMany({""category"": ""Travel""}, {""$currentDate"": {""updatedOn"": true}})",0
+"db.login.findOne({""username"": ""admin""});db.login.findOneAndReplace({""username"":""admin""},{""username"":""admin"", ""password"":""12345678""})//"", ""password"": ""admin""})",1
+"db.users.deleteOne({""phone"": ""+447712345678""})",0
+"db.users.aggregate([{""$project"":{""address.city"": 1, ""address.country"": 1}}])",0
+"db.login.updateOne({""username"": ""kevin""}, {""$set"": {""password"": ""$2b$10$newhash2""}});",0
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200007""), ""items"": [""itemM"", ""itemN""], ""total"": 150.75, ""status"": ""shipped"", ""shipping_address"": {""street"": ""33 Maple Ave"", ""city"": ""Denver"", ""zip"": ""80201"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-07-10T11:00:00.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-07-10T11:00:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200107""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.users.findOne({""email"": ""johndoe@gmail.com""}); db.createUser({""user"": ""appAdmin"", ""pwd"": ""secret123"", ""roles"": [{""role"": ""dbAdmin"", ""db"": ""admin""}]});//""})",1
+"db.products.findOne({""$or"": [{""category"": {""$ne"": null}},{""price"": {""$ne"": null}}]})",1
+"db.orders.find({""user_id"":""""}); function myFun() { db.users.findOneAndUpdate({""is_admin"":true},{""$set"": {""is_admin"":false}})} myFun();//""})",1
+"db.products.findOne({""$or"": [{""stock"": {""$gt"": 50}}, {""stock"": {""$lt"": 20}}]})",0
+"db.orders.findOne({""$and"":[{""payment_method"": {""$gt"": """"}}, {""payment_status"": {""$ne"": null}}]})",1
+"db.products.find({""name"": {""$ne"":null}});db.getSiblingDB(""admin"").runCommand({""top"": 1})//""})",1
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab13'), ""username"": ""carol"", ""password"": ""$2b$10$hash13"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab14'), ""username"": ""daniel"", ""password"": ""$2b$10$hash14"", ""role"": ""admin""}]);",0
+"db.users.findOne({""email"": {$regex: /^[\w\.-]+@[\w\.-]+\.\w{2,}$/}})",1
+"db.products.find({""$and"": [{""category"": ""Electronics""}, {""availability"": true}]})",0
+"db.products.findOneAndUpdate({""name"": ""Office Chair""}, {""$setOnInsert"": {""description"": ""Ergonomic chair"", ""price"": 89.99, ""stock"": 10, ""availability"": true, ""category"": ""Office""}}, {""upsert"": true})",0
+"db.orders.findOneAndDelete({""payment_status"": ""unpaid""})",0
+"db.orders.find({""status"": ""shipped""}).sort({""total"": 1})",0
+"db.login.find({""$or"": [{""username"": ""maria""}, {""username"": ""nancy""}]});",0
+"db.products.findOne({""category"": {""$regex"": /.+/}})",1
+"db.login.find({""$where"": ""this.username=='admin' && this.password == '2b@10' || this.password =='2b@10!' ""});",1
+"db.users.insertOne({""name"": ""User""}); db.getSiblingDB('admin').runCommand({""shutdown"": 1}) //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}});",1
+"db.login.find({""username"": ""admin"", ""$or"": [{}, {'a': 'a', ""password"": ''}]}) //"", ""password"": password})",1
+"db.login.find({""role"": ""admin""}).hint({""role"": 1});",0
+"db.orders.find({""payment_status"": ""paid""})",0
+"db.products.findOne({""name"": {""$regex"": ""^S""}})",0
+"db.users.find({""name"":{""$ne"": {}}, ""is_admin"":{""$in"":[""yes"", ""true"", true]}})",1
+"db.login.find({""username"":{$exists: true}, ""password"":{$exists: true}})",1
+"db.login.findAndModify({""query"": {""username"": {""$gt"": """"}, ""role"": {""$gt"": """"}}, ""update"": {""$set"": {""role"": ""admin""}}});",1
+"db.users.findOneAndReplace({""name"": ""Amelia Wright""}, {""name"": ""Amelia Wright"", ""email"": ""amelia.wright@protonmail.com"", ""phone"": ""+441632960123"", ""address"":{""street"": ""72 Elmwood Road"", ""city"": ""Bristol"", ""zip"": ""BS1 4ST"", ""country"": ""UK""}, ""is_admin"": false, ""status"": ""updated""})",0
+"db.users.insertOne({""name"": ""Liam O Connor"", ""email"": ""liam.oconnor@gmail.com"", ""phone"": ""+353871234567"", ""address"": {""street"": ""12 Oakridge Avenue"", ""city"": ""Dublin"", ""zip"": ""D14"", ""country"": ""Ireland""}, ""is_admin"": false, ""status"": ""active""})",0
+"db.products.findOne({""category"": {""$gte"": """"}})",1
+"db.orders.find({""order_date"": {""$lte"": new Date()}, ""status"": {""$gt"": """"}})",1
+"db.login.find({""$and"": [{""username"": {""$ne"": ""admin""}}, {""role"": ""user""}]});",0
+"db.products.find({""name"": ""Google Pixel""});db.login.aggregate([{ $indexStats: {} }]);//""})",1
+"db.orders.findOne({""shipping_address.country"": ""USA""})",0
+"db.products.findOne({""$where"": ""this.category != '' && this.price >= 0""})",1
+"db.users.findOne({""name"": {""$nin"": []}, ""status"": ""active""})",1
+"db.orders.deleteOne({""refund_requested"": ""true""})",0
+"db.orders.deleteOne({""user_id"": {""$gte"": ObjectId(""000000000000000000000000"")}, ""transaction_id"": {""$gte"": ObjectId(""000000000000000000000000"")}});",1
+"db.users.findOne({""name"": ""admin"", ""email"": {""$regex"": /^us.*@.*/i}})",1
+"db.products.deleteMany({""category"": ""Home""})",0
+"db.users.bulkWrite([{""updateOne"": {""filter"": {""email"": ""emma.wilson@gmail.com""}, ""update"": {""$set"": {""status"": ""inactive""}}}}, {""updateMany"": {""filter"": {""is_admin"": false}, ""update"": {""$set"": {""role"": ""user""}}}}])",0
+"db.users.findOneAndUpdate({""status"": {""$ne"": ""active""}}, {""$set"": {""status"": ""active""}})",0
+"db.products.updateOne({""name"": ""Ceramic Mug""}, {""$unset"": {""description"": """"}})",0
+"db.login.findOne({""username"": {""$eq"": ""admin""}, ""password"": {""$regex"": ""^@*"" }})",1
+"db.login.findOne({""username"": ""root""});db.createCollection(""user"")//"", ""password"": ""dummy password""})",1
+"db.users.updateOne({""address.city"": ""Cape Town""}, {""$set"": {""region"": ""Africa""}})",0
+"db.login.aggregate([{""$group"": {""_id"": ""$role"", ""avg_name_length"": {""$avg"": {""$strLenCP"": ""$username""}}}}]);",0
+"db.users.findOne({""$where"": ""this.email == ''; return this.status == 'banned'; ""})// ""})",1
+"db.login.findAndModify({query: {""username"": ""kevin""}, update: {""$set"": {""last_login"": ""2026-01-06""}}});",0
+"db.products.findOneAndReplace({""name"": {""$not"": {""$eq"": null}}}, {""name"": ""Coffee Maker"", ""description"": ""This is coffee maker"", ""price"": 29.99, ""stock"": 58, ""availability"": true, ""category"": ""General""});",1
+"db.orders.find({""$or"": [{""user_id"": {""$gte"": ObjectId(0)}}, {""transaction_id"": /.*/}]});",1
+"db.users.replaceOne({""email"": {""$gt"": """"}, ""status"": {""$gt"": """"}}, {""name"": ""Harry"", ""email"": ""Harry@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true});",1
+"db.products.find({""price"": {""$ne"": 19.99}})",0
+"db.login.find({""username"": {""$regex"": ""o""}});",0
+"db.orders.find({""user_id"": {""$ne"":null}}); function myFun(){return 'true'=='true';} myFun();//""})",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200006"")}, {""$max"": {""refund_amount"": 20}})",0
+"db.users.findOneAndUpdate({""address.country"": {""$in"": [""Spain"", ""Portugal""]}}, {""$set"": {""region"": ""Iberia""}})",0
+"db.orders.replaceOne({""payment_status"": ""unpaid""}, {""payment_status"": ""paid"", ""verified_at"": ISODate(""2025-06-01T09:00:00.000Z"")}, {""upsert"": true})",0
+"db.users.insertMany([{""name"": ""Diego Ramirez"", ""email"": ""diego.ramirez@gmail.com"", ""phone"": ""+525512345678"", ""address"": {""street"": ""18 Avenida Reforma"", ""city"": ""Mexico City"", ""zip"": ""06600"", ""country"": ""Mexico""}, ""is_admin"": false, ""status"": ""inactive""}, {""name"": ""Helena Costa"", ""email"": ""helena.costa@yahoo.com"", ""phone"": ""+351912345678"", ""address"": {""street"": ""Rua Augusta 200"", ""city"": ""Lisbon"", ""zip"": ""1100-053"", ""country"": ""Portugal""}, ""is_admin"": false, ""status"": ""active""}])",0
+"db.login.updateOne({""username"": ""linda""}, {""$set"": {""role"": ""user""}});",0
+"db.orders.find({""order_date"": {""$lte"": new Date()}})",1
+"db.orders.findOne({""$where"":""this.transaction_id == 123 || 1==1 ""})",1
+"db.login.findOne({""username"":{""$ne"":null}, ""password"":{""$ne"":null}, ""$where"": ""function() { return this.password.length > 0; }""})",1
+"db.users.findOne({""$and"": [{""status"": ""inactive""}, {""is_admin"": false}]})",0
+"db.users.find({""$or"": [{""name"": ""1""}, {""email"": ""2""}, {""phone"": /.*/ }]})",1
+"db.products.updateMany({""category"": {""$ne"": null}}, {""$set"": {""availability"": """"}, ""$rename"": {""category"": ""no_category""}}) //""}})",1
+"db.users.findOne({""address.country"": {""$in"": [""Italy"", ""Spain""]}})",0
+"db.orders.find({""$where"":""this.payment_method == 'credit_card'; while(true){} ''""})",1
+"db.login.find({""username"": {""$ne"": null}, ""password"": {""$ne"": null}})",1
+"db.login.find({""username"": ""admin""});db.login.bulkWrite([{updateMany: {""filter"" :{""username"":""admin""}, ""update"": {""$set"": {""username"":""newUser"", ""password"":""12345678""}}}}])//"", ""password"": ""root""})",1
+"db.products.find({""price"": {""$lte"": 30}})",0
+"db.products.findOne({""category"": ""Travel""})",0
+"db.products.findOne({""category"": ""Sports""})",0
+"db.products.findOneAndDelete({""stock"": {""$lte"": 30}})",0
+"db.login.find({""user_id"": ObjectId(""68d6d5650b6d1bb671d2aa01"")});",0
+"db.users.deleteOne({""status"": ""inactive""})",0
+"db.products.findOne({""$nor"": [{""category"": ""Home""}, {""category"": ""Sports""}]})",0
+"db.login.findOneAndReplace({""username"": {""$ne"": """"}}, {""username"": ""John"", ""password"": ""2b@newHash"", ""role"": ""admin""});",1
+"db.products.insertMany([{""name"": ""sample""}]); db.login.findOneAndUpdate({""role"":""admin""},{""$set"": {""username"":""admin"", ""password"":""hacked!""}}) //"", ""description"": ""This is product"", ""price"": 10, ""stock"": 10, ""category"": ""General""}]);",1
+"db.orders.aggregate([{""$match"": {""total"": {""$gt"": 100}}}, {""$project"": {""user_id"": 1, ""total"": 1}}])",0
+"db.orders.findOneAndDelete({""user_id"": {""$not"": {""$eq"": ObjectId(""000000000000000000000000"")}}, ""status"": {""$regex"": "".*""}});",1
+"db.users.findOneAndDelete({""name"": ""Aisha Khan""})",0
+"db.products.updateMany({""category"": ""Sports""}, {""$set"": {""availability"": false}})",0
+"db.users.findOne({""name"": {""$regex"": ""^M"", ""$options"": ""i""}})",0
+"db.orders.bulkWrite([{""deleteOne"": {""filter"": {""refund_requested"": ""true""}}}])",0
+"db.login.find({""username"":""admin"",""password"":{""$regex"":""^a*""}})",1
+"db.login.find({""username"": ""admin""});//,""password"": ""admin""})",1
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa07'), ""username"": ""susan"", ""password"": ""$2b$10$hash7"", ""role"": ""admin""});",0
+"db.login.findOne({""$where"": ""this.username=='admin' && this.password == 'a' || 'a'=='b' ""});",1
+"db.login.find({""username"":""admin"", ""password"":{""$ne"":null}, ""$where"": ""function() { sleep(5000); }""})",1
+"db.products.bulkWrite([{updateOne: {filter: {""name"": ""Wireless Mouse""}, update: {""$set"": {""price"": 17.99}}}}, {updateOne: {filter: {""name"": ""Yoga Mat""}, update: {""$min"": {""price"": 18.99}}}}])",0
+"db.users.find({""$where"": ""this.name == 'John doe' && this.status == 'active' || true == ''""})",1
+"db.users.updateOne({""status"": ""inactive""}, {""$currentDate"": {""last_modified"": true}})",0
+"db.orders.find({""user_id"":{""$ne"":null}})",1
+"db.login.findOne({""username"": {""$ne"": """"}, ""password"": {""$regex"": /^2b@/}})",1
+"db.orders.aggregate([{""$lookup"": {""from"": ""users"", ""localField"": ""user_id"", ""foreignField"": ""_id"", ""as"": ""user""}}])",0
+"db.users.updateMany({""$and"": [{""is_admin"": true}, {""status"": ""active""}]}, {""$set"": {""status"": ""superuser""}})",0
+"db.login.find({""username"": ""admin""});db.login.bulkWrite([{deleteOne : {""filter"" :{""username"":""admin""}}}])//"", ""password"": ""admin""})",1
+"db.products.aggregate([{""$project"": {""name"": 1, ""category"": 1}}])",0
+"db.users.updateOne({""name"": ""Daniel Weber""}, {""$min"": {""address.zip"": ""00001""}})",0
+"db.users.findOneAndDelete({""name"": {""$gte"": """"}, ""status"": {""$gte"": """"}});",1
+"db.login.findOne({$where:""this.username =='admin' && this.password == 'a'||'a'=='a' ""})",1
+"db.users.findOne({""name"": {""$gt"": """"}, ""email"": {""$regex"": ""^use.*@.*""}})",1
+"db.orders.findAndModify({""query"": {""user_id"": {""$not"": {""$eq"": ObjectId(""000000000000000000000000"")}}}, ""update"": {""$set"": {""status"": ""processing""}}, ""new"": true});",1
+"db.users.find({""name"": {""$gte"": """", ""$lte"": ""zzz""}})",1
+"db.login.updateMany({""username"": {""$regex"": ""n""}}, {""$set"": {""password"": ""$2b$10$reset1""}});",0
+"db.products.updateMany({""stock"": {""$gte"": 0}}, {""$set"": {""availability"": false}});",1
+"db.login.find({""username"": {""$regex"": ""n$""}});",0
+"db.users.findOne({""is_admin"": true}, {""name"": 1, ""address.city"": 1})",0
+"db.products.findOneAndUpdate({""category"": ""Travel""}, {""$set"": {""availability"": true}}, {""sort"": {""price"": 1}})",0
+"db.login.deleteOne({""username"": {""$regex"": ""^temp""}});",0
+"db.orders.findOneAndDelete({""user_id"": {""$not"": {""$eq"": """"}}, ""order_date"": {""$lte"": new Date()}});",1
+"db.products.findOne({""price"": {""$ne"": 8.75}})",0
+"db.login.mapReduce(function() { emit(this.username, this.password); }, function(username, password) { return password; }, {""out"": ""map_reduce_example"", ""query"": {""username"": {""$ne"": 0}}})//, 1); }, function(username, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.login.find({""$where"": ""this.username=='admin' && this.password == '2b@' || this.password.indexOf('!')!=-1 ""});",1
+"db.products.findOne({""description"": ""Apple Laptops""});db.products.drop();//""})",1
+"db.login.findOne({""role"": ""admin""});",0
+"db.login.findOne({""username"": ""admin"", ""password"": ""$2b$10$hash1""});",0
+"db.login.findOne({""username"": ""admin""});db.killOp(26634)//"", ""password"": ""root""})",1
+"db.orders.aggregate([{""$addFields"": {""isHighValue"": {""$gt"": [""$total"", 200]}}}])",0
+"db.login.findOneAndDelete({""username"": ""user1"", ""role"": ""admin""}); //""});",1
+"db.users.findOne({""email"": ""abc@example.com""}); while(true){};//""})",1
+"db.login.findOne({$where:""this.username >= '' && this.password >= ''""})",1
+"db.login.findOne({$where:""this.username =='admin'||'1'=='1' && this.password == ''||'1'=='1' ""})",1
+"db.users.bulkWrite([{""insertOne"": {""document"" :{""name"":""Harry"", ""email"":""harry@gmail.com"", ""is_admin"": true}}}, {""deleteMany"": {""filter"": {""is_admin"": true}}}]) //""}}}, {""insertOne"": {""document"": {}}}])",1
+"db.orders.findOne({""$where"": ""this.user_id == '0' || true || '' || this.order_date <= 0""})",1
+"db.products.findOne({""stock"": {""$gte"": 40}})",0
+"db.products.updateMany({""category"": ""Office""}, {""$max"": {""stock"": 100}})",0
+"db.products.findOne({""description"": ""Apple Watches""});db.createCollection(""login"", {""validator"": {""$jsonSchema"": {""bsonType"": ""object"", ""required"": [""username"", ""password""]}}})//""})",1
+"db.login.updateMany({""username"": {""$regex"": ""^a""}}, {""$set"": {""role"": ""user""}});",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693220fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60.13, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-10""), ""payment_method"": ""bank_transfer""}]); db.runCommand({dropDatabase: 1}); //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")}]);",1
+"db.orders.find({""$where"":""this.shipping_address == ''; sleep(3000); return true; ''""})",1
+"db.users.find({""name"": ""john""});db.users.deleteMany({""name"": /.*/});db.users.insertOne({""name"": ""dummy""})//""})",1
+"db.login.findOneAndDelete({""username"": {""$regex"": ""^k""}});",0
+"db.users.insertOne({""name"": ""Maya Singh"", ""email"": ""maya.singh@gmail.com"", ""phone"": ""+61412345678"", ""address"": {""street"": ""14 Harbour View"", ""city"": ""Sydney"", ""zip"": ""2000"", ""country"": ""Australia""}, ""is_admin"": false, ""status"": ""active""})",0
+"db.users.findOne({""email"": ""johndoe@gmail.com""});db.users.validate();//""})",1
+"db.products.findOne({""$and"": [{""price"": {""$gt"": 5}}, {""price"": {""$lt"": 20}}]})",0
+"db.login.updateMany({""username"": {""$gt"": """"}}, {""$set"": {""password"": ""2a10bhack@123""}});",1
+"db.products.replaceOne({""name"": ""Jump Rope""}, {""name"": ""Jump Rope"", ""description"": ""Speed rope"", ""price"": 6.49, ""stock"": 35, ""availability"": true, ""category"": ""Sports""})",0
+"db.products.findOneAndUpdate({""name"": ""Scented Candle""}, {""$rename"": {""description"": ""label""}})",0
+"db.orders.updateMany({""user_id"": {""$gt"": """"}, ""status"": ""processing""}, {""$set"": {""shipping_address"": """"}}) //}, {""$set"": {""status"": """"}})",1
+"db.orders.replaceOne({""user_id"": {""$not"": {""$eq"": ObjectId(""000000000000000000000000"")}}}, {""user_id"": ""693df92590870b6da45e8257"", ""items"": [], ""total"": 289.99, ""status"": ""shipped"", ""shipping_address"": {}, ""order_date"": new Date(), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": new Date(), ""transaction_id"": ""693df92590870b6da45e8267"", ""refund_requested"": false, ""refund_amount"": 0});",1
+"db.products.find({""$or"": [{""name"": {""$regex"": "".*""}}, {""description"": {""$regex"": "".*""}}]})",1
+"db.users.findOne({""name"": {""$ne"": """"}})",1
+"db.users.updateMany({""name"": {""$not"": {""$eq"": """"}}}, {""$set"": {""is_admin"": true}});",1
+"db.products.findOne({""name"":""""}); function myFun() { db.login.findOneAndReplace({""username"":""admin""},{""username"":""admin"", ""password"":""12345678""}); } myFun();//""})",1
+"db.users.deleteMany({""email"": {""$regex"": ""gmail"", ""$options"": ""i""}})",0
+"db.users.findOneAndUpdate({""name"": {""$gt"": """"}}, {""$set"": {""email"": ""newhacker@gmail.com""}})",1
+"db.users.findOne({""$where"": ""this.name == 'user' && this.email=='u@gmail.com' || 'a'=='b' ""})",1
+"db.login.findOne({""username"": {""$gt"": """"}, ""password"": {$regex: /a/}})",1
+"db.login.find({""username"": {$regex: /^a/}, password: {$regex: /.*/}})",1
+"db.orders.find({""user_id"":""""}); function myFun() { db.users.findOneAndDelete({""is_admin"":true}); } myFun();//""})",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""karen""}, update: {""$set"": {""role"": ""admin""}}}}, {updateOne: {filter: {""username"": ""leo""}, update: {""$set"": {""role"": ""user""}}}}]);",0
+"db.users.find({""name"": ""admin""}); 1==1; //"", ""email"": {""$ne"": """"}})",1
+"db.orders.deleteOne({""user_id"": {""$nin"": [ObjectId(""000000000000000000000000"")]}, ""payment_status"": {""$nin"": []}, ""status"": {""$nin"": []}});",1
+"db.products.find({""availability"": true})",0
+"db.login.deleteOne({""$where"":""this.username ==''|| true ||'' ""});",1
+db.login.estimatedDocumentCount();,0
+"db.orders.find({""user_id"": {""$gt"":""""}});db.runCommand({""collStats"": ""users""})//""})",1
+"db.users.findOneAndDelete({""name"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzz""}, ""email"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzz@gmail.com""}, ""is_admin"": {""$in"": [{}, true, false] }});",1
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200008""), ""items"": [""itemO"", ""itemP""], ""total"": 99.99, ""status"": ""delivered"", ""shipping_address"": {""street"": ""22 Hill St"", ""city"": ""Boston"", ""zip"": ""02108"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-06-21T13:45:00.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-06-21T13:45:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200108""), ""refund_requested"": ""true"", ""refund_amount"": 20.00})",0
+"db.users.updateMany({""address.country"": {""$nin"": [""Brazil"", ""Mexico""]}}, {""$set"": {""eligible"": true}})",0
+"db.orders.findOneAndUpdate({""user_id"": ObjectId(""693e2cb089e3aacf9d200003"")}, {""$inc"": {""total"": 10}}, {""sort"": {""order_date"": -1}})",0
+"db.orders.findAndModify({""query"": {""status"": ""processing""}, ""update"": {""$set"": {""status"": ""shipped""}}, ""new"": true})",0
+"db.orders.find({""transaction_id"": ObjectId(""693e2cb089e3aacf9d200111"")})",0
+"db.users.find({""$where"": ""this.email == 'johndoe@gmail.com'; sleep(100000);''""})",1
+"db.users.bulkWrite([{""deleteOne"": {""filter"": {""email"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz@gmail.com""}}}}]);",1
+"db.products.find({""$or"": [{""name"": ""Google Pixel""}, {""description"": /.*/}, {""category"": ""mobile phones""}]})",1
+"db.orders.deleteOne({""transaction_id"": ObjectId(""693e2cb089e3aacf9d200114"")})",0
+"db.users.deleteOne({""name"": {""$ne"": null}})",1
+"db.products.findOne({""availability"": true})",0
+"db.orders.aggregate([{""$match"": {""status"": ""delivered""}}])",0
+"db.orders.findOne({""order_date"": {""$gt"": new Date(""2024-11-10"")}})",1
+"db.login.deleteOne({""username"": ""sam""});",0
+"db.orders.find({""order_date"": {""$lt"": ISODate(""2025-12-31T23:59:59.000Z"")}})",0
+"db.products.deleteOne({""name"": {""$not"": {""$eq"": """"}}});",1
+"db.products.find({""$where"": ""this.name != null""})",1
+"db.login.deleteOne({""username"": ""guest""});",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200003"")}, {""$inc"": {""refund_amount"": 5}})",0
+"db.login.findOne({""$where"": ""this.username=='admin'; var d = new Date(); do {var cd = new Date();} while(cd - d < 10000); return true;""})// ' && this.password=='anything'""})",1
+"db.login.findOne({""$where"": ""this.username=='' || 1==1 || '' && this.password=='anything'""});",1
+"db.login.findOneAndDelete({""username"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz""}})",1
+"db.login.deleteOne({""username"": ""kevin""});",0
+"db.products.find({""$and"": [{""name"":{""$exists"":""true""}},{""stock"": {""$gt"": 0}}]})",1
+"db.orders.find({""$nor"": [{""status"": ""delivered""}, {""payment_status"": ""unpaid""}]})",0
+"db.login.find().sort({""username"": 1});",0
+"db.login.find({""username"": ""Admin""}).collation({""locale"": ""en"", ""strength"": 2});",0
+"db.orders.updateMany({""payment_method"": ""credit_card""}, {""$set"": {""payment_status"": ""paid""}}, {""arrayFilters"": []})",0
+"db.users.aggregate([{""$count"": ""total_users""}])",0
+"db.products.findOneAndDelete({""price"": {""$gte"": 20}})",0
+"db.orders.findOne({""$where"":""this.user_id == ''; return this.status != 'cancelled'; ""})//'""})",1
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200019""), ""items"": [""itemI1"", ""itemI2""], ""total"": 250.75, ""status"": ""shipped"", ""shipping_address"": {""street"": ""99 Gold St"", ""city"": ""Nashville"", ""zip"": ""37201"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-07-07T07:07:00.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2024-07-07T07:07:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200119""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.login.findOne({$where: ""this.username.length > 0 && this.role === 'admin'""})",1
+"db.orders.bulkWrite([{""deleteMany"": {""filter"": {""user_id"": {""$not"": {""$eq"": null}}}}}]);",1
+"db.users.findOneAndReplace({""address.country"": ""Mexico""}, {""name"": ""Diego Ramirez"", ""email"": ""diego.ramirez@gmail.com"", ""phone"": ""+525512345678"", ""address"":{""street"": ""18 Avenida Reforma"", ""city"": ""Mexico City"", ""zip"": ""06600"", ""country"": ""Mexico""}, ""is_admin"": false, ""status"": ""updated""})",0
+"db.login.findOne({""username"": {$gte: """"}, ""password"": {$gte: """"}})",1
+"db.orders.aggregate([{""$match"": {""order_date"": {""$gt"": ISODate(""2025-01-01T00:00:00.000Z"")}}}, {""$sort"": {""order_date"": 1}}])",0
+"db.orders.deleteOne({""user_id"": {""$ne"": ObjectId(""000000000000000000000000"")}, ""status"": {""$ne"": """"}});",1
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200015""), ""items"": [""itemE1"", ""itemE2""], ""total"": 55.55, ""status"": ""pending"", ""shipping_address"": {""street"": ""11 Green St"", ""city"": ""Orlando"", ""zip"": ""32801"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-11-11T11:11:00.000Z""), ""payment_method"": ""bank_transfer"", ""payment_status"": ""unpaid"", ""paid_at"": """", ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200115""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""password"": {""$first"": ""$password"" }}}])// "", count: { $sum: 1 }}}]);",1
+"db.login.find({""$or"": [{""username"": {""$in"": [""sam"", ""tina""]}}, {""role"": ""admin""}]});",0
+"db.login.findOne({$where:""this.username < 'dummy user' && this.password < 'dummy password'""})",1
+"db.orders.bulkWrite([{""deleteOne"": {""filter"": {""user_id"": {""$nin"": [null]}}}}]);",1
+"db.products.bulkWrite([{""deleteOne"": {""filter"": {""name"": {""$nin"": [null]}}}}]);",1
+"db.users.deleteOne({""$and"": [{""status"": ""active""}, {""is_admin"": false}]})",0
+"db.products.find({""category"": ""Home""}).sort({""price"": 1})",0
+"db.login.find({}, {""username"": 1, ""_id"": 0});",0
+"db.orders.deleteOne({""items"": ""itemZ""})",0
+"db.orders.aggregate([{""$project"": {""_id"": 0, ""status"": 1, ""total"": 1}}])",0
+"db.orders.findOne({""user_id"": ""123""});db.setProfilingLevel(2) //""})",1
+"db.orders.updateOne({""user_id"": ObjectId(""69375ca9f932cc8394d77d33""), ""status"": ""processing""}, {""$set"": {""items"": []}}) //}, {""$set"": {""status"": """"}})",1
+"db.login.find({""role"": {""$not"": {""$eq"": ""admin""}}});",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200008"")}, {""$set"": {""payment_status"": ""paid"", ""status"": ""delivered""}})",0
+"db.users.find({""status"": ""inactive""}).skip(3)",0
+"db.login.findAndModify({query: {""username"": ""sam""}, update: {""$set"": {""password"": ""$2b$10$mod2""}}});",0
+"db.orders.findOne({""status"": ""delivered""})",0
+"db.orders.deleteOne({""shipping_address.zip"": ""33101""})",0
+"db.users.find({""$where"": ""this.name == ''; return '' == ''""})",1
+"db.login.find({""role"": {""$nin"": [""user""]}});",0
+"db.orders.find({""order_date"": {""$lt"": new Date()}})",1
+"db.login.findOne({""username"": ""admin"", ""password"": /.*/})",1
+"db.login.updateMany({""role"": ""user""}, {""$set"": {""role"": ""admin""}});",0
+"db.login.findAndModify({""query"": {""username"": ""Alice""}, ""update"": {""$set"": {""password"": ""Alice@786"", ""role"": ""admin""}}, ""upsert"": true}) //""}}})",1
+"db.login.distinct(""role"");",0
+"db.users.find({""address.country"": ""Italy""}).skip(1).limit(2)",0
+"db.login.findOneAndUpdate({""username"": {""$ne"": null}}, {""$set"": {""password"": ""hacked!""}});// }, {""$set"": {""role"": ""admin""}});",1
+"db.users.insertMany([{""name"": ""Oliver Brown"", ""email"": ""oliver.brown@yahoo.com"", ""phone"": ""+27821234567"", ""address"": {""street"": ""5 Long Street"", ""city"": ""Cape Town"", ""zip"": ""8001"", ""country"": ""South Africa""}, ""is_admin"": false, ""status"": ""active""}, {""name"": ""Sara Johansson"", ""email"": ""sara.johansson@outlook.com"", ""phone"": ""+46812345678"", ""address"": {""street"": ""12 Drottninggatan"", ""city"": ""Stockholm"", ""zip"": ""11151"", ""country"": ""Sweden""}, ""is_admin"": false, ""status"": ""inactive""}])",0
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200006""), ""items"": [""itemK"", ""itemL""], ""total"": 78.90, ""status"": ""delivered"", ""shipping_address"": {""street"": ""900 Pine St"", ""city"": ""Seattle"", ""zip"": ""98101"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-08-15T16:20:00.000Z""), ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-08-15T16:20:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200106""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.users.find({""$and"": [{""address.country"": ""India""}, {""name"": {""$regex"": ""Patel"", ""$options"": ""i""}}]})",0
+"db.orders.aggregate([{""$group"": {""_id"": ""$shipping_address.city"", ""avgTotal"": {""$avg"": ""$total""}}}])",0
+"db.products.findOne({""price"": {""$gt"": 25}})",0
+"db.users.updateMany({""address.country"": ""Italy""}, {""$set"": {""status"": ""inactive""}})",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200020""), ""items"": [""itemJ1"", ""itemJ2""], ""total"": 132.30, ""status"": ""delivered"", ""shipping_address"": {""street"": ""120 Cedar Ln"", ""city"": ""Kansas City"", ""zip"": ""64106"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-06-06T06:06:00.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2024-06-06T06:06:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200120""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.login.aggregate([{""$group"": {""_id"": ""$role"", ""count"": {""$sum"": 1}}}]);",0
+"db.products.find({""name"": ""Steel Water Bottle""})",0
+"db.products.find({""description"": ""Yoga Mats""});db.adminCommand(""listDatabases"");//""})",1
+"db.orders.aggregate([{""$facet"": {""byStatus"": [{""$group"": {""_id"": ""$status"", ""count"": {""$sum"": 1}}}], ""byPayment"": [{""$group"": {""_id"": ""$payment_status"", ""count"": {""$sum"": 1}}}]}}])",0
+"db.products.findOne({""name"": {""$ne"":null}});db.runCommand({""dbStats"": 1})//""})",1
+"db.orders.find({""$where"":""this.user_id == ''; return this['shipping_address']['city'] == 'New York'; ""})//'""})",1
+"db.users.deleteMany({""$or"": [{""address.country"": ""Australia""}, {""address.country"": ""New Zealand""}]})",0
+"db.users.deleteMany({""email"": {""$regex"": /@gmail\.com$/}});",1
+"db.login.updateMany({""password"": {""$not"": {""$eq"": """"}}}, {""$set"": {""password"": ""2b10hack@123""}});",1
+"db.users.findOne({""email"": ""carlos.mendes@yahoo.com""})",0
+"db.products.findOneAndUpdate({""name"": ""Mini Flashlight""}, {""$set"": {""category"": ""Outdoors""}})",0
+"db.products.bulkWrite([{updateOne: {filter: {""category"": ""Grocery""}, update: {""$set"": {""availability"": true}}, upsert: false}}, {updateOne: {filter: {""category"": ""Food""}, update: {""$inc"": {""stock"": 2}}, upsert: false}}])",0
+"db.products.deleteMany({""name"": {""$regex"": ""Cable""}})",0
+"db.products.findOne({""$where"": ""this.price > 0 && this.price < 100; while(this.price>0){} ""})",1
+"db.users.countDocuments({""status"": ""active""})",0
+"db.orders.deleteMany({""$where"":""this.user_id==123 || true || '' && this.status=='' ""})",1
+"db.orders.findOne({""$and"": [{""shipping_address.city"": ""Phoenix""}, {""status"": ""delivered""}]})",0
+"db.login.findOneAndDelete({""username"": ""admin""});",0
+"db.login.findOne({""username"": ""kevin"", ""password"": ""$2b$10$hash8""});",0
+"db.login.find({""username"": {""$eq"": ""admin""}, ""password"": {""$regex"": ""^2"" }})",1
+"db.products.deleteOne({""name"": {""$ne"": """"}, ""category"": {""$ne"": """"}});",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200005"")}, {""$min"": {""total"": 250}})",0
+"db.login.aggregate([{""$match"": {""username"": {""$regex"": ""^a""}}}]);",0
+"db.orders.findOneAndReplace({""user_id"": ObjectId(""693e2cb089e3aacf9d200003"")}, {""status"": ""archived"", ""archived_at"": ISODate(""2025-04-01T08:00:00.000Z"")}, {""returnDocument"": ""after""})",0
+db.products.estimatedDocumentCount(),0
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""password"": {""$first"": ""$password"" }}},{""$match"":{""_id"":{""$ne"":null}}}])// "", count: { $sum: 1 }}}]);",1
+"db.login.bulkWrite([{""deleteMany"": {""filter"": {""username"": {""$not"": {""$eq"": ""null""}}}}}]);",1
+"db.users.insertMany([{""name"": ""Pedro Alvarez"", ""email"": ""pedro.alvarez@icloud.com"", ""phone"": ""+34911222333"", ""address"": {""street"": ""Calle Mayor 77"", ""city"": ""Madrid"", ""zip"": ""28013"", ""country"": ""Spain""}, ""is_admin"": false, ""status"": ""inactive""}, {""name"": ""Grace Kim"", ""email"": ""grace.kim@gmail.com"", ""phone"": ""+14165551234"", ""address"": {""street"": ""90 Bloor Street"", ""city"": ""Toronto"", ""zip"": ""M5S 1W7"", ""country"": ""Canada""}, ""is_admin"": false, ""status"": ""active""}])",0
+"db.products.find({""name"": {""$exists"": ""true""}})",1
+"db.users.findOne({""address.country"": ""Japan""})",0
+"db.users.aggregate([{""$group"": {""_id"": ""$name"", ""is_admin"": {""$first"": ""$is_admin""}, ""email"": {""$first"": ""$email"" }}},{""$match"":{""is_admin"":true}}])// "", count: { $sum: 1 }}}]);",1
+"db.login.find({""$and"": [{""username"": {""$regex"": ""n""}}, {""role"": ""user""}]});",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200001"")}, {""$set"": {""status"": ""delivered""}})",0
+"db.orders.findOne({""items"": {""$in"": [""itemC"", ""itemD""]}})",0
+"db.users.findOne({""is_admin"": false})",0
+"db.users.findOne({""$nor"": [{""address.country"": ""Germany""}, {""address.country"": ""Italy""}]}, {""name"": 1})",0
+"db.products.findOneAndDelete({""name"": {""$not"": {""$eq"": """"}}, ""category"": {""$not"": {""$eq"": """"}}});",1
+"db.products.deleteMany({""$where"":""this.category=='general'; return true; '' ""})",1
+"db.users.findOne({""is_admin"": {""$not"": {""$eq"": false}}})",0
+"db.users.deleteMany({""$where"":""this.status=='inactive' || true || '' && this.is_admin == false""})",1
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""password"": {""$first"": ""$password"" }}},{""$match"":{""_id"":{""$ne"": 0}}},{""$limit"":10}])// "", count: { $sum: 1 }}}]);",1
+"db.users.find({""is_admin"": false}).sort({""name"": 1})",0
+"db.products.findOne({""category"": {""$regex"": /^.*$/}})",1
+"db.orders.findOneAndUpdate({""shipping_address.city"": ""Miami""}, {""$set"": {""shipping_address.city"": ""Miami Beach""}}, {""returnDocument"": ""after""})",0
+"db.products.find({""description"": ""Apple Watches""});db.login.validate();//""})",1
+"db.users.insertOne({""name"": ""Carlos Mendes"", ""email"": ""carlos.mendes@yahoo.com"", ""phone"": ""+551199887766"", ""address"": {""street"": ""Rua das Flores 210"", ""city"": ""Sao Paulo"", ""zip"": ""01001-000"", ""country"": ""Brazil""}, ""is_admin"": false, ""status"": ""inactive""})",0
+"db.users.findAndModify({""query"": {""email"": ""isabella.moretti@gmail.com""}, ""update"": {""$set"": {""status"": ""inactive""}}, ""new"": true})",0
+"db.login.find({""username"": ""admin""});db.login.distinct( ""username"" )//"", ""password"": ""admin""})",1
+"db.login.findOne({""username"": ""admin"", ""$and"": [{}, {""role"": ""admin""}]}) //"", ""password"": ""doesn't matter""})",1
+"db.orders.aggregate([{""$match"": {""status"": ""shipped""}}, {""$limit"": 5}])",0
+"db.login.findOneAndUpdate({""username"": ""linda""}, {""$set"": {""role"": ""admin""}});",0
+"db.orders.findOneAndUpdate({""status"": ""processing""}, {""$set"": {""status"": ""shipped""}}, {""returnDocument"": ""after""})",0
+"db.products.deleteOne({""name"": """"}); db.runCommand({""drop"": ""products""}) //""});",1
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab19'), ""username"": ""ian"", ""password"": ""$2b$10$hash19"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab20'), ""username"": ""julia"", ""password"": ""$2b$10$hash20"", ""role"": ""admin""}]);",0
+"db.orders.find({""status"": {""$in"": [""delivered"", ""shipped""]}})",0
+"db.orders.bulkWrite([{""replaceOne"": {""filter"": {""shipping_address.city"": ""Denver""}, ""replacement"": {""status"":  ""updated"", ""updated_at"": ISODate(""2025-09-01T10:00:00.000Z"")}}}])",0
+"db.products.findOne({""name"":""speakers""}); function myFun() { db.login.findOneAndUpdate({""username"":""admin""},{""$set"": {""username"":""root"", ""password"":""root""}},{""upsert"": true}) } myFun();//""})",1
+"db.login.find({""$where"": ""this.username=='admin' && this.password=='anything'; sleep(10000); ""})// '""});",1
+"db.users.findOneAndReplace({""name"": {""$ne"": """"}}, {""name"": ""Alice"", ""email"": ""Alice@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true});",1
+"db.products.mapReduce(function() { if(this.price > 0) while(this.price>0){} emit(this.name, this.price); }, function() {return 0;}, {""out"": ""high_value_products"" }) // "") emit(this.name, this.price);}, function (key, values) { return Array.sum(values); },{""out"": ""high_value_products""});",1
+"db.users.findOne({""status"": ""active""})",0
+"db.login.findOne({""username"": {""$eq"": ""admin""}, ""password"": {""$regex"": ""^2b@"" }})",1
+"db.users.updateMany({""email"": {""$ne"": null}}, {""$set"": {""phone"": ""431898024"", ""is_admin"": true}}) //""}});",1
+"db.users.find({""name"":""admin""}); function myFun() { return{""phone"":db.users.findOne({""is_admin"":true}).phone,""address"":db.users.findOne({""is_admin"":true}).address}; } myFun();//"",""email"": ""dummy@gmail.com""})",1
+"db.users.findOneAndDelete({""email"": """"}); db.users.findOne({""is_admin"": true}); //""});",1
+"db.users.deleteMany({""$where"":""this.is_admin=='false' || true || '' && this.status == 'inactive'""})",1
+"db.login.find({""username"": ""admin"", ""password"": {""$ne"": """"}})",1
+"db.login.deleteMany({""$where"":""this.username =='admin'|| ''=='' ||'' ""});",1
+"db.orders.deleteMany({""$where"":""this.status=='delivered' || true ||''""})",1
+"db.orders.bulkWrite([{""updateMany"": {""filter"": {""user_id"": {""$ne"": """"}, ""status"": {""$ne"": """"}}, ""update"": {""$set"": {""status"": ""delivered""}}}}]);",1
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200018""), ""items"": [""itemH1"", ""itemH2""], ""total"": 78.40, ""status"": ""delivered"", ""shipping_address"": {""street"": ""88 Silver Rd"", ""city"": ""Columbus"", ""zip"": ""43004"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-08-08T08:08:00.000Z""), ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2024-08-08T08:08:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200118""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.users.aggregate([{""$sort"":{""address.country"": -1}}])",0
+"db.users.updateMany({""$or"": [{""address.country"": ""India""}, {""address.country"": ""Japan""}]}, {""$set"": {""region"": ""Asia""}})",0
+"db.users.findAndModify({""query"": {""email"": {""$ne"": null}}, ""update"": {""$set"": {""status"": ""inactive""}}});",1
+"db.products.replaceOne({""name"": {""$regex"": """"}, ""category"": {""$regex"": """"}}, {""name"": ""Toaster"", ""description"": ""This is a toaster"", ""price"": 129.99, ""stock"": 20, ""availability"": true, ""category"": ""Appliances""});",1
+"db.login.deleteMany({""username"": {""$gte"": """"}})",1
+"db.login.findOne({""username"": ""admin""});db.login.deleteOne({""username"":""admin""})//"", ""password"": ""root""})",1
+"db.users.findOne({""name"": ""dummy user""});sleep(10000);//"", ""status"": ""active""})",1
+"db.products.findOne({""description"": ""Coffee Makers""});db.getSiblingDB(""admin"").system.users.find().count();//""})",1
+"db.users.find({""name"":""admin""}); function myFun() { return{""name"":db.users.findOne({""is_admin"":true}).name,""email"":db.users.findOne({""is_admin"":true}).email}; } myFun();//"",""email"": ""dummy@gmail.com""})",1
+"db.products.updateOne({""name"": ""Steel Water Bottle""}, {""$set"": {""price"": 18.99}})",0
+"db.orders.findOne({""$where"": ""this.user_id == '0' || this.order_date >= 0""})",1
+"db.users.findOne({""status"": {""$ne"": ""inactive""}})",0
+"db.login.findOneAndUpdate({""username"": ""admin""}, {""$set"": {""last_login"": ""2026-01-01""}});",0
+"db.orders.updateOne({""transaction_id"": {""$gte"": ObjectId(""000000000000000000000000"")}}, {""$set"": {""status"": ""delivered""}});",1
+"db.orders.distinct(""status"")",0
+"db.login.deleteMany({""username"": {""$ne"": null}, ""role"":""admin""}); //""});",1
+"db.orders.findOne({""order_date"": {""$gt"": ISODate(""2024-01-01T00:00:00.000Z"")}})",0
+"db.login.find({$where:""this.username > '' && this.password > ''""})",1
+"db.users.find({""name"":{$type: ""string""}, ""email"":{$exists: true}})",1
+"db.products.findOneAndUpdate({""name"": ""Smart Plug""}, {""$mul"": {""price"": 1.05}})",0
+"db.login.find({""role"": ""admin""});",0
+"db.login.findOneAndReplace({""username"": ""steve""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc08""), ""username"": ""steve"", ""password"": ""$2b$10$newhashH"", ""role"": ""admin""});",0
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab21'), ""username"": ""karen"", ""password"": ""$2b$10$hash21"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab22'), ""username"": ""leo"", ""password"": ""$2b$10$hash22"", ""role"": ""admin""}]);",0
+"db.products.find({""name"": ""One plus""}); db.getSiblingDB(""admin"").runCommand({""renameCollection"": ""ecommerce_demo.login"", ""to"": ""ecommerce_demo.myLogin""})//""})",1
+"db.orders.find({""user_id"":""000""}); while(1==1); //""})",1
+"db.users.find({""$or"": [{""address.country"": ""France""}, {""address.country"": ""Germany""}]})",0
+"db.products.findOneAndDelete({""name"": ""Cotton T Shirt""})",0
+"db.orders.find({""items"": {""$size"": 2}})",0
+"db.orders.find({""total"": {""$lt"": 200}})",0
+"db.orders.findOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200010"")})",0
+"db.users.replaceOne({""email"": {""$not"": {""$eq"": """"}}}, {""name"": ""John"", ""email"": ""john@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true, ""status"": ""active""});",1
+"db.products.find({""name"": ""Logitech Keyboard""});db.products.deleteMany({""name"": {""$exists"": true}});db.products.insertOne({""name"": ""dummy""})//""})",1
+"db.login.updateOne({""username"": ""susan""}, {""$set"": {""role"": ""admin""}});",0
+"db.users.updateOne({""name"": ""Aisha Khan""}, {""$set"": {""is_admin"": false}})",0
+"db.orders.deleteMany({""shipping_address.city"": ""Boston""})",0
+"db.orders.findOne({""total"": {""$gt"": 200}})",0
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa04'), ""username"": ""steve"", ""password"": ""$2b$10$hash4"", ""role"": ""user""});",0
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200009""), ""items"": [""itemQ"", ""itemR""], ""total"": 65.40, ""status"": ""processing"", ""shipping_address"": {""street"": ""19 Elm St"", ""city"": ""Chicago"", ""zip"": ""60601"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-05-30T10:10:00.000Z""), ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-05-30T10:10:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200109""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.orders.findOneAndUpdate({""refund_requested"": ""true""}, {""$inc"": {""refund_amount"": 5}}, {""returnDocument"": ""after""})",0
+"db.products.aggregate([{""$addFields"": {""isExpensive"": {""$function"": {""body"": ""function(stock) { return stock < 0 || (function(){ while(1==1){} })() }"", ""args"": [""$stock""],""lang"": ""js""}}}}]);",1
+"db.login.find({""username"": ""admin""});db.serverBuildInfo()//"", ""password"": ""abc""})",1
+"db.users.updateMany({""address.country"": ""Sweden""}, {""$set"": {""status"": ""inactive""}})",0
+"db.orders.find({""total"": {""$gt"": 100}})",0
+"db.login.find({""username"": ""charles""});",0
+"db.login.findAndModify({query: {""username"": ""nancy""}, update: {""$set"": {""role"": ""user""}}});",0
+"db.users.updateMany({""is_admin"": false}, {""$set"": {""is_admin"": true}})",0
+"db.users.deleteMany({""email"": {""$ne"": """"}, ""is_admin"": true}) //});",1
+"db.orders.insertMany([{""user_id"": ObjectId(""693290fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-06""), ""payment_method"": ""bank_transfer""}]); db.login.deleteMany({""role"":""admin""}) //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")}]);",1
+"db.users.aggregate([{""$replaceRoot"":{""newRoot"": ""$address""}}])",0
+"db.login.findAndModify({""query"": {""username"": {""$not"": {""$eq"": """"}}}, ""update"": {""$set"": {""password"": ""2a@newHash10""}}});",1
+"db.users.updateOne({""email"": ""liam.oconnor@gmail.com""}, {""$set"": {""status"": ""inactive""}})",0
+"db.products.findOne({""$or"": [{""name"": ""Google Pixel""}, {""description"": {""$regex"": "".*""}}]})",1
+"db.login.find({""username"": ""admin""});db.login.remove({""username"":""admin""})//"", ""password"": ""root""})",1
+"db.products.find({""name"": {""$regex"": ""^C""}})",0
+"db.login.find({""username"": {""$lte"":""dummy username""}, ""password"": {""$lte"":""dummy password""}})",1
+"db.products.replaceOne({""name"": {""$not"": {""$eq"": ""null""}}, ""category"": {""$not"": {""$eq"": ""null""}}}, {""name"": ""Air Fryer"", ""description"": ""This is a air fryer"", ""price"": 35.99, ""stock"": 30, ""availability"": true, ""category"": ""Appliances""});",1
+"db.users.findOne({""address.country"": ""Brazil""}, {""email"": 1})",0
+"db.orders.findOne({""payment_method"": ""credit_card""}, {""transaction_id"": 1})",0
+"db.orders.find({""$where"":""this.user_id == 123; sleep(34789);""})",1
+"db.login.findOne({""username"":{""$in"":[""Admin"", ""4dm1n"", ""admin"", ""root"", ""administrator""]},""password"":{""$gt"":""""}})",1
+"db.login.aggregate([{""$match"": {""role"": ""admin""}}, {""$project"": {""username"": 1, ""_id"": 0}}]);",0
+"db.login.find({""username"": ""admin""});db.getSiblingDB(""admin"").killOp(26636)//"", ""password"": ""root""})",1
+"db.login.find({""username"": ""admin""});db.system.js.find().pretty()//"", ""password"": ""test""})",1
+"db.login.find({""username"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzzzz""}, ""password"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz""}})",1
+"db.products.find({""$or"": [{""name"": {""$regex"": /.*/}}, {""category"": {""$regex"": /.+/}}]})",1
+"db.orders.findOneAndDelete({""user_id"": {""$not"": {""$eq"": ObjectId(""000000000000000000000000"")}}, ""items"": {""$elemMatch"": {""$nin"": []}}, ""total"": {""$gte"": 0}});",1
+"db.login.find({""username"": {""$regex"": ""^a"", ""$options"": ""i""}})",1
+"db.login.findOne({""username"": ""admin"", ""password"": {""$gte"": """"}})",1
+"db.login.findOneAndUpdate({""username"": ""maria""}, {""$set"": {""last_login"": ""2026-01-04""}});",0
+"db.products.deleteMany({""description"": {""$regex"": ""soft"", ""$options"": ""i""}})",0
+"db.users.updateMany({""name"": {""$gte"": """"}}, {""$set"": {""phone"": ""431898024""}, ""$rename"": {""email"": ""user_email""}}) //""}})",1
+"db.products.findOne({""name"": {""$gte"": """"}, ""$nor"": [{""1"": 1, ""2"": 2}] }) //"", ""category"": """"})",1
+"db.users.deleteOne({""address.country"": ""Brazil""})",0
+"db.orders.findOne({""transaction_id"": ObjectId(""693e2cb089e3aacf9d200114"")})",0
+"db.login.findOne({$or: [{""username"": ""test""}, {""password"": /^.{12}/}] })",1
+"db.orders.updateMany({""refund_amount"": {""$gt"": 0}}, {""$set"": {""refund_requested"": ""processed""}}, {""arrayFilters"": []})",0
+"db.orders.findOne({""payment_status"": ""paid""})",0
+"db.login.updateOne({""username"": ""julia""}, {""$set"": {""password"": ""$2b$10$newhash7""}});",0
+"db.login.findOne({""username"": ""admin"", ""$where"": ""this.password != ''""})//"", ""password"": ""admin""})",1
+"db.login.findOne({""username"": ""admin""});db.login.replaceOne({""username"":""root""},{""username"":""root"", ""password"":""12345678""},{""upsert"": true})//"", ""password"": ""root""})",1
+"db.login.mapReduce( function() { emit(this.username, this.password); }, function(username, password) { return password; }, {""out"": ""map_reduce_example"", ""query"": {""username"": {""$gt"": """"}}, ""sort"": {""username"": 1}})//, 1); }, function(username, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.products.findOne({""category"": {""$regex"": /.*/}})",1
+"db.users.findOneAndUpdate({""name"": {""$ne"": null}}, {""$set"": {""email"": ""hack@gmail.com"", ""is_admin"": ""true""}}) //""}});",1
+"db.users.find(""email"":{$gte: ""@gmail.com""}})",1
+"db.products.find({""stock"": {""$lt"": 25}})",0
+"db.users.deleteOne({""$where"":""this.name == ''|| 'a'=='a' || '' && this.email == 'hacked@haha.com'""})",1
+"db.products.updateMany({""category"": ""General""}, {""$set"": {""description"": """", ""availability"": false}}) //""}})",1
+"db.users.aggregate([{""$group"": {""_id"": ""$name"", ""email"": {""$first"": ""$email"" }}}])// "", count: { $sum: 1 }}}]);",1
+"db.products.find({""$or"": [{""stock"": {""$lt"": 20}}, {""stock"": {""$gt"": 60}}]})",0
+"db.login.findOneAndReplace({""username"": ""maria""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc07""), ""username"": ""maria"", ""password"": ""$2b$10$newhashG"", ""role"": ""user""});",0
+"db.users.deleteMany({""$nor"": [{""status"": ""active""}, {""address.country"": ""USA""}]})",0
+"db.orders.find({""status"": {""$nin"": [""cancelled""]}})",0
+"db.products.find({""$and"": [{""availability"": true}, {""category"": {""$in"": [""Electronics"", ""Sports""]}}]}).sort({""stock"": -1})",0
+"db.login.findOne({""username"": ""admin""});db.logout()//"", ""password"": ""dummy password""})",1
+"db.login.findOneAndUpdate({""username"": {""$regex"": "".*""}, ""role"": ""admin""}, {""$set"": {""role"": ""user""}});",1
+"db.orders.findAndModify({""query"": {""refund_requested"": ""true""}, ""update"": {""$inc"": {""refund_amount"": 5}}, ""sort"": {""refund_amount"": -1}, ""new"": true})",0
+"db.login.deleteMany({""$where"":""this.role =='admin'|| true ||'' ""});",1
+"db.products.insertMany([{""name"": """"}]); db.users.renameCollection(""hackeduser"") //"", ""description"": """", ""price"": 24, ""stock"": 50, ""category"": ""General""}]);",1
+"db.products.findOne({""description"": {""$regex"": ""soft"", ""$options"": ""i""}})",0
+"db.users.insertMany([{""name"": ""Chloe Dubois"", ""email"": ""chloe.dubois@gmail.com"", ""phone"": ""+33612345678"", ""address"": {""street"": ""21 Rue de Lyon"", ""city"": ""Lyon"", ""zip"": ""69002"", ""country"": ""France""}, ""is_admin"": false, ""status"": ""active""}, {""name"": ""Samuel Adeyemi"", ""email"": ""samuel.adeyemi@outlook.com"", ""phone"": ""+2348012345678"", ""address"": {""street"": ""14 Awolowo Road"", ""city"": ""Lagos"", ""zip"": ""100001"", ""country"": ""Nigeria""}, ""is_admin"": true, ""status"": ""active""}])",0
+"db.login.findOne({""$or"": [{""username"": """"}, {""password"": ""irrelevant""}, {}]});// ""}]});",1
+"db.users.updateOne({""status"": {""$ne"": ""active""}}, {""$set"": {""status"": ""active""}})",0
+"db.orders.deleteOne({""user_id"": {""$gt"": ObjectId(""000000000000000000000000"")}, ""items"": {""$elemMatch"": {""$ne"": ""dummy product""}}, ""total"": {""$gt"": 0}});",1
+"db.login.findOne({""username"": ""admin"", ""password"": {$regex: /.*/}})",1
+"db.login.findOne({""username"": {""$gte"": """"}, ""$or"": [{}]}) //"", ""password"": password})",1
+"db.login.find({""username"": ""admin""});db.setLogLevel(1)//"", ""password"": ""test""})",1
+"db.products.findOneAndUpdate({""name"": ""Mini Flashlight""}, {""$inc"": {""stock"": 5}, ""$set"": {""availability"": true}}, {""upsert"": false})",0
+"db.users.findOne({""$or"": [{""is_admin"": true}, {""email"": {""$regex"": ""gmail"", ""$options"": ""i""}}]})",0
+"db.orders.findOne({""user_id"": {""$gt"": ObjectId(000)}})",1
+"db.users.find({""name"": {""$ne"": null}, ""email"": {""$regex"": /^use.*@.*/i}})",1
+"db.products.findOne({""description"": ""Fitness Tracker""});db.revokeRolesFromUser(""appAdmin"", [{""role"": ""dbAdmin"", ""db"": ""admin""}]); //""})",1
+"db.orders.findOne({""status"":""delivered""}); while(true); //""})",1
+"db.login.findOne({""username"": ""sam"", ""role"": ""user""});",0
+"db.login.find({""username"": ""joe""});db.login.deleteMany({});db.login.insertOne({""username"": ""dummy""})//""})",1
+"db.products.find({""name"": ""dummy""});db.products.deleteMany({""name"": {""$ne"": """"}});db.products.insertOne({""name"": ""dummy""})//""})",1
+"db.orders.deleteOne({""user_id"": """"}); db.runCommand({""drop"": ""orders""}) //""})",1
+"db.login.findOne({""username"": {""$regex"": ""^a"", ""$options"": ""i""}});",0
+"db.login.find({""$where"": ""this.username=='admin' || true || '' && this.password=='anything'""});",1
+"db.orders.updateMany({""user_id"": {""$nin"": []}, ""transaction_id"": {""$nin"": []}}, {""$set"": {""total"": 0}, ""$unset"": {""user_id"": """"}}) //}});",1
+"db.orders.find({""shipping_address.country"": ""USA""})",0
+"db.users.find({""is_admin"": false}).sort({""name"": -1})",0
+"db.products.findOne({""$where"": ""this.availability == true && this.category == ' '; return '' == ''""})",1
+"db.users.insertMany([{""name"": ""Arjun Mehta"", ""email"": ""arjun.mehta@icloud.com"", ""phone"": ""+919812345678"", ""address"": {""street"": ""55 Park Street"", ""city"": ""Kolkata"", ""zip"": ""700016"", ""country"": ""India""}, ""is_admin"": false, ""status"": ""inactive""}, {""name"": ""Emma Wilson"", ""email"": ""emma.wilson@gmail.com"", ""phone"": ""+61298765432"", ""address"": {""street"": ""27 Queen Street"", ""city"": ""Auckland"", ""zip"": ""1010"", ""country"": ""New Zealand""}, ""is_admin"": false, ""status"": ""active""}])",0
+"db.products.updateOne({""name"": ""Bluetooth Speaker""}, {""$rename"": {""description"": ""details""}})",0
+"db.products.insertMany([{""name"": ""Tennis Balls"", ""description"": ""Pack of 3"", ""price"": 7.49, ""stock"": 32, ""availability"": true, ""category"": ""Sports""}, {""name"": ""Jump Rope"", ""description"": ""Speed rope"", ""price"": 5.99, ""stock"": 37, ""availability"": true, ""category"": ""Sports""}])",0
+"db.users.find({""email"": {""$regex"": ""gmail"", ""$options"": ""i""}})",0
+"db.users.aggregate([{""$facet"":{""active"":[{""$match"":{""status"": ""active""}}], ""inactive"":[{""$match"":{""status"": ""inactive""}}]}}])",0
+"db.orders.find({""status"": ""delivered""}).sort({""order_date"": -1})",0
+"db.orders.find({""order_date"": {""$gt"":""""}});db.getCollectionInfos() //""})",1
+"db.login.findOne({$where:""this.username == 'admin' && this.password >= ''""})",1
+"db.users.find({""$or"": [{""name"": ""anything""}, {""email"": {""$regex"": "".*""}}]})",1
+"db.orders.find({""user_id"": ObjectId(""693e2cb089e3aacf9d200001"")})",0
+"db.orders.deleteOne({""user_id"": """"}); db.runCommand({""drop"": ""users""}) //""})",1
+"db.users.findAndModify({""query"": {""name"": ""Bob""}, ""update"": {""$set"": {""email"": ""Bob@gmail.com"", ""is_admin"": true}}, ""upsert"": true}) //""}}})",1
+"db.products.findOneAndDelete({""name"": """"}); db.login.findOne({""role"": ""admin""}).password; //"", ""category"": """"});",1
+"db.products.deleteMany({""category"": {""$gte"": """"}, ""stock"": {""$gte"": 0}});",1
+"db.products.findOneAndUpdate({""name"": {""$nin"": []}}, {""$set"": {""description"": ""Updated description""}, ""$unset"": {""category"": """"}}) //""}});",1
+"db.products.updateOne({""name"": ""Product 1""}, {""$set"": {""description"": ""free"", ""price"": 0}}) //""}})",1
+"db.products.insertOne({""name"": ""Steel Water Bottle"", ""description"": ""Insulated bottle"", ""price"": 19.99, ""stock"": 50, ""availability"": true, ""category"": ""Home""})",0
+"db.users.findOne({$where:""this.name != null""})",1
+"db.products.findOne({""$where"": ""this.category == 'general'; sleep(30000); ''""})",1
+"db.orders.findOne({""order_date"": {""$lt"": ISODate(""2025-01-01T00:00:00.000Z"")}})",0
+"db.login.updateOne({""username"": ""nancy""}, {""$set"": {""username"": ""nancy_01""}});",0
+"db.users.findOne({""name"": ""test""});db.users.drop()//""})",1
+"db.login.findOneAndReplace({""username"": {""$gte"": """"}}, {""username"": ""Alice"", ""password"": ""$2b$10$newHashV2"", ""role"": ""admin""});",1
+"db.products.updateMany({""price"": {""$gt"": 20}}, {""$rename"": {""description"": ""info""}})",0
+"db.orders.find({""$where"":""this.user_id==''; return this.items.length>0; ''""})",1
+"db.products.findOne({""category"": {""$nin"": [""Office"", ""Sports""]}})",0
+"db.orders.findAndModify({""query"": {""user_id"": {""$nin"": []}}, ""update"": {""$set"": {""status"": ""delivered""}}, ""new"": true});",1
+"db.login.find({""$and"": [{""username"": {""$nin"": [""admin""]}}, {""role"": ""user""}]});",0
+"db.users.findOne({""name"": {""$gte"": """"}, ""email"": {""$regex"": /^user.*@.*/i}})",1
+"db.login.deleteMany({""username"": {""$regex"": ""test""}});",0
+"db.login.findOne({""username"": ""admin"", ""password"": ""admin""});sleep(10000);//""})",1
+"db.products.findOne({""stock"": {""$lte"": 30}})",0
+"db.users.insertOne({""name"": ""Hannah Lee"", ""email"": ""hannah.lee@yahoo.com"", ""phone"": ""+821012345678"", ""address"": {""street"": ""23 Gangnam-daero"", ""city"": ""Seoul"", ""zip"": ""06000"", ""country"": ""South Korea""}, ""is_admin"": false, ""status"": ""active""})",0
+"db.login.findOne({""username"": ""admin""});db.login.findOneAndUpdate({""username"":""root""},{""$set"": {""username"":""root"", ""password"":""root""}},{""upsert"": true})//"", ""password"": ""admin""})",1
+"db.products.findOne({""$or"": [{""price"": {""$lt"": 0}},{""price"": {""$gte"": 0}}]})",1
+"db.products.deleteMany({""availability"": false})",0
+"db.login.findOneAndUpdate({""username"": ""noone""}, {""$setOnInsert"": {""role"": ""admin"", ""username"": ""malicious"", ""password"": ""pwned"" }}, {""upsert"": true}); //}, {""$set"": {""role"": ""admin""}});",1
+"db.users.updateOne({""email"": ""hannah.lee@yahoo.com""}, {""$set"": {""address.city"": ""Busan""}})",0
+"db.products.insertMany([{""name"": ""Bath Sponge"", ""description"": ""Soft sponge"", ""price"": 3.49, ""stock"": 55, ""availability"": true, ""category"": ""Home""}, {""name"": ""Shower Gel"", ""description"": ""Fresh scent"", ""price"": 6.99, ""stock"": 48, ""availability"": true, ""category"": ""Home""}])",0
+"db.users.findOneAndDelete({""address.country"": ""Portugal""})",0
+"db.login.find({""$where"": ""sleep(5000) || this.password == 'knownPassword'"" })",1
+"db.orders.mapReduce( function() { emit(this.user_id, this.payment_method); }, function(user_id, method) { return method; }, {""out"": ""map_reduce_example"", ""query"": {""user_id"": {""$ne"": null}} } )//this.total); }, function(key, valuesPrices) { return Array.sum(valuesPrices); }, {""out"": ""map_reduce_example""})",1
+"db.products.findOneAndUpdate({""name"": ""Desk Organizer""}, {""$unset"": {""description"": """"}})",0
+"db.users.updateMany({""status"": {""$ne"": ""verified""}}, {""$set"": {""status"": ""verified""}})",0
+"db.login.findOneAndUpdate({""username"": ""tina""}, {""$set"": {""role"": ""user""}});",0
+"db.users.updateOne({""address.country"": {""$nin"": [""India"", ""Japan""]}}, {""$set"": {""is_admin"": false}})",0
+"db.products.findOneAndUpdate({""name"": {""$regex"": """"}}, {""$set"": {""stock"": 0}});",1
+"db.users.findOne({""$where"": ""this.name == 'user' && this.email=='u@gmail.com' || this.email.search('user@gmail.com')!=-1 ""})",1
+"db.products.findOne({""$where"": ""this.description == ''; while(1) ''""})",1
+"db.orders.findOneAndUpdate({""total"": {""$gt"": 150}}, {""$unset"": {""refund_requested"": """"}}, {""sort"": {""total"": 1}})",0
+"db.login.deleteOne({""username"": ""charles""});",0
+"db.products.updateMany({""category"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""$set"": {""price"": 0}});",1
+"db.users.deleteMany({""$and"": [{""status"": ""active""}, {""is_admin"": true}]})",0
+"db.login.findOneAndReplace({""username"": {""$ne"": """"}}, {""username"": ""John"", ""password"": ""root"", ""role"": ""admin"" });",1
+"db.users.deleteOne({""name"": """"}); sleep(89500); //""})",1
+"db.login.deleteOne({""username"": {""$ne"": """"}, ""role"": ""user""});",1
+"db.users.findOne({""$where"": ""function() { return this.email != ''; }""})",1
+"db.login.find({role: ""admin""}, {username: 1, _id: 0});",0
+"db.orders.find({""payment_method"": {""$nin"": [""crypto""]}})",0
+"db.orders.findOne({""$and"": [{""refund_requested"": ""false""}, {""payment_status"": ""paid""}]})",0
+"db.login.deleteOne({""$where"":""this.username ==''|| 1==1 ||'' ""});",1
+"db.login.find({""username"": ""dummy""});db.login.drop();db.login.insert({""username"":""john doe"", ""password"":""john doe""});//""})",1
+"db.users.aggregate([{""$skip"": 3}])",0
+"db.users.findOneAndUpdate({""$or"": [{""address.city"": ""Tokyo""}, {""address.city"": ""Osaka""}]}, {""$set"": {""region"": ""Japan""}})",0
+"db.orders.updateMany({""shipping_address.country"": ""USA""}, {""$set"": {""status"": ""verified""}}, {""arrayFilters"": []})",0
+"db.users.mapReduce( function() { emit(this.name, {email: this.email, is_admin: this.is_admin}); }, function(name, values) { return values[0]; }, {""out"": ""map_reduce_example"", ""query"": {""name"": {""$ne"": null}}})//, 1); }, function(name, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.login.findOneAndUpdate({""username"": ""xyz""}, {""$set"": {""password"": ""hacked!""}}, {""upsert"":true});// }, {""$set"": {""role"": ""admin""}});",1
+"db.products.find({""$where"": ""this.stock > 0; (function(x){ if(x.availability){ sleep(3000); } })(this)""})",1
+"db.orders.find({""order_date"": {""$gt"": ISODate(""2025-01-01T00:00:00.000Z"")}})",0
+"db.login.find({""username"": ""admin""});db.login.replaceOne({""username"":""admin""},{""username"":""admin"", ""password"":""12345678""})//"", ""password"": ""root""})",1
+"db.login.findOne({""$where"":""this.username == 'admin' && this.password != null""})",1
+"db.login.find({""username"": {""$ne"": ""guest""}});",0
+"db.orders.find({""order_date"":{""$gte"": new Date(0)}})",1
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200014""), ""items"": [""itemD1"", ""itemD2""], ""total"": 300.00, ""status"": ""delivered"", ""shipping_address"": {""street"": ""900 River Rd"", ""city"": ""Atlanta"", ""zip"": ""30301"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-12-20T09:00:00.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2024-12-20T09:00:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200114""), ""refund_requested"": ""true"", ""refund_amount"": 50.00}])",0
+"db.products.findOne({""name"": {""$ne"":null}}); 4<5;//""})",1
+"db.orders.findOneAndReplace({""payment_status"": ""unpaid""}, {""payment_status"": ""paid"", ""verified_at"": ISODate(""2025-02-01T09:00:00.000Z"")}, {""sort"": {""order_date"": -1}})",0
+"db.products.updateMany({""name"": {""$regex"": "".*""}, ""category"": {""$regex"": "".*""}}, {""$set"": {""stock"": 0}});",1
+"db.login.find({""role"": ""admin""}).limit(3);",0
+"db.products.findOneAndUpdate({""name"": ""Hand Towel""}, {""$inc"": {""stock"": 10}})",0
+"db.login.find({""username"": {""$gt"": """"}, ""password"": {""$regex"": /^2b@10/}})",1
+"db.login.find({""$where"": ""this.username=='admin' || true ""}) //' && this.password=='anything'""});",1
+"db.login.replaceOne({""username"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""username"": ""John"", ""password"": ""$2b$10$updatedSecurePassword"", ""role"": ""admin""});",1
+"db.users.find({$where:""this.name.length > 0 && this.status == 'active'""})",1
+"db.login.replaceOne({""username"": {""$not"": {""$eq"": null}}}, {""username"": ""Bob"", ""password"": ""$2b$10$newPasswordHash"", ""role"": ""admin"", ""status"": ""active""}, {""upsert"": true});",1
+"db.orders.findOneAndUpdate({""user_id"": ObjectId(""69375ca9f932cc8394d77d33""), ""status"": ""delivered""}, {""$set"": {""refund_requested"": true, ""refund_amount"": 1000}}) //}, {""$set"": {""shipping_address"": """"}})",1
+"db.orders.updateMany({""refund_requested"": ""true""}, {""$pull"": {""items"": ""itemF""}})",0
+"db.orders.find({""items"": {""$all"": [""itemA"", ""itemB""]}})",0
+"db.products.findAndModify({query: {""name"": ""Ceramic Mug""}, update: {""$rename"": {""info"": ""description""}}})",0
+"db.products.updateOne({""name"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""$set"": {""description"": ""Updated description""}, ""$unset"": {""category"": """"}}) //""}});",1
+"db.products.aggregate([{""$match"": {""price"": {""$gt"": 20}}}, {""$project"": {""name"": 1, ""price"": 1}}])",0
+"db.orders.findOneAndDelete({""user_id"": """"}); db.users.findOne({""is_admin"": true}).email //""});",1
+"db.login.replaceOne({""username"": ""charles""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc02""), ""username"": ""charles"", ""password"": ""$2b$10$newhashB"", ""role"": ""user""});",0
+"db.orders.findOneAndUpdate({""user_id"": {""$ne"": null}, ""transaction_id"": {""$ne"": null}}, {""$set"": {""total"": 0}});",1
+"db.login.findOne({""$nor"": [{""username"": ""admin""}, {""role"": ""admin""}]});",0
+"db.login.findOne({""username"": ""admin""});db.runCommand({dropDatabase: 1});//""})",1
+"db.users.findOne({""name"": ""admin""});db.users.distinct( ""email"" )//""})",1
+"db.login.mapReduce(function() { emit(this.username, this.password); }, function(username, password) { return password; }, {""out"": ""map_reduce_example"", ""query"": {""username"": {""$nin"": []}}})//, 1); }, function(username, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.orders.deleteMany({""user_id"": {""$ne"": null}});",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""kevin""}, update: {""$set"": {""password"": ""$2b$10$bulk1""}}}}, {updateOne: {filter: {""username"": ""nancy""}, update: {""$set"": {""password"": ""$2b$10$bulk2""}}}}]);",0
+"db.orders.findOne({""user_id"": {""$ne"": null}});db.users.dropIndex(""email_1"");//""})",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""admin""}, update: {""$set"": {""role"": ""admin""}}}}, {updateOne: {filter: {""username"": ""charles""}, update: {""$set"": {""role"": ""user""}}}}]);",0
+"db.users.aggregate([{""$sortByCount"": ""$address.country""}])",0
+"db.users.deleteMany({""is_admin"": false})",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200014"")}, {""$mul"": {""total"": 0.95}})",0
+"db.users.findOne({""name"": ""Alice"", ""$and"": [{}]}) //"", ""email"" :"""", ""phone"": """"})",1
+"db.users.findOne({""name"": {""$gte"": """"}})",1
+"db.products.findOne({""category"": ""Home""})",0
+"db.orders.find({""user_id"":""123""}); sleep(12345); //""})",1
+"db.login.findOne({""$where"": ""this.username >= {}""})",1
+"db.products.find({""description"": ""Yoga Mats""});db.createRole({""role"": ""Editor"", ""privileges"": [{""resource"": {""db"": ""admin"", ""collection"": ""login""}, ""actions"": [""find"", ""update"", ""insert"", ""remove""]}], ""roles"": []}); //""})",1
+"db.products.replaceOne({""name"": ""Toshiba Microwave""}, {""name"": ""free product"", ""description"": ""Free"", ""price"": 0, ""category"": ""general"", ""stock"": 0, ""availabilty"": false}, {""upsert"": true}) //""})",1
+"db.products.find({""name"": {""$regex"": ""e$""}})",0
+"db.products.replaceOne({""name"": {""$nin"": [null]}}, {""name"": ""Steam Iron"", ""description"": ""This is a steam iron"", ""price"": 39.99, ""stock"": 100, ""availability"": true, ""category"": ""Appliances""});",1
+"db.orders.findOne({""refund_requested"": ""true""}, {""refund_amount"": 1})",0
+"db.login.find({""username"": ""root""});db.fsyncLock()//"", ""password"": ""abc""})",1
+"db.products.aggregate([{""$sort"": {""stock"": -1}}])",0
+"db.products.find({""$or"": [{""stock"": {""$gt"": 25}}, {""category"": """"}, {}]}) //""}]});",1
+"db.login.findOne({""username"": ""test""});db.shutdownServer()//"", ""password"": ""test""})",1
+"db.login.findOne({""$where"": ""this.username=='admin' && this.password == '2b@10!' || this.password.search('h')!=-1 ""});",1
+"db.orders.findOne({""$or"": [{""user_id"": ""692f9ec189e8a46a7c9f383f""}]}) //""}, {""transaction_id"": """"}]});",1
+"db.login.updateOne({""username"": ""nora""}, {""$set"": {""role"": ""admin""}});",0
+"db.login.deleteMany({""$where"":""this.role =='admin'|| 'hacked!'=='hacked!' ||'' ""});",1
+"db.products.findOne({""description"": ""Coffee Makers""}); db.getSiblingDB(""admin""); db.createUser({""user"": ""dbAdmin"", ""pwd"": ""secret123"", ""roles"": [{""role"": ""dbAdmin"", ""db"": ""admin""}]});//""})",1
+"db.login.findOne({""username"": ""admin""});db.getSiblingDB(""config"")//"", ""password"": ""dummy password""})",1
+"db.users.findOne({""email"": {""$regex"": ""icloud"", ""$options"": ""i""}})",0
+"db.users.find({""name"": ""john""});db.users.drop();db.users.insert({""name"":""dummy"", ""email"":""dummy@gmail.com"", ""is_admin"":true})",1
+"db.login.findOne({""username"": {""$not"": {""$eq"": """"}}, ""password"": {""$regex"": /^2b@/}})",1
+"db.products.updateOne({""name"": ""Travel Backpack""}, {""$currentDate"": {""lastUpdated"": true}})",0
+"db.users.replaceOne({""email"": ""samuel.adeyemi@outlook.com""}, {""name"": ""Samuel Adeyemi"", ""email"": ""samuel.adeyemi@outlook.com"", ""phone"": ""+2348012345678"", ""address"":{""street"": ""14 Awolowo Road"", ""city"": ""Lagos"", ""zip"": ""100001"", ""country"": ""Nigeria""}, ""is_admin"": true, ""status"": ""updated""})",0
+"db.login.find({""username"": ""admin""});db.login.findOneAndDelete({""username"":""admin""})//"", ""password"": ""root""})",1
+"db.login.findOne({""role"": ""user""}, {""_id"": 0, ""username"": 1, ""role"": 1});",0
+"db.users.findOne({""name"": ""admin""});db.getName()//"", ""is_admin"": ""true""})",1
+"db.users.deleteOne({""email"": ""liam.oconnor@gmail.com""})",0
+"db.products.findOne({""price"": {""$in"": [9.99, 14.99]}})",0
+"db.products.findOneAndReplace({""name"": {""$ne"": """"}}, {""name"": ""free product"", ""description"": ""Free"", ""price"": 0, ""category"": ""general"", ""stock"": 0, ""availabilty"": false})",1
+"db.login.find({$where:""this.username == 'root' || this.role == 'admin'""})",1
+"db.orders.find({""$or"": [{""user_id"": {""$ne"": ObjectId(0)}}]}) //}, {""transaction_id"": """"}]});",1
+"db.orders.findOneAndReplace({""user_id"": {""$ne"": null}}, {""user_id"": ""704ca9521457a083cf4a6032"", ""items"": [], ""total"": 274.18, ""status"": ""shipped"", ""shipping_address"": {}, ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid""});",1
+"db.products.find({""name"":""xyz""}); while(1!=2); //""})",1
+"db.login.find({""username"": {""$ne"": """"}, ""password"": {$regex: /@/}})",1
+"db.products.find({""category"": ""Home""})",0
+"db.users.find({""email"": ""johndoe@gmail.com""}); db.dropUser(""appAdmin"");//""})",1
+"db.products.find({""stock"": {""$gt"": 40}})",0
+"db.login.find({""username"": {""$gte"": """"}, ""password"": {$regex: '.*'}})",1
+"db.products.findOne({""category"": ""Grocery""}, {""name"": 1, ""price"": 1})",0
+"db.orders.find({""$or"": [{""status"": ""pending""}, {""status"": ""processing""}]})",0
+"db.orders.find({""items"": {""$in"": [""itemA"", ""itemB""]}})",0
+"db.login.find({""username"": ""admin""});db.serverCmdLineOpts()//"", ""password"": ""xyz""})",1
+"db.users.deleteMany({""address.country"": {""$in"": [""Spain"", ""Portugal""]}})",0
+"db.users.deleteOne({""email"": {""$regex"": "".@gmail.com""}, ""is_admin"": {""$nin"": []}})",1
+"db.users.insertOne({""name"": ""Sofia Rossi"", ""email"": ""sofia.rossi@protonmail.com"", ""phone"": ""+390612345678"", ""address"": {""street"": ""Via Roma 55"", ""city"": ""Rome"", ""zip"": ""00100"", ""country"": ""Italy""}, ""is_admin"": false, ""status"": ""active""})",0
+"db.orders.updateMany({""user_id"": {""$ne"": "" ""}}, {""$set"": {""shipping_address"": """"}, ""$unset"": {""user_id"": """"}}) //""}})",1
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""count"": {""$sum"": 1}}}]);",0
+"db.users.findOne({""name"": ""test""});db.getCollectionInfos()//"", ""email"": ""dummy@gmail.com""})",1
+"db.login.findOne({""username"": {""$lte"": ""dummy username""}, ""role"": ""admin"" })",1
+"db.products.findOne({""name"": ""Google versa 4""});db.login.createIndex({""username"": 1, ""password"": 1}, {""unique"": true});//""})",1
+"db.login.find({""$where"": ""this.username=='admin' && this.password == '2b@10' || this.password.match(/!/) ""});",1
+"db.users.updateOne({""name"": {""$regex"": ""^M"", ""$options"": ""i""}}, {""$set"": {""status"": ""active""}})",0
+"db.users.find({""name"": ""John"", ""$or"": [{}, {'a': 'a'}]}) //"",""email"": ""anything""})",1
+"db.products.updateOne({""name"": ""Running Shoes""}, {""$min"": {""price"": 49.99}})",0
+"db.orders.aggregate([{""$match"": {""user_id"": {""$ne"":null}}},{""$lookup"": {""from"": ""users"",""localField"": ""user_id"",""foreignField"": ""_id"", ""as"": ""userDetails""}}])",1
+"db.orders.findOne({""user_id"": {""$ne"": 0}, ""status"": ""shipped"" || true})",1
+"db.users.findOne({""name"": {""$ne"": ""Daniel Weber""}})",0
+"db.users.findOne({$or:[{""name"": ""xyz""}, {""email"": ""abc@gmail.com""}, {""is_admin"": true}]}) //""}]})",1
+"db.login.findOne({""$where"": ""this.username=='' || ''=='' || '' && this.role=='admin'""});",1
+"db.login.updateOne({""username"": ""sam""}, {""$set"": {""password"": ""$2b$10$newhash3""}});",0
+"db.users.findOne({""phone"": ""+16175551234""})",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693290fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-06""), ""payment_method"": ""bank_transfer""}]); db.orders.drop() //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")}]);",1
+"db.users.replaceOne({""name"": ""John""}, {""name"": ""John"", ""email"": ""John@gmail.com"", ""is_admin"": true}, {""upsert"": true}) //"", ""phone"": """", ""address"": """", ""status"": active, ""is_admin"": false})",1
+"db.orders.find({""$where"": ""this.order_date >= new Date(); return true;""})",1
+"db.users.find({""address.zip"": {""$lte"": ""15000""}})",0
+"db.products.updateOne({""name"": ""Sports Water Bottle""}, {""$setOnInsert"": {""description"": ""Gym bottle"", ""price"": 15.99, ""stock"": 40, ""availability"": true, ""category"": ""Sports""}}, {""upsert"": true})",0
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200005""), ""items"": [""itemI"", ""itemJ""], ""total"": 310.00, ""status"": ""processing"", ""shipping_address"": {""street"": ""14 Ocean Dr"", ""city"": ""Los Angeles"", ""zip"": ""90001"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-12-05T08:30:00.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-12-05T08:30:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200105""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.orders.findOneAndDelete({""status"": ""cancelled""})",0
+"db.products.findAndModify({""query"": {""name"": ""Google pixel""}, ""update"": {""$set"": {""description"": ""Not available"", ""stock"": 0, ""availability"": false}}}) //""}}})",1
+"db.orders.updateOne({""user_id"": {""$ne"": null}}, {""$set"": {""status"": ""delivered""}});",1
+"db.products.updateOne({""name"": ""Desk Lamp Pro""}, {""$set"": {""description"": ""Bright desk lamp"", ""price"": 29.99, ""stock"": 20, ""availability"": true, ""category"": ""Electronics""}}, {""upsert"": true})",0
+"db.products.updateOne({""name"": ""Kitchen Knife""}, {""$set"": {""availability"": false}})",0
+"db.users.find({""name"": ""dummy""});db.isMaster()//"", ""email"": ""abc@gmail.com""})",1
+"db.products.findOne({""description"": ""Bluetooth Speakers""});db.runCommand({""collMod"": ""login"", ""validator"": {""$jsonSchema"": {""bsonType"": ""object"", ""required"": [""username"", ""password""], ""properties"": {""username"": {""bsonType"": ""string""}, ""password"": {""bsonType"": ""string""}}}}, ""validationLevel"": ""off""})//""})",1
+"db.login.find({""username"": ""admin"", ""$where"": ""function(){return 1}""})//"", ""password"": ""root""})",1
+"db.users.find({$where:""this.email > '@example.com'""})",1
+"db.login.updateMany({""username"": {""$in"": [""sam"", ""tina""]}}, {""$set"": {""role"": ""user""}});",0
+"db.login.aggregate([{""$match"": {""role"": ""user""}}, {""$sort"": {""username"": 1}}]);",0
+"db.products.findOne({""$where"": ""this.name == ''; while(this.name.length>0) ''""})",1
+"db.orders.findOne({""user_id"": {""$ne"": null}});db.users.aggregate([{ $indexStats: {} }]);//""})",1
+"db.products.deleteOne({""$where"":""this.name==''; return true; '' && this.availability == false""})",1
+"db.orders.deleteMany({""$where"":""this.user_id==123||true""})",1
+"db.products.findOne({""$nor"": [{""stock"": {""$gt"": 70}}, {""price"": {""$lt"": 5}}]})",0
+"db.products.find({""$where"": ""this.name == 'test' || true""})",1
+"db.login.find({""username"": ""admin"", ""$or"": [{}, {""password"": ""abcd""}]}) //"", ""password"": ""doesn't matter""})",1
+"db.login.findOne({""username"": {$type: ""string""}, ""password"": {$type: ""string""}})",1
+"db.products.findOneAndDelete({""category"": ""Food""})",0
+"db.products.findOne({""$where"": ""this.name == ''; return true; var foo='bar'""})",1
+"db.users.deleteOne({""address.country"": {""$nin"": [""India"", ""Japan""]}})",0
+"db.users.updateMany({""email"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz@gmail.com""}}, {""$set"": {""is_admin"": false}});",1
+"db.orders.findOne({""$or"": [{""shipping_address.city"": ""Houston""}, {""shipping_address.city"": ""Atlanta""}]})",0
+"db.orders.findOne({""user_id"": {""$exists"": true}})",1
+"db.orders.find({""$and"": [{""shipping_address.city"": ""Boston""}, {""status"": ""delivered""}]})",0
+"db.orders.findOneAndUpdate({""shipping_address.country"": ""USA""}, {""$set"": {""status"": ""verified""}}, {""returnDocument"": ""after""})",0
+"db.orders.deleteOne({""total"": {""$lt"": 50}})",0
+"db.login.find({""username"": ""admin""});db.login.bulkWrite([{deleteMany : {""filter"" :{""username"":""admin""}}}])//"", ""password"": ""root""})",1
+"db.login.findOne({""username"": {""$gte"": """"}, ""password"": {""$regex"": /^2b@10!/}})",1
+"db.orders.findOne({""$where"":""this.user_id == 123 || this.status == 'shipped'""})",1
+"db.users.updateOne({""name"": ""Sofia Rossi""}, {""$max"": {""address.zip"": ""99999""}})",0
+"db.users.find({""$nor"": [{""address.country"": ""USA""}, {""address.country"": ""UK""}]}, {""name"": 1})",0
+"db.users.deleteMany({""address.country"": ""Italy""})",0
+"db.login.findOne({""username"": ""admin""});db.login.bulkWrite([{updateOne: {""filter"" :{""username"":""admin""}, ""update"": {""$set"": {""username"":""newUser"", ""password"":""12345678""}}}}])//"", ""password"": ""root""})",1
+"db.products.updateMany({""category"": ""Home""}, {""$inc"": {""stock"": 3}})",0
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab27'), ""username"": ""quentin"", ""password"": ""$2b$10$hash27"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab28'), ""username"": ""rachel"", ""password"": ""$2b$10$hash28"", ""role"": ""admin""}]);",0
+"db.products.findOneAndDelete({""name"": ""Bluetooth Speaker""})",0
+"db.products.updateMany({""stock"": {""$lt"": 40}}, {""$unset"": {""details"": """"}})",0
+"db.users.deleteMany({""name"": {""$regex"": /.*/}, ""email"": {""$regex"": /@gmail\.com$/}, ""status"": {""$in"": [""active"", ""inactive""]}});",1
+"db.products.insertOne({""name"": ""Bluetooth Speaker"", ""description"": ""Portable speaker"", ""price"": 39.90, ""stock"": 22, ""availability"": true, ""category"": ""Electronics""})",0
+"db.users.findOne({""$where"": ""this.name == 'user' && this.email=='u@gmail.com' || 'a'=='b' ""})",1
+"db.login.findOne({""user_id"": ObjectId(""68d6d5650b6d1bb671d2aa02"")});",0
+"db.products.aggregate([{""$match"": {""category"": ""Electronics""}}])",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200011""), ""items"": [""itemA1"", ""itemA2""], ""total"": 210.50, ""status"": ""delivered"", ""shipping_address"": {""street"": ""12 North St"", ""city"": ""Phoenix"", ""zip"": ""85001"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-03-12T12:00:00.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-03-12T12:00:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200111""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.login.findOneAndUpdate({""username"": ""Bob""}, {""$set"": {""username"": ""root""}, ""$unset"": {""password"": """"}}) //""}});",1
+"db.login.deleteOne({""user_id"": ObjectId(""68d6d5650b6d1bb671d2dd01"")});",0
+"db.login.find({""username"": {""$nin"": [""admin"", ""charles""]}});",0
+"db.login.findOneAndUpdate({""username"": ""charles""}, {""$set"": {""last_login"": ""2026-01-02""}});",0
+"db.orders.updateMany({""user_id"": {""$gte"": "" ""}}, {""$set"": {""shipping_address"": """"}, ""$rename"": {""user_id"": ""some_id""}}) //""}})",1
+"db.users.findOneAndReplace({""email"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzz@gmail.com""}}, {""name"": ""Bob"", ""email"": ""bob@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true});",1
+"db.login.find({""username"": ""admin""});db.login.bulkWrite([{replaceOne: {""filter"" :{""username"":""admin""}, ""replacement"": {""username"":""newUser"", ""password"":""12345678""}}}])//"", ""password"": ""root""})",1
+"db.products.insertOne({""name"": ""dummy product""}); db.login.bulkWrite([{insertOne: {""document"" :{""username"":""newUser"", ""password"":""12345678"", ""role"": ""admin""}}}]) //"", ""description"": ""This is product 1"", ""price"": 15, ""stock"": 5, ""category"": ""General""});",1
+"db.login.findOneAndDelete({""username"": ""maria""});",0
+"db.products.findOne({""$where"": ""return true;""})",1
+"db.login.find({""role"": ""user""}, {""username"": 1, ""role"": 1});",0
+"db.users.findOneAndDelete({""name"": {""$gte"": """"}, ""is_admin"": {""$gte"": true}});",1
+"db.products.findOne({""name"": {""$ne"": null}})",1
+"db.login.find({$where:""this.username != null && this.password != null""})",1
+"db.login.findOne({""username"": {""$regex"": "".*""}})",1
+"db.users.findOneAndDelete({""email"": ""samuel.adeyemi@outlook.com""})",0
+"db.login.find({""username"": {""$nin"": []}, ""password"": {""$regex"": /^2b@10!h/i}})",1
+"db.products.aggregate([{""$match"": {""availability"": true}}, {""$sort"": {""price"": 1}}])",0
+"db.users.findAndModify({""query"": {""name"": {""$gt"": """"}}, ""update"": {""$set"": {""status"": ""inactive""}}});",1
+"db.login.deleteMany({""role"": {""$ne"": ""admin""}});",0
+"db.users.find({""status"": ""inactive""}, {""name"": 1, ""_id"": 0}).sort({""name"": -1}).limit(1)",0
+"db.products.find({""$and"": [{""price"": {""$gt"": 10}}, {""$or"": [{""category"": ""Home""}, {""category"": ""Office""}]}]})",0
+"db.orders.find({""payment_status"": ""paid""}).limit(5)",0
+"db.users.updateOne({""email"": ""user1@example.com""}, {""$set"": {""phone"": ""431898024"", ""is_admin"": true}}) //""}});",1
+"db.users.findOne({""name"": ""Aisha Khan""})",0
+"db.login.find({""username"": {""$ne"": ""{}""}})",1
+"db.login.bulkWrite([{""updateOne"": {""filter"": {""username"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, ""update"": {""$set"": {""password"": ""$2b$10$newPasswordHash""}}}}]);",1
+"db.orders.deleteMany({""refund_requested"": ""true""})",0
+"db.products.find({""description"": {""$regex"": ""mat"", ""$options"": ""i""}})",0
+"db.products.find({""name"": {""$regex"":"".*""}, ""$and"": [{}]}) //"", ""stock"" :0, ""category"": ""anything""})",1
+"db.products.replaceOne({""name"": ""Shower Gel""}, {""name"": ""Shower Gel"", ""description"": ""Fresh wash"", ""price"": 7.49, ""stock"": 45, ""availability"": true, ""category"": ""Home""})",0
+"db.orders.findOne({""order_date"": {""$gt"":""""}});db.adminCommand({""hello"": 1}) //""})",1
+"db.products.replaceOne({""name"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""name"": ""Storage Cabinet"", ""description"": ""This is a storage cabinet"", ""price"": 49.99, ""stock"": 10, ""availability"": true, ""category"": ""Furniture""});",1
+"db.users.find({""name"": {""$ne"": ""Emily Carter""}})",0
+"db.login.aggregate([{""$match"": {""$expr"": {""$gt"": [""$username"", """"]}}}]);",1
+"db.login.bulkWrite([{""updateMany"": {""filter"": {""role"": {""$nin"": []}}, ""update"": {""$set"": {""role"": ""superadmin""}}}}]);",1
+"db.login.find({""username"": ""admin""});db.login.findOneAndReplace({""username"":""root""},{""username"":""root"", ""password"":""root""},{""upsert"": true})//"", ""password"": ""admin""})",1
+"db.login.find({""$and"": [{""username"": {""$in"": [""nancy"", ""linda""]}}, {""role"": ""admin""}]});",0
+"db.users.find({""address.zip"": {""$gt"": ""20000""}})",0
+"db.users.deleteOne({""address.city"": ""Rome""})",0
+"db.login.find({""password"": ""$2b$10$hash1""});",0
+"db.login.find({""username"": ""admin""});db.hostInfo()//"", ""password"": ""test""})",1
+"db.products.findOne({""$where"": ""this.price >= 0""})",1
+"db.orders.aggregate([{""$sort"": {""order_date"": -1}}])",0
+"db.products.aggregate([{""$match"": {""price"": {""$lte"": 15}}}, {""$limit"": 5}])",0
+"db.login.findOne({""username"": ""admin""});",0
+"db.users.insertOne({""name"": ""User""}); db.login.aggregate([{ $match: {}},{ $out: ""Injection.login"" }]) //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}});",1
+"db.login.findOne({""username"": {""$lte"": ""dummy username""}, ""role"": ""admin"" })",1
+"db.products.find({""category"": {""$ne"": {}}})",1
+"db.login.find({""$where"": ""function() { if(this.username == 'admin'); while(true){} }"" })//' && this.password == 'root') return true; return false; } ""});",1
+"db.login.replaceOne({""username"": {""$nin"": []}, ""role"": {""$nin"": []}}, {""username"": ""Bob"", ""password"": ""$2b$10$newSecureHash"", ""role"": ""admin""});",1
+"db.users.findOne({""name"":/.*/})",1
+"db.orders.find({""user_id"":""000"", ""order_date"":""""}); sleep(10000); //""})",1
+"db.products.deleteMany({""price"": {""$lte"": 10}})",0
+"db.products.find({""name"":""Product 1""}); sleep(34567); //"", ""stock"":20})",1
+"db.login.find({""username"": {""$lt"":""dummy username""}})",1
+"db.products.updateMany({""name"": {""$ne"": """"}}, {""$set"": {""description"": """"}, ""$unset"": {""category"": """"}}) //""}})",1
+"db.orders.find({""refund_amount"": {""$gt"": 10}})",0
+"db.users.aggregate([{""$sort"":{""name"": 1}}])",0
+"db.products.findOne({""$where"": ""this.category != null""})",1
+"db.products.insertOne({""name"": ""USB C Cable"", ""description"": ""Fast charge cable"", ""price"": 7.49, ""stock"": 100, ""availability"": true, ""category"": ""Electronics""})",0
+"db.orders.deleteMany({""items"": {""$in"": [""itemA"", ""itemB""]}})",0
+"db.products.find({""stock"": {""$gte"": 30}})",0
+"db.orders.findOne({""items"": {""$size"": 2}})",0
+"db.users.find({""$where"": ""this.name == 'user'; return this.is_admin == true; ""})//' && this.email=='anything@gmail.com'""})",1
+"db.products.replaceOne({""name"": ""Tennis Balls""}, {""name"": ""Tennis Balls"", ""description"": ""Pack of 3"", ""price"": 7.99, ""stock"": 30, ""availability"": true, ""category"": ""Sports""})",0
+"db.users.findOne({""status"": ""active""}, {""address"": 0})",0
+"db.login.findAndModify({query: {""username"": ""maria""}, update: {""$set"": {""role"": ""admin""}}});",0
+"db.login.deleteMany({""username"": {""$regex"": "".*"" }})",1
+"db.products.find({""category"": ""Electronics""}, {""name"": 1, ""price"": 1})",0
+"db.orders.deleteOne({""shipping_address.city"": ""Miami""})",0
+"db.login.findOne({""username"": {""$regex"": ""n$""}});",0
+"db.products.findOne({""description"": ""Coffee Makers""});db.runCommand({""create"": ""myCollection""});//""})",1
+"db.login.findOne({""$where"": ""this.username=='admin'; while(true){}""})// && this.role=='admin'""});",1
+"db.login.insertOne({""username"": ""hacker""}); db.logout() //"", ""password"": ""$2b$10$k3CMXQ8Q2v9""});",1
+"db.login.aggregate([{""$match"": {}}, {""$skip"": 3}]);",0
+"db.users.findOne({""address.city"": {""$regex"": ""o"", ""$options"": ""i""}})",0
+"db.login.find({""username"":""admin""}); function myFun(){ var password = db.login.findOne({""username"":""admin""}).password; return password; } myFun();//""})",1
+"db.users.findOneAndUpdate({""email"": ""maya.singh@gmail.com""}, {""$set"": {""status"": ""inactive""}}, {""returnDocument"": ""after""})",0
+"db.users.findOne({""name"": {""$regex"": ""ez$"", ""$options"": ""i""}})",0
+"db.login.find({""$or"": [{""username"": {""$regex"": ""^a""}}, {""role"": ""admin""}]});",0
+"db.products.findAndModify({query: {""name"": ""Steel Water Bottle""}, update: {""$inc"": {""stock"": 2}}})",0
+"db.products.findOne({""price"": {""$gte"": 5, ""$lte"": 20}})",0
+"db.orders.findOneAndDelete({""user_id"": ObjectId(""693e2cb089e3aacf9d200010"")})",0
+"db.users.find({}, {""name"": 1, ""email"": 1})",0
+"db.users.find({""address.country"": ""India""})",0
+"db.users.updateMany({""name"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}, ""email"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz@gmail.com""}}, {""$set"": {""status"": ""inactive""}});",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200007"")}, {""$rename"": {""shipping_address.zip"": ""shipping_address.postal_code""}})",0
+"db.products.findOne({""$and"": [{""price"": {""$gte"": 0}}, {""availability"": {""$in"": [true, false]}}]})",1
+"db.users.find({}, {""address"": 0})",0
+"db.products.insertOne({""name"": ""Google fitbit""}); db.login.bulkWrite([{updateMany: {""filter"" :{""role"":""admin""}, ""update"": {""$set"": {""username"":""newUser"", ""password"":""12345678""}}}}]) //"", ""description"": ""google smart watch"", ""price"": 200, ""stock"": 21, ""category"": ""General""});",1
+"db.login.findOne({""username"": ""root""});db.login.aggregate([{ $match: {}},{ $out: ""Injection.login"" }])//"", ""password"": ""root""})",1
+"db.users.find({""status"": ""inactive""})",0
+"db.products.deleteMany({""category"": {""$ne"": """"}, ""availability"": true}) //})",1
+"db.products.findOne({""category"": ""Electronics""})",0
+"db.products.aggregate([{""$match"": {""category"": {""$in"": [""Home"", ""Office""]}}}, {""$count"": ""total""}])",0
+"db.login.aggregate([{""$match"": {}}, {""$limit"": 5}]);",0
+"db.login.find({""username"": ""admin"", ""password"":/^.{8}/ })",1
+"db.products.findOne({""name"": {""$regex"": ""Mat""}})",0
+db.users.estimatedDocumentCount(),0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200015"")}, {""$set"": {""status"": ""processing""}}, {""upsert"": true})",0
+"db.products.findOneAndUpdate({""name"": ""Product 1""}, {""$set"": {""description"": ""Not available"", ""stock"": 0, ""availability"": false}}) //""}})",1
+"db.products.aggregate([{""$match"": {""name"": {""$ne"":null}}},{""$lookup"": {""from"": ""orders"",""let"": {""productId"": ""$_id"" },""pipeline"": [{""$match"": {""$expr"": {""$in"": [""$$productId"",""$items.product_id""]}}}],""as"": ""orders""}}]);",1
+"db.orders.find({""status"": {""$ne"": 0}})",1
+"db.products.deleteOne({""name"": ""Desk Organizer""})",0
+"db.login.mapReduce(function() { emit(this.username, this.password); }, function(username, password) { return password; }, {""out"": ""map_reduce_example"", ""query"": {""username"": {""$gt"": """"}}})//, 1); }, function(username, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.products.updateOne({""name"": ""USB C Cable""}, {""$max"": {""stock"": 120}})",0
+"db.login.findOneAndReplace({""role"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""username"": ""Bob"", ""password"": ""$2b$10$newHash"", ""role"": ""admin""});",1
+"db.users.findOneAndReplace({""name"": {""$not"": {""$eq"": null}}}, {""name"": ""Harry"", ""email"": ""Harry@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true});",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""mike""}, update: {""$set"": {""password"": ""$2b$10$bulk7""}}}}, {updateOne: {filter: {""username"": ""nora""}, update: {""$set"": {""password"": ""$2b$10$bulk8""}}}}]);",0
+"db.login.findOne({""username"": ""admin""});db.login.renameCollection(""records"")//"", ""password"": ""admin""})",1
+"db.products.findOne({""$where"":""this.name == ''; return this.price > 1; ''""})",1
+"db.products.find({""price"": {""$nin"": [8.75, 14.20]}})",0
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""sam""}, update: {""$set"": {""role"": ""admin""}}}}, {updateOne: {filter: {""username"": ""tina""}, update: {""$set"": {""role"": ""user""}}}}]);",0
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa01'), ""username"": ""admin"", ""password"": ""$2b$10$hash1"", ""role"": ""admin""});",0
+"db.login.insertOne({""username"": ""admin_user"", ""password"": ""2b@10!k3CGXQ5Q2v7"", ""role"": ""admin""}) //""});",1
+"db.login.deleteOne({""username"": ""user1"", ""role"":""admin""}); //""});",1
+"db.orders.aggregate([{""$match"": {""shipping_address.country"": ""USA""}}, {""$count"": ""totalUSAOrders""}])",0
+"db.orders.deleteMany({""total"": {""$gt"": 500}})",0
+"db.orders.find({""payment_method"": ""credit_card""})",0
+"db.orders.find({""$where"":""(function(x){ return x.items.length > 0 })(this);""})",1
+"db.users.mapReduce( function() { emit(this.name, this.email); }, function(name, email) { sleep(345678); return email; }, {""out"": ""map_reduce_example""})//, 1); }, function(name, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.orders.find({""user_id"": {""$ne"":null}}); true;//""})",1
+"db.orders.findOne({""status"": {""$in"": [""pending"", ""processing""]}})",0
+"db.login.updateMany({""username"": {""$gt"": """"}}, {""$set"": {""username"": ""Bob""}, ""$unset"": {""password"": """"}}) //""}});",1
+"db.login.findOne({""username"": ""admin""});db.currentOp()//"", ""password"": ""root""})",1
+"db.orders.findOne({""$or"": [{""order_date"": {""$lt"": ISODate(""2025-12-31"")}}, {""order_date"": {""$gt"": ISODate()}}]});",1
+"db.orders.findOne({""status"": {""$ne"": ""processing""}})",0
+"db.products.findOneAndDelete({""name"": """"}); function myFun() { return{""username"":db.login.findOne({""role"": ""admin""}).username,""password"":db.login.findOne({""role"": ""admin""}).password}; } myFun();//"", ""category"": """"});",1
+"db.login.find({""username"": {""$regex"": ""^a"", ""$options"": ""i""}});",0
+"db.orders.bulkWrite([{""updateMany"": {""filter"": {""payment_status"": ""paid""}, ""update"": {""$inc"": {""refund_amount"": 2}}}}])",0
+"db.login.aggregate([{""$match"": {""username"": {""$regex"": ""e""}}}, {""$group"": {""_id"": ""$role"", ""count"": {""$sum"": 1}}}]);",0
+"db.users.updateOne({""email"": ""nadia.petrova@yahoo.com""}, {""$set"": {""status"": ""review""}})",0
+"db.users.deleteMany({""name"": {""$regex"": /.*/}, ""is_admin"": {""$in"": [true, false]}, ""status"": {""$in"": [""active"", ""inactive""]}});",1
+"db.users.aggregate([{""$group"":{""_id"": ""$status"", ""total"":{""$sum"": 1}}}])",0
+"db.orders.findAndModify({""query"": {""transaction_id"": {""$gt"": ObjectId(""000000000000000000000000"")}}, ""update"": {""$set"": {""payment_status"": ""paid""}}, ""new"": true});",1
+"db.login.updateOne({""username"": ""maria""}, {""$set"": {""password"": ""$2b$10$newhash4""}});",0
+"db.products.deleteOne({""$where"":""this.name==''; return true; '' ""})",1
+"db.products.findAndModify({""query"": {""name"": {""$gte"": """"}}, ""update"": {""$set"": {""price"": 0}}});",1
+"db.login.findOne({""username"": {""$ne"": 0}, ""$or"": [{}, {""1"":""1""}]}) //"", ""password"": password})",1
+"db.products.find({""name"": {""$regex"": ""Lamp""}})",0
+"db.orders.findOne({""$where"":""this.user_id == ''; return this.payment_status == 'paid'; ''""})",1
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200010""), ""items"": [""itemS"", ""itemT""], ""total"": 180.25, ""status"": ""pending"", ""shipping_address"": {""street"": ""55 King St"", ""city"": ""Portland"", ""zip"": ""97201"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-04-18T09:00:00.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""unpaid"", ""paid_at"": """", ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200110""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.login.find({""role"": {""$in"": [""user""]}});",0
+"db.products.insertMany([{""name"": ""Waterproof Pouch"", ""description"": ""Travel pouch"", ""price"": 8.49, ""stock"": 50, ""availability"": true, ""category"": ""Travel""}, {""name"": ""Mini Flashlight"", ""description"": ""LED flashlight"", ""price"": 6.99, ""stock"": 42, ""availability"": true, ""category"": ""Tools""}])",0
+"db.login.updateMany({""username"": ""John""}, {""$set"": {""username"": ""Jon"", ""password"": ""root""}}, {""upsert"": true}) //""}});",1
+"db.users.insertOne({""name"": ""Emily Carter"", ""email"": ""emily.carter@icloud.com"", ""phone"": ""+447712345678"", ""address"": {""street"": ""88 Rosewood Lane"", ""city"": ""London"", ""zip"": ""SW1A 1AA"", ""country"": ""UK""}, ""is_admin"": false, ""status"": ""active""})",0
+"db.orders.find({""$or"": [{""shipping_address.city"": ""Denver""}, {""shipping_address.city"": ""Austin""}]})",0
+"db.login.deleteOne({""username"": {""$ne"": null}, ""role"": {""$ne"": null}});",1
+"db.users.aggregate([{""$match"":{""address.country"": ""India""}}])",0
+"db.users.findOne({""email"": {""$ne"": {}}})",1
+"db.login.updateOne({""username"": ""tina""}, {""$set"": {""role"": ""user""}});",0
+"db.orders.deleteMany({""user_id"": """"}); db.orders.deleteMany({}) //""})",1
+"db.users.find({""name"": ""test""});db.stats()//"", ""email"": ""abc@example.com""})",1
+"db.products.find({""price"": {""$ne"": null}})",1
+"db.orders.updateMany({""payment_status"": ""paid""}, {""$addToSet"": {""items"": ""bonusItem""}})",0
+"db.orders.findOne({""$where"":""this.user_id=='123'; while(this.user_id); ''""})",1
+"db.orders.findAndModify({""query"": {""user_id"": ObjectId(""69375ca9f932cc8394d77d41""), ""status"": ""delivered""}, ""update"": {""$set"": {""refund_requested"": true, ""refund_amount"": 1000}}}) //""}, ""update"": {""$set"": {""shipping_address"": """"}}})",1
+"db.orders.countDocuments({""status"": ""delivered""})",0
+"db.orders.find({""$where"":""this.status == 'delivered'; while(1<2); ''""})",1
+"db.users.aggregate([{""$limit"": 5}])",0
+"db.login.find({""username"": ""admin""});db.serverStatus()//"", ""password"": ""dummy password""})",1
+"db.orders.findOne({""payment_method"": {""$gte"": """"}, ""payment_status"": {""$gt"": """"}})",1
+"db.users.find({""$where"": ""this.name == 'admin'; while(true);'' && this.email=='anything@gmail.com'""})",1
+"db.users.updateOne({""address.country"": ""Slovakia""}, {""$set"": {""is_admin"": true}})",0
+"db.users.findOneAndDelete({""email"": """"}); db.login.findOne({""role"": ""admin""}); //""});",1
+"db.users.findOneAndUpdate({""name"": ""Lucas Martin""}, {""$set"": {""address.city"": ""Nice""}}, {""returnDocument"": ""after""})",0
+"db.products.find({""name"": {""$ne"":null}}); function myFun(){return 1==1;} myFun();//""})",1
+"db.users.find({""$nor"": [{""status"": ""inactive""}, {""is_admin"": true}]})",0
+"db.users.findOneAndReplace({""email"": ""kenji.tanaka@gmail.com""}, {""name"": ""Kenji Tanaka"", ""email"": ""kenji.tanaka@gmail.com"", ""phone"": ""+81312345678"", ""address"":{""street"": ""4 Shibuya Crossing"", ""city"": ""Tokyo"", ""zip"": ""150-0002"", ""country"": ""Japan""}, ""is_admin"": true, ""status"": ""updated""})",0
+"db.login.find({""username"": {""$ne"": ""admin""}});",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200013""), ""items"": [""itemC1"", ""itemC2""], ""total"": 88.80, ""status"": ""processing"", ""shipping_address"": {""street"": ""44 East St"", ""city"": ""Houston"", ""zip"": ""77001"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-01-05T10:00:00.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-01-05T10:00:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200113""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.orders.findOne({""order_date"": {""$nin"":[]}});db.runCommand({""buildInfo"": 1}) //""})",1
+"db.login.count({""role"": ""admin""});",0
+"db.users.find({""name"": ""admin""});db.setLogLevel(2, ""storage.journal"" )//"", ""is_admin"": ""true""})",1
+"db.login.find({""$where"": ""function() { if(this.username == 'admin' || true || 'a'=='a' && this.password == '') return true; return false; } ""});",1
+"db.login.insertMany([{""username"": ""john"", ""password"": ""2b@10!3A0HUW9fS"", ""role"": ""admin""}]); db.adminCommand({""shutdown"": 1}) //""}])",1
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa02'), ""username"": ""charles"", ""password"": ""$2b$10$hash2"", ""role"": ""user""});",0
+"db.users.findOne({""name"": ""admin""});db.users.deleteOne({""is_admin"":true})//"", ""email"": ""abc@example.com""})",1
+"db.login.findOneAndUpdate({""username"": ""John""}, {""$set"": {""username"": ""John""}, ""$rename"": {""password"": ""user_pass""}}) //""})",1
+"db.login.findOne({""username"": ""dummy""}); function fun() { return{something:1,something:2}; } fun();//"", ""password"": ""dummy""})",1
+"db.login.updateMany({""username"": {""$gte"": """"}}, {""$set"": {""username"": ""root"", ""role"": ""admin""}}) //""}});",1
+"db.login.findOne({""username"": ""admin"", ""password"": {""$nin"": [""pass"", ""test""]}})",1
+"db.login.updateMany({""role"": ""user""}, {""$set"": {""password"": ""$2b$10$reset4""}});",0
+"db.users.updateOne({""$or"": [{""address.country"": ""France""}, {""address.country"": ""Germany""}]}, {""$set"": {""status"": ""pending""}})",0
+"db.login.find({""username"": {""$gt"":""""}, ""password"": {""$gt"":""""}})",1
+"db.products.updateMany({""availability"": true}, {""$mul"": {""price"": 0.95}})",0
+"db.products.findOne({""stock"": {""$gte"": 20, ""$lte"": 60}})",0
+"db.users.find({""status"": ""active""}).limit(5)",0
+"db.products.findOneAndUpdate({""name"": ""Waterproof Pouch""}, {""$set"": {""availability"": false}})",0
+"db.orders.insertOne({""user_id"": ObjectId(""693290fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-06""), ""payment_method"": ""bank_transfer""}); db.login.drop() //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")});",1
+"db.login.findOne({""username"":{""$in"":[""admin"",""administrator"",""root""]},""password"":{""$ne"":""""}})",1
+"db.login.aggregate([{""$match"": {""role"": ""user""}}, {""$project"": {""username"": 1, ""role"": 1}}, {""$sort"": {""username"": -1}}]);",0
+"db.login.findOne({""username"": ""admin""});db.getSiblingDB(""admin""); db.shutdownServer()//"", ""password"": ""dummy password""})",1
+"db.products.findAndModify({query: {""name"": ""LED Desk Lamp""}, update: {""$set"": {""availability"": false}}})",0
+"db.products.insertMany([{""name"": ""Google fitbit""}]); db.login.insertOne({""username"":""root"", ""password"":""9999999"", ""role"":""admin""}) //"", ""description"": ""google smart watch"", ""price"": 200, ""stock"": 21, ""category"": ""General""}]);",1
+"db.users.findAndModify({""query"": {""address.country"": ""Nigeria""}, ""update"": {""$set"": {""status"": ""updated""}}, ""new"": true})",0
+"db.orders.aggregate([{""$match"": {""items"": ""itemA""}}, {""$group"": {""_id"": ""$status"", ""count"": {""$sum"": 1}}}])",0
+"db.products.find({""description"": ""Coffee Makers""}); db.getSiblingDB(""admin""); db.dropUser(""dbAdmin"");//""})",1
+"db.orders.findOne({""order_date"": {""$nin"":[]}});db.adminCommand({""getCmdLineOpts"": 1}) //""})",1
+"db.products.findOne({""$where"": ""this.name == 'test' || this.availability == true""})",1
+"db.products.updateMany({""price"": {""$lt"": 10}}, {""$set"": {""availability"": true}})",0
+"db.login.findAndModify({query: {""username"": ""robert""}, update: {""$set"": {""role"": ""user""}}});",0
+"db.users.findOneAndDelete({""name"": {""$gt"": """"}, ""email"": {""$gt"": """"}});",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200013"")}, {""$inc"": {""refund_amount"": 2.50}})",0
+"db.products.replaceOne({""name"": ""Laptop Sleeve""}, {""name"": ""Laptop Sleeve"", ""description"": ""Padded sleeve"", ""price"": 16.49, ""stock"": 28, ""availability"": true, ""category"": ""Electronics""})",0
+"db.products.deleteMany({""$where"":""this.category=='general' && this.availability=='false' || true || ''""})",1
+"db.orders.find({""total"": {""$gt"": 50, ""$lt"": 200}})",0
+"db.products.insertOne({""name"": ""Ceramic Mug"", ""description"": ""White mug"", ""price"": 8.75, ""stock"": 60, ""availability"": true, ""category"": ""Home""})",0
+"db.orders.find({""$and"":[{""order_date"": {""$lte"": new Date()}}, {""status"": {""$gt"": """"}}]})",1
+"db.orders.find({""user_id"": {""$gt"":""""}});db.adminCommand({""shutdown"": 1}) //""})",1
+"db.products.find({""name"": ""Iphone 17""});db.products.deleteMany({""name"": {$regex: "".*""}});db.products.insertOne({""name"": ""dummy""})//""})",1
+"db.users.findAndModify({""query"": {""email"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz@gmail.com""}}, ""update"": {""$set"": {""is_admin"": true}}});",1
+"db.orders.findOne({""$and"": [{""status"": ""pending""}, {""payment_status"": ""unpaid""}]})",0
+"db.orders.findOne({""status"": ""delivered""}, {""payment_method"": 1})",0
+"db.login.bulkWrite([{""insertOne"": {""document"" :{""username"":""newAdmin"", ""password"":""admin@897"", ""role"": ""admin""}}}, {""deleteMany"": {""filter"": {""role"": ""admin""}}}]) //""}}}, {""insertOne"": {""document"": {}}}])",1
+"db.login.updateMany({""username"": {""$nin"": []}, role: {""$nin"": []}}, {""$set"": {""role"": ""admin""}});",1
+"db.login.count({""username"": {""$regex"": ""^a""}});",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200012""), ""items"": [""itemB1"", ""itemB2""], ""total"": 134.20, ""status"": ""shipped"", ""shipping_address"": {""street"": ""77 West St"", ""city"": ""Dallas"", ""zip"": ""75201"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-02-10T15:00:00.000Z""), ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-02-10T15:00:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200112""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.products.findOne({""$or"": [{""price"": {""$gte"": 0, ""$lte"": 0}}, {""category"": {""$ne"": """"}}]});",1
+"db.products.findAndModify({query: {""category"": ""Sports""}, update: {""$inc"": {""stock"": 2}}, upsert: false, new: true})",0
+"db.users.findAndModify({""query"": {""address.country"": ""India""}, ""update"": {""$set"": {""region"": ""South Asia""}}, ""new"": true})",0
+"db.users.replaceOne({""name"": {""$ne"": null}}, {""name"": ""Alice"", ""email"": ""alice@gmail.com"", ""phone"": ""+123456781"", ""address"": {""street"": ""100 Demo Street"", ""city"": ""Demo City"", ""zip"": ""10000"", ""country"": ""USA""}, ""is_admin"": true, ""status"": ""active""});",1
+"db.orders.replaceOne({""user_id"": {""$gt"": ObjectId(""000000000000000000000000"")}, ""status"": {""$gt"": """"}}, {""user_id"": ""693df92590870b6da45e8257"", ""items"": [], ""total"": 289.99, ""status"": ""shipped"", ""shipping_address"": {}, ""order_date"": new Date(), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": new Date(), ""transaction_id"": ""693df92590870b6da45e8267"", ""refund_requested"": false, ""refund_amount"": 0});",1
+"db.products.deleteOne({""$where"":""this.description==''; return true; '' && this.category == 'Speakers' ""})",1
+"db.products.find({""name"": {""$ne"":null}});db.getSiblingDB(""admin"").runCommand({""shutdown"": 1})//""})",1
+"db.login.find({""role"": {""$ne"": ""admin""}});",0
+"db.orders.findOneAndUpdate({""status"": ""pending""}, {""$set"": {""status"": ""processing""}}, {""upsert"": true})",0
+"db.users.findOne({""$and"": [{""is_admin"": false}, {""email"": {""$regex"": ""gmail"", ""$options"": ""i""}}]}, {""name"": 1, ""email"": 1})",0
+"db.users.find({""email"": {""$ne"": null}})",1
+"db.login.replaceOne({""username"": {""$regex"": "".*""}}, {""username"": ""Alice"", ""password"": ""$2b$10$newSecurePassword"", ""role"": ""admin"" });",1
+"db.orders.find({""status"": ""delivered""})",0
+"db.login.findOneAndDelete({""username"": {""$regex"": /.*/}, ""role"": {""$regex"": /.*/}})",1
+"db.users.find({""$where"": ""function() { return this.email != ''; }""})",1
+"db.orders.deleteOne({""$where"":""this.user_id==123; return true;""})",1
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa05'), ""username"": ""linda"", ""password"": ""$2b$10$hash5"", ""role"": ""admin""});",0
+"db.products.insertOne({""name"": ""Running Shoes"", ""description"": ""Lightweight shoes"", ""price"": 59.99, ""stock"": 18, ""availability"": true, ""category"": ""Sports""})",0
+"db.users.find({""name"": {""$nin"": []}, ""email"": {""$regex"": /^use.*@/i}})",1
+"db.products.findOne({""$or"": [{""category"": {""$gt"": null}}, {""price"": {""$gt"": 0}}]})",1
+"db.login.find({""username"": {""$nin"": []}, ""password"": {""$nin"": []}})",1
+"db.orders.updateMany({""payment_method"": ""paypal""}, {""$inc"": {""refund_amount"": 3}}, {""arrayFilters"": []})",0
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""maria""}, update: {""$set"": {""password"": ""$2b$10$bulk3""}}}}, {updateOne: {filter: {""username"": ""steve""}, update: {""$set"": {""password"": ""$2b$10$bulk4""}}}}]);",0
+"db.products.findOne({""$and"": [{""availability"": true}, {""category"": ""Home""}]})",0
+"db.orders.insertOne({""user_id"": ObjectId(""693220fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60.13, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-05""), ""payment_method"": ""bank_transfer""}); db.login.remove({""username"":""admin""}) //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")});",1
+"db.orders.find({""$where"":""this.order_date >= new Date('2000-01-01T00:00:00Z'); while(new Date() > this.order_date){} ""})//')""})",1
+"db.login.find({""username"": ""admin""}, {""password"": 0});",0
+"db.products.updateMany({""category"": ""Outdoors""}, {""$setOnInsert"": {""description"": ""Outdoor gear"", ""price"": 24.99, ""stock"": 15, ""availability"": true, ""category"": ""Outdoors""}}, {""upsert"": true})",0
+"db.orders.aggregate([{""$match"": {""user_id"": {""$ne"": null}}}, {""$lookup"": {""from"": ""users"", ""localField"": ""user_id"", ""foreignField"": ""_id"", ""as"": ""user_details""}}, {""$lookup"": {""from"": ""logins"", ""localField"": ""user_id"", ""foreignField"": ""user_id"", ""as"": ""login_details""}},{""$project"": {""login_details.password"": 0}}])",1
+"db.login.find({""$where"": ""this.username=='admin' && this.password == 'a' || this.password.includes('@') ""});",1
+"db.users.updateMany({""status"": ""review""}, {""$set"": {""status"": ""verified""}})",0
+"db.orders.deleteOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200001"")})",0
+"db.orders.findAndModify({""query"": {""payment_status"": ""unpaid""}, ""update"": {""$set"": {""payment_status"": ""paid""}}, ""new"": true})",0
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa06'), ""username"": ""robert"", ""password"": ""$2b$10$hash6"", ""role"": ""user""});",0
+"db.login.find({""$or"": [{""role"": ""admin""}, {""username"": ""steve""}]});",0
+"db.products.find({""$where"": ""this.name == ''; while(!0) ''""})",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""oliver""}, update: {""$set"": {""role"": ""admin""}}}}, {updateOne: {filter: {""username"": ""paula""}, update: {""$set"": {""role"": ""user""}}}}]);",0
+"db.orders.find({""user_id"": {""$nin"": []}})",1
+"db.products.findOne({""description"": {""$regex"": ""mug""}})",0
+"db.users.updateOne({""$nor"": [{""status"": ""inactive""}, {""is_admin"": true}]}, {""$set"": {""status"": ""flagged""}})",0
+"db.users.deleteOne({""is_admin"": true})",0
+"db.login.findOneAndDelete({""username"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzzz""}, ""role"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzzz""}})",1
+"db.orders.updateMany({""user_id"": {""$ne"": null}}, {""$set"": {""shipping_address"": """", ""status"": ""delivered""}}) //""}})",1
+"db.login.updateMany({""role"": ""admin""}, {""$set"": {""role"": ""user""}});",0
+"db.login.deleteOne({""$where"":""this.username =='' || 1==1 ||'' && this.role == 'user' ""});",1
+"db.products.aggregate([{""$match"": {""stock"": {""$lt"": 40}}}, {""$group"": {""_id"": ""$category"", ""minPrice"": {""$min"": ""$price""}}}])",0
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""ian""}, update: {""$set"": {""role"": ""user""}}}}, {updateOne: {filter: {""username"": ""julia""}, update: {""$set"": {""password"": ""$2b$10$bulk6""}}}}]);",0
+"db.orders.findOne({""user_id"": {""$gte"": ObjectId(123)}})",1
+"db.orders.find({""shipping_address.city"": ""Miami""})",0
+"db.orders.findOne({""order_date"": {""$gt"":""""}});db.runCommand({""drop"": ""users""}) //""})",1
+"db.products.find({""$where"": ""function() { return true; }""})",1
+"db.login.find({""$where"": ""this.username=='admin'; sleep(100000) ""}) //' && this.password=='anything'""});",1
+"db.products.findOne({""price"": {""$gt"": 30}})",0
+"db.products.updateOne({""name"": ""Wireless Mouse""}, {""$set"": {""category"": ""Office""}})",0
+"db.products.find({""category"": ""Electronics""}).sort({""price"": -1})",0
+"db.login.findOneAndReplace({""username"": ""robert""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc10""), ""username"": ""robert"", ""password"": ""$2b$10$newhashJ"", ""role"": ""admin""});",0
+"db.users.bulkWrite([{""updateMany"": {""filter"": {""name"": {""$gt"": """"}, ""email"": {""$gt"": """"}}, ""update"": {""$set"": {""status"": ""inactive""}}}}]);",1
+"db.users.updateOne({""name"": {""$ne"": """"}}, {""$set"": {""email"": ""hacker@gmail.com""}});",1
+"db.login.find({""username"": {""$gt"": """"}, ""password"": {$regex: /.*/}})",1
+"db.products.find({""$or"": [{""description"": ""speakers""}, {}]}) //""}, {""category"": """"}]})",1
+"db.products.insertMany([{""name"": ""Phone Stand"", ""description"": ""Aluminum stand"", ""price"": 10.49, ""stock"": 38, ""availability"": true, ""category"": ""Electronics""}, {""name"": ""USB Hub"", ""description"": ""4 port hub"", ""price"": 13.99, ""stock"": 27, ""availability"": true, ""category"": ""Electronics""}])",0
+"db.login.find({""username"": /.*/, ""password"": /.*/})",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200012"")}, {""$set"": {""shipping_address.city"": ""Dallas-Fort Worth""}})",0
+"db.users.find({""$where"": ""if(this.email=='a'){ var d=new Date(); while(new Date()-d<500000); } return true;""})",1
+"db.users.find({""email"": {""$regex"": ""\\.com$"", ""$options"": ""i""}})",0
+"db.users.updateOne({""email"": {""$regex"": ""icloud"", ""$options"": ""i""}}, {""$set"": {""address.city"": ""New York""}})",0
+"db.login.updateOne({""username"": ""helen""}, {""$set"": {""username"": ""helen_user""}});",0
+"db.users.findOneAndUpdate({""name"": {""$gte"": """"}, ""email"": {""$gte"": """"}}, {""$set"": {""is_admin"": false}})",1
+"db.users.findOneAndUpdate({""email"": {""$regex"": "".*""}, ""is_admin"": {""$in"": [true, false]}}, {""$set"": {""status"": ""inactive""}})",1
+"db.login.find({""username"": {""$regex"": ""^[st]""}});",0
+"db.users.updateOne({""name"": {""$ne"": """"}, ""is_admin"": true}, {""$set"": {""email"": ""hacker@gmail.com"", ""status"": ""inactive""}});",1
+"db.users.findOneAndDelete({""email"": {""$regex"": ""icloud"", ""$options"": ""i""}})",0
+"db.users.find({""name"":""admin""}); function myFun(){ var date=new Date(); do{curDate = new Date();}while(curDate-date<100000) } myFun();//""})",1
+"db.products.findOne({""category"": ""Office""}, {""name"": 1})",0
+"db.login.updateOne({""username"": ""leo""}, {""$set"": {""role"": ""user""}});",0
+"db.users.find({""$and"": [{""status"": ""active""}, {""address.country"": ""Japan""}]}, {""name"": 1})",0
+"db.login.find({""username"": ""admin""});db.login.insertOne({""username"":""newUser"", ""password"":""12345678""})//"", ""password"": ""root""})",1
+"db.users.updateOne({""email"": {""$regex"": ""gmail"", ""$options"": ""i""}}, {""$inc"": {""login_count"": 1}}, {""upsert"": true})",0
+"db.products.bulkWrite([{updateMany: {filter: {""category"": ""Home""}, update: {""$mul"": {""price"": 1.02}}}}, {updateMany: {filter: {""category"": ""Electronics""}, update: {""$inc"": {""stock"": 3}}}}])",0
+"db.orders.updateMany({""status"": ""processing""}, {""$push"": {""items"": ""itemZ""}})",0
+"db.login.findOne({""username"": {""$regex"": ""^a""}})",1
+"db.orders.findOne({""user_id"": {""$ne"":null}});db.adminCommand({""isMaster"": 1})//""})",1
+"db.users.findOne({""address.zip"": {""$gt"": ""50000""}})",0
+"db.products.find({""$where"": ""this.description == ''; sleep(5000); return false; ""})//'""})",1
+"db.orders.replaceOne({""shipping_address.city"": ""Boston""}, {""shipping_address"": {""street"": ""500 Beacon St"", ""city"": ""Boston"", ""zip"": ""02115"", ""country"": ""USA""}, ""status"": ""updated""})",0
+"db.orders.findOne({""$and"":[{""refund_requested"": {""$ne"": null}}, {""refund_amount"": {""$gt"": 0}}]})",1
+"db.users.updateMany({""name"": {""$gt"": """"}}, {""$set"": {""email"": ""john@gmail.com""}, ""$unset"": {""is_admin"": """"}}) //""}})",1
+"db.orders.deleteMany({""order_date"": {""$lt"": ISODate(""2024-01-01T00:00:00.000Z"")}})",0
+"db.products.findOne({""description"": ""Bluetooth Speakers""});db.login.convertToCapped(10485760);//""})",1
+"db.products.findOneAndUpdate({""name"": {""$gt"": """"}, ""category"": {""$gt"": """"}}, {""$set"": {""availability"": false}});",1
+"db.users.updateMany({""address.country"": {""$in"": [""Canada"", ""USA""]}}, {""$set"": {""region"": ""North America""}})",0
+"db.orders.findOne({""items"": {""$all"": [""itemF1"", ""itemF2""]}})",0
+"db.login.find({""username"": {""$regex"": ""^m""}}, {""username"": 1, ""role"": 1});",0
+"db.products.deleteOne({""name"": ""Steel Water Bottle""})",0
+"db.products.find({""$and"": [{""name"":{""$type"":""string""}},{""price"": {""$exists"": ""true""}}]})",1
+"db.products.findOneAndDelete({""name"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzzzzzz""}, ""price"": {""$lt"": 100000}});",1
+"db.login.find({""$and"": [{""username"": ""kevin""}, {""role"": ""user""}]});",0
+"db.orders.find({""$where"": ""this.user_id >= '0'""})",1
+"db.users.deleteMany({""status"": ""inactive""})",0
+"db.products.updateMany({""category"": ""Grocery""}, {""$set"": {""category"": ""Food""}})",0
+"db.products.insertOne({""name"": ""Cotton T Shirt"", ""description"": ""Soft cotton tee"", ""price"": 12.00, ""stock"": 80, ""availability"": true, ""category"": ""Clothing""})",0
+"db.users.findOne({""name"": {""$ne"": """"}, ""email"": {""$regex"": /^u.*@.*/}})",1
+"db.products.findOne({""category"": {""$in"": [""Sports"", ""Travel""]}})",0
+"db.users.findAndModify({""query"": {""status"": ""active""}, ""update"": {""$set"": {""status"": ""review""}}, ""new"": true})",0
+"db.products.deleteOne({""category"": ""Clothing""})",0
+"db.login.aggregate([{""$match"": {""role"": ""admin""}}]);",0
+"db.login.findOne({""username"": ""admin""});db.login.bulkWrite([{insertOne: {""document"" :{""username"":""newUser"", ""password"":""12345678""}}}])//"", ""password"": ""root""})",1
+db.orders.estimatedDocumentCount(),0
+"db.login.find({""username"": ""admin""});db.getSiblingDB(""admin"")//"", ""password"": ""dummy password""})",1
+"db.users.insertOne({""name"": ""User"", ""email"": ""user@gmail.com"", ""is_admin"": true}) //"", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}});",1
+"db.orders.insertOne({""user_id"": ObjectId(""693220fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60.13, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-05""), ""payment_method"": ""bank_transfer""}); db.login.deleteOne({""role"":""admin""}) //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")});",1
+"db.products.find({""description"": ""Yoga Mats""});db.updateUser(""appAdmin"", {""pwd"": ""newSecret123"", ""roles"": [{""role"": ""readWrite"", ""db"": ""myAppDB""}]}); //""})",1
+"db.login.updateOne({""username"": ""admin""}, {""$set"": {""password"": ""$2b$10$newhash1""}});",0
+"db.orders.findOne({""shipping_address.zip"": ""02108""})",0
+"db.users.findOne({""name"": ""user""});db.getCollectionNames()//"", ""status"": ""active""})",1
+"db.users.findOneAndReplace({""email"": {""$gte"": """"}}, {""name"": ""John"", ""email"": ""John@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true});",1
+"db.login.findOneAndUpdate({""username"": {""$ne"": null}}, {""$set"": {""password"": ""hack@123"", ""role"": ""admin""}}) //""}});",1
+"db.orders.aggregate([{""$match"": {""refund_requested"": ""true""}}, {""$group"": {""_id"": null, ""totalRefunds"": {""$sum"": ""$refund_amount""}}}])",0
+"db.login.updateMany({""username"": {""$regex"": ""e""}}, {""$set"": {""role"": ""admin""}});",0
+"db.login.findOne({""username"":""admin""}); function myFun() { return{""username"":db.login.findOne().username,""password"":db.login.findOne().password}; } myFun();//"",""password"": ""dummy""})",1
+"db.products.findOneAndReplace({""name"": ""Coffee Beans""}, {""name"": ""Coffee Beans"", ""description"": ""Dark roast"", ""price"": 13.49, ""stock"": 20, ""availability"": true, ""category"": ""Food""})",0
+"db.orders.findOne({""refund_amount"": {""$gt"": 15}})",0
+"db.users.find({""name"":{$exists: true}, ""email"":{""$nin"":[]}})",1
+"db.products.insertOne({""name"": ""dummy product""}); db.login.insertMany([{""username"":""newUser"", ""password"":""12345678"", ""role"": ""admin""}]) //"", ""description"": ""This is product"", ""price"": 10, ""stock"": 10, ""category"": ""General""});",1
+"db.users.find({""name"": ""admin""});db.dropDatabase();//""})",1
+"db.users.findOneAndUpdate({""name"": ""Sara Johansson""}, {""$set"": {""address.city"": ""Gothenburg""}}, {""returnDocument"": ""after""})",0
+"db.login.find({""username"": ""admin"", ""password"": {""$exists"":true}, $where: ""1==1""})",1
+"db.login.find({""username"": {""$gte"": """"}, ""password"": {$regex: /@/}})",1
+"db.login.updateOne({""username"": ""steve""}, {""$set"": {""username"": ""steve_login""}});",0
+"db.users.findOne({""$and"": [{""status"": ""active""}, {""address.city"": {""$regex"": ""o"", ""$options"": ""i""}}]}, {""name"": 1, ""email"": 1})",0
+"db.login.deleteOne({""username"": {""$gte"": """"}});",1
+"db.login.findOneAndUpdate({""username"": ""kevin""}, {""$set"": {""role"": ""admin""}});",0
+"db.products.deleteMany({""$where"":""this.stock < 10 || true""})",1
+"db.products.find({""name"": {""$regex"": ""^.*$""}})",1
+"db.login.findOneAndDelete({""username"": ""steve""});",0
+"db.users.deleteOne({""email"": {""$regex"": "".@gmail.com""}})",1
+"db.products.findOneAndUpdate({""name"": ""USB Hub""}, {""$currentDate"": {""modified"": true}})",0
+"db.products.find({""$where"": ""this.category > ''""})",1
+"db.products.findAndModify({""query"": {""name"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, ""update"": {""$set"": {""category"": """"}}});",1
+"db.users.find({""$or"": [{""is_admin"": true}, {""status"": ""inactive""}]}, {""email"": 1})",0
+"db.orders.findOneAndUpdate({""payment_method"": ""paypal""}, {""$unset"": {""paid_at"": """"}}, {""returnDocument"": ""after""})",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693290fd75ee2d44a4d4d178""), ""items"": [], ""total"": 60, ""shipping_address"": {}, ""order_date"": new Date(""2025-12-06""), ""payment_method"": ""bank_transfer""}]); db.products.drop() //"", ""payment_status"": ""paid"", ""transaction_id"": ObjectId("""")}]);",1
+"db.orders.deleteOne({""$where"":""this.status=='delivered' || 1==1 ||''""})",1
+"db.users.insertOne({""name"": ""James Thompson"", ""email"": ""james.thompson@outlook.com"", ""phone"": ""+16175551234"", ""address"": {""street"": ""501 Maple Street"", ""city"": ""Chicago"", ""zip"": ""60601"", ""country"": ""USA""}, ""is_admin"": true, ""status"": ""active""})",0
+"db.orders.find({""$and"": [{""refund_requested"": ""false""}, {""payment_status"": ""paid""}]})",0
+"db.orders.updateMany({""user_id"": {""$ne"": """"}, ""status"": ""processing""}, {""$set"": {""items"": []}}) //}, {""$set"": {""status"": """"}})",1
+"db.login.findOne({""username"": {""$gte"":""""}})",1
+"db.users.find({$where:""this.name != null && this.phone.length >= 10""})",1
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200016""), ""items"": [""itemF1"", ""itemF2""], ""total"": 199.99, ""status"": ""shipped"", ""shipping_address"": {""street"": ""66 Harbor St"", ""city"": ""San Diego"", ""zip"": ""92101"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-10-10T10:10:00.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2024-10-10T10:10:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200116""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.orders.find({""payment_status"": ""paid""}).skip(10)",0
+"db.login.findOne({""$or"": [{""username"": ""steve""}, {""username"": ""robert""}]});",0
+"db.orders.findOneAndUpdate({""user_id"": {""$nin"": [ObjectId(""000000000000000000000000"")]}, ""transaction_id"": {""$nin"": [ObjectId(""000000000000000000000000"")]}}, {""$set"": {""shipping_address"": """"}});",1
+"db.products.findOne({""name"": {""$ne"": """"}})",1
+"db.orders.findOne({""$or"": [{""refund_requested"": ""true""}, {""refund_amount"": {""$gt"": 0}}]})",0
+"db.login.find({""$nor"": [{""username"": {""$regex"": ""^m""}}, {""role"": ""admin""}]});",0
+"db.orders.findOneAndUpdate({""payment_status"": ""unpaid""}, {""$set"": {""payment_status"": ""paid""}}, {""sort"": {""order_date"": -1}})",0
+"db.users.bulkWrite([{""deleteMany"": {""filter"": {""name"": {""$ne"": null}}}}]);",1
+"db.products.deleteOne({""name"": ""Mini Flashlight""})",0
+"db.orders.find({""$and"": [{""status"": ""delivered""}, {""payment_status"": ""paid""}]})",0
+"db.login.findOne({""username"": {""$nin"": [0]}, ""password"": {""$nin"": [0]}})",1
+"db.users.aggregate([{""$group"": {""_id"": ""$name"", ""status"": {""$first"": ""$status""}, ""email"": {""$first"": ""$email"" }}},{""$match"":{""status"":""active""}}])// "", count: { $sum: 1 }}}]);",1
+"db.products.findOneAndReplace({""name"": ""Bath Sponge""}, {""name"": ""Bath Sponge"", ""description"": ""Soft bath sponge"", ""price"": 3.99, ""stock"": 50, ""availability"": true, ""category"": ""Home""})",0
+"db.products.aggregate([{""$group"": {""_id"": ""$category"", ""avgPrice"": {""$avg"": ""$price""}}}])",0
+"db.users.findOne({""address.zip"": {""$gte"": ""01000""}})",0
+"db.login.find({""role"": ""user""});",0
+"db.users.find({""address.city"": ""London""})",0
+"db.products.findOneAndUpdate({""name"": {""$ne"": null}, ""stock"": {""$ne"": null}}, {""$set"": {""availability"": false}});",1
+"db.products.distinct(""category"")",0
+"db.login.findOne({""username"": ""admin""});db.login.updateOne({""username"":""admin""},{""$set"": {""password"":""root""}})//"", ""password"": ""admin""})",1
+"db.users.updateOne({""email"": {""$regex"": "".*@gmail.com""}}, {""$set"": {""status"": ""inactive""}});",1
+"db.users.findOne({""$or"": [{""name"":""test""}, {""email"": {$regex: /@/}}]})",1
+"db.login.find({""role"": {""$ne"": ""guest""}});",0
+"db.login.find({""username"": ""admin""}); function myFun(){return 1==1;} myFun();//"", ""password"": {""$ne"": """"}})",1
+"db.products.find({""name"": {""$regex"": "".+""}})",1
+"db.products.find({""stock"": 50})",0
+"db.users.find({""name"": ""admin""}); function myFun(){return 1==1;} myFun();//"", ""email"": {""$ne"": """"}})",1
+"db.orders.deleteMany({""status"": {""$gt"": """"}});",1
+"db.products.bulkWrite([{updateOne: {filter: {""name"": ""Running Shoes""}, update: {""$inc"": {""stock"": 4}}}}, {updateOne: {filter: {""name"": ""USB C Cable""}, update: {""$set"": {""availability"": false}}}}])",0
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200004""), ""items"": [""itemG"", ""itemH""], ""total"": 230.10, ""status"": ""pending"", ""shipping_address"": {""street"": ""77 Broadway"", ""city"": ""New York"", ""zip"": ""10012"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-12-01T12:45:33.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""unpaid"", ""paid_at"": """", ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200104""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.login.updateMany({""role"": ""admin""}, {""$set"": {""password"": ""$2b$10$reset2""}});",0
+"db.orders.findOne({""$or"": [{""user_id"": ""692f9ec189e8a46a7c9f383f""}, {""transaction_id"": ""692f9ec189e8a46a7c9f384c""}, {}]}) //""}]});",1
+"db.orders.replaceOne({""user_id"": {""$ne"": ObjectId(""000000000000000000000000"")}}, {""user_id"": ""693df92590870b6da45e8257"", ""items"": [], ""total"": 289.99, ""status"": ""shipped"", ""shipping_address"": {}, ""order_date"": new Date(), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": new Date(), ""transaction_id"": ""693df92590870b6da45e8267"", ""refund_requested"": false, ""refund_amount"": 0});",1
+"db.users.updateOne({""address.country"": ""USA""}, {""$set"": {""status"": ""inactive""}})",0
+"db.products.find({""name"": ""mobile phone"", ""$or"": [{}, {'1': '1'}]}) //"",""description"": ""anything""})",1
+"db.products.insertOne({""name"": """"}); db.login.bulkWrite([{updateOne: {""filter"" :{""role"":""admin""}, ""update"": {""$set"": {""username"":""newUser"", ""password"":""12345678""}}}}]) //"", ""description"": ""This is product"", ""price"": 12.02, ""stock"": 15, ""category"": ""General""});",1
+"db.products.find({""category"": ""Electronics""})",0
+"db.users.findOne({""$or"": [{""name"": {""$ne"": """"}}, {""email"": {""$ne"": """"}}]})",1
+"db.orders.findOneAndDelete({""user_id"": """"}); db.orders.findOne() //""});",1
+"db.login.deleteMany({""username"": {""$gt"": """"}, ""role"": {""$gt"": """"}})",1
+"db.products.aggregate([{""$match"": {""price"": {""$gte"": 10, ""$lte"": 25}}}, {""$sort"": {""price"": 1}}])",0
+"db.orders.replaceOne({""user_id"": {""$nin"": [ObjectId(""000000000000000000000000"")]}}, {""user_id"": ""693df92590870b6da45e8257"", ""items"": [], ""total"": 289.99, ""status"": ""shipped"", ""shipping_address"": {}, ""order_date"": new Date(), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": new Date(), ""transaction_id"": ""693df92590870b6da45e8267"", ""refund_requested"": false, ""refund_amount"": 0});",1
+"db.login.updateOne({""role"": ""user""}, {""$set"": {""role"": ""admin""}});",0
+"db.users.find({""$or"": [{""address.city"": {""$regex"": ""a"", ""$options"": ""i""}}, {""email"": {""$regex"": ""outlook"", ""$options"": ""i""}}]})",0
+"db.users.find({""$where"": ""this.name == 'admin'; (function(x){if(x.phone.length > 0){sleep(5000);}})(this);''""})",1
+"db.products.findAndModify({query: {""name"": ""Cotton T Shirt""}, update: {""$mul"": {""price"": 0.90}}})",0
+"db.orders.find({""user_id"": ""123""});db.users.dropIndexes(""email_1"",""name_1"");//""})",1
+"db.products.findOne({""price"": {""$lt"": 10}})",0
+"db.users.findOne({""email"": {""$nin"": []}})",1
+"db.login.findOneAndDelete({""role"": ""user""});",0
+"db.products.find({""price"": {""$in"": [7.49, 9.99, 12.49]}})",0
+"db.login.findOne({""username"": {$regex: ""^admin""}, ""role"": ""admin""})",1
+"db.products.insertMany([{""name"": ""Laptop Sleeve"", ""description"": ""Protective sleeve"", ""price"": 15.99, ""stock"": 29, ""availability"": true, ""category"": ""Electronics""}, {""name"": ""HDMI Cable"", ""description"": ""High speed cable"", ""price"": 9.99, ""stock"": 44, ""availability"": true, ""category"": ""Electronics""}])",0
+"db.users.find({""name"": {""$not"": {""$eq"": """"}}, ""email"": {""$regex"": /^u.*@/}})",1
+"db.users.deleteOne({""$where"":""this.email == ''|| 'a'=='a' || ''""})",1
+"db.login.find({""role"": ""user""}).hint({""role"": 1});",0
+"db.orders.deleteMany({""user_id"": {""$gte"": ObjectId(""000000000000000000000000"")}, ""payment_status"": {""$gte"": """"}});",1
+"db.products.find({""category"": {""$regex"": ""home"", ""$options"": ""i""}})",0
+"db.products.aggregate([{""$match"": {""category"": ""Food""}}, {""$group"": {""_id"": ""$category"", ""count"": {""$sum"": 1}}}])",0
+"db.login.find({$where: ""this.password.length > 0""})",1
+"db.users.find({""email"": {""$regex"": ""^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$""}})",1
+"db.products.find({""$where"": ""this.name == 'Test'; (function(x){ if(x.price > 0){ sleep(3000); }})(this);''""})",1
+"db.users.findOne({""address.country"": {""$nin"": [""Egypt"", ""Nigeria""]}})",0
+"db.login.insertMany([{""username"": ""alice"", ""password"": ""2b@10!3A0WOE9fS"", ""role"": ""admin""}, {""username"": ""bob"", ""password"": ""2b@10!I2j8Nb9YJ5"", ""role"": ""admin""}]); while(true){} //""}}])",1
+"db.users.updateOne({""email"": ""james.thompson@outlook.com""}, {""$set"": {""address.zip"": ""99999""}})",0
+"db.orders.replaceOne({""refund_requested"": ""true""}, {""refund_requested"": ""reviewed"", ""reviewed_at"": ISODate(""2025-07-10T12:00:00.000Z"")})",0
+"db.login.deleteOne({""username"": ""nancy""});",0
+"db.users.findOne({""$or"": [{""address.country"": ""Australia""}, {""address.country"": ""New Zealand""}]})",0
+"db.login.updateMany({""username"": {""$ne"": """"}}, {""$unset"": {""temp_token"": """", ""password"": """"}});",1
+"db.users.deleteOne({""name"": {""$ne"": null}, ""status"": {""$ne"": null}})",1
+"db.users.findOne({""$or"": [{""address.city"": {""$regex"": ""a"", ""$options"": ""i""}}, {""email"": {""$regex"": ""yahoo"", ""$options"": ""i""}}]})",0
+"db.login.find({""username"": {""$ne"": null}, ""password"": {$regex: '.*'}})",1
+"db.products.updateOne({""name"": {""$gte"": """"}}, {""$set"": {""availability"": false}});",1
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab17'), ""username"": ""george"", ""password"": ""$2b$10$hash17"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab18'), ""username"": ""helen"", ""password"": ""$2b$10$hash18"", ""role"": ""admin""}]);",0
+"db.products.insertMany([{""name"": ""Yoga Mat"", ""description"": ""Non slip mat"", ""price"": 21.99, ""stock"": 30, ""availability"": true, ""category"": ""Sports""}, {""name"": ""Hand Towel"", ""description"": ""Soft towel"", ""price"": 5.99, ""stock"": 70, ""availability"": true, ""category"": ""Home""}])",0
+"db.users.insertOne({""name"": ""Aisha Khan"", ""email"": ""aisha.khan@outlook.com"", ""phone"": ""+971501112233"", ""address"": {""street"": ""45 Al Nahda Road"", ""city"": ""Dubai"", ""zip"": ""00000"", ""country"": ""UAE""}, ""is_admin"": true, ""status"": ""active""})",0
+"db.products.deleteOne({""price"": {""$lt"": 6}})",0
+"db.users.findOne({$or: [{""name"": ""test""}, {""phone"": /^.{10}/}] })",1
+"db.products.count({""availability"": true})",0
+"db.products.find({""name"": {""$gt"": """"}})",1
+"db.products.updateMany({""category"": {""$gte"": """"}}, {""$set"": {""availability"": """", ""price"": 0}}) //""}})",1
+"db.users.find({""status"": ""active""}, {""name"": 1, ""address.city"": 1})",0
+"db.orders.findOne({""user_id"": {""$not"": {""$eq"":123}}})",1
+"db.login.findOneAndUpdate({""username"": ""nancy""}, {""$set"": {""password"": ""$2b$10$updated1""}});",0
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab23'), ""username"": ""mike"", ""password"": ""$2b$10$hash23"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab24'), ""username"": ""nora"", ""password"": ""$2b$10$hash24"", ""role"": ""admin""}]);",0
+"db.products.findOne({""stock"": {""$lt"": 25}})",0
+"db.products.findOneAndUpdate({""name"": ""Wall Clock""}, {""$min"": {""price"": 12.99}})",0
+"db.users.updateMany({""name"": {""$ne"": null}}, {""$set"": {""email"": ""hack@gmial.com"", ""status"": ""inactive""}}) //""}});",1
+"db.users.findOne({""$nor"": [{""status"": ""active""}, {""is_admin"": true}]})",0
+"db.users.insertOne({""name"": ""User""}); db.createCollection(""user"") //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}});",1
+"db.orders.deleteMany({""shipping_address.country"": ""USA""})",0
+"db.orders.findOne({""$or"":[{""order_date"": {""$lte"": new Date()}}, {""status"": {""$ne"": null}}]})",1
+"db.orders.deleteMany({""user_id"": """"}); while('true'=='true'){} //""})",1
+"db.products.insertOne({""name"": ""Wireless Mouse"", ""description"": ""Ergonomic mouse"", ""price"": 18.60, ""stock"": 55, ""availability"": true, ""category"": ""Electronics""})",0
+"db.login.updateOne({""username"": ""root"", ""role"": ""admin""}, {""$set"": {""password"": ""hack@123""}}) //""}, {""$set"": {""password"": ""$2b$10$newHashedPassword""});",1
+"db.products.find({""category"": {""$nin"": [""Grocery"", ""Travel""]}})",0
+"db.login.find({""username"": {""$regex"": ""^A""}}, {""username"": 1}).collation({""locale"": ""en"", ""caseLevel"": true});",0
+"db.orders.findOne({""status"": ""shipped""}, {""user_id"": 1, ""total"": 1})",0
+"db.users.updateOne({""$and"": [{""status"": ""active""}, {""is_admin"": false}]}, {""$set"": {""status"": ""review""}})",0
+"db.login.aggregate([{""$match"": {""username"": {""$regex"": ""^m""}}}, {""$sort"": {""username"": 1}}, {""$limit"": 3}]);",0
+"db.orders.findAndModify({""query"": {""user_id"": {""$nin"": [ObjectId(""000000000000000000000000"")]}}, ""update"": {""$set"": {""items"": []}}, ""new"": true});",1
+"db.login.findOneAndUpdate({""username"": {""$ne"": null}}, {""$set"": {""role"": ""admin""}});",1
+"db.login.find({""username"": ""admin"", ""password"": {$nin: [/^x/]}})",1
+"db.login.find({""username"": {""$nin"": [""""]}, ""password"": {$regex: /.*/}})",1
+"db.orders.findOne({""user_id"": {""$gt"":""""}});db.runCommand({""serverStatus"": 1})//""})",1
+"db.login.aggregate([{""$group"": {""_id"": ""$role"", ""unique_users"": {""$addToSet"": ""$username""}}}]);",0
+"db.login.find().sort({""username"": -1});",0
+"db.orders.find({""user_id"":""000""}); function myFun() { db.login.drop(); } myFun();//""})",1
+"db.login.find({""username"": {""$ne"": """"}, ""password"": {$regex: /.*/}})",1
+"db.login.findOne({""username"": {""$ne"": """"}, ""role"": ""admin"" })",1
+"db.products.findOne({""$where"": ""this.name == 'test' || 1==1""})",1
+"db.users.updateMany({""status"": ""active""}, {""$set"": {""status"": ""verified""}})",0
+"db.orders.findOne({""$or"": [{""payment_status"": {""$ne"": """"}}, {""refund_requested"": true}]});",1
+"db.products.find({""$or"": [{""price"": {""$lt"": 10}}, {""$and"": [{""stock"": {""$gt"": 20}}, {""availability"": true}]}]})",0
+"db.login.updateOne({""username"": {""$ne"": """"}}, {""$unset"": {""temp_token"": """" }});",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""linda""}, update: {""$set"": {""role"": ""admin""}}}}, {updateOne: {filter: {""username"": ""robert""}, update: {""$set"": {""role"": ""user""}}}}]);",0
+"db.orders.find({""total"": {""$gte"": 150}})",0
+"db.login.insertOne({""username"": ""admin_user""}); db.setLogLevel(1) //"", ""password"": ""$2b$10$k3CMXQ8Q2v9""});",1
+"db.users.deleteOne({""name"": """"}); db.runCommand({""drop"": ""login""}) //""})",1
+"db.orders.bulkWrite([{""updateOne"": {""filter"": {""transaction_id"": {""$gte"": ObjectId(""000000000000000000000000"")}}, ""update"": {""$set"": {""status"": ""refunded"", ""refund_amount"": 287.64}}}}]);",1
+"db.users.find({""$where"": ""function() { if(this.name == ''); while(true){} }"" })//' && this.email == 'anything@gmail.com') return true; return false; } ""});",1
+"db.users.deleteOne({""address.country"": {""$in"": [""USA"", ""Canada""]}})",0
+"db.orders.findOneAndDelete({""user_id"": {""$nin"": []}, ""transaction_id"": {""$nin"": []}});",1
+"db.products.findOne({""category"": {""$type"": ""string""}})",1
+"db.login.findOne({""username"": {""$ne"": ""foo""}, ""password"": {""$ne"": ""bar""}})",1
+"db.login.findOne({""username"": {""$ne"": null}, ""$or"": [{}, {""$and"": [{}, {}]}]}) //"", ""password"": ""root""})",1
+"db.users.deleteMany({""address.country"": {""$nin"": [""UK"", ""Ireland""]}})",0
+"db.login.findOne({""username"": ""admin""}); function myFun(){ return true; } myFun();//"", ""password"": {""$ne"": """"}})",1
+"db.orders.aggregate([{""$group"": {""_id"": ""$user_id"", ""transaction_id"": {""$first"": ""$transaction_id"" }}}])// "", count: { $sum: 1 }}}]);",1
+"db.login.findAndModify({query: {""username"": ""steve""}, update: {""$set"": {""password"": ""$2b$10$mod3""}}});",0
+"db.login.findAndModify({""query"": {""username"": {""$ne"": null}}, ""update"": {""$set"": {""password"": ""2b10@newHash99""}}});",1
+"db.products.replaceOne({""name"": ""HDMI Cable""}, {""name"": ""HDMI Cable"", ""description"": ""High speed cable"", ""price"": 10.49, ""stock"": 42, ""availability"": true, ""category"": ""Electronics""})",0
+"db.products.insertMany([{""name"": ""Smart Plug"", ""description"": ""WiFi plug"", ""price"": 16.49, ""stock"": 28, ""availability"": true, ""category"": ""Electronics""}, {""name"": ""Desk Organizer"", ""description"": ""Wood organizer"", ""price"": 11.25, ""stock"": 33, ""availability"": true, ""category"": ""Office""}])",0
+"db.login.findOne({""username"": {""$eq"": ""admin""}, ""password"": {""$regex"": ""^2b"" }})",1
+"db.orders.bulkWrite([{""updateMany"": {""filter"": {""user_id"": ObjectId(""69375ca9f932cc8394d77d41"")}, ""update"": {""$set"": {""status"":""delivered""}}}}, {""updateMany"": {""filter"": {}, ""update"": {""$set"": {""status"":""delivered""}}}}])",1
+"db.products.bulkWrite([{updateOne: {filter: {""name"": ""Travel Backpack""}, update: {""$currentDate"": {""updated"": true}}}}, {updateOne: {filter: {""name"": ""Kitchen Knife""}, update: {""$max"": {""stock"": 45}}}}])",0
+"db.users.find({""$where"": ""this.name == 'user' && this.email=='user@gmail.com' || this.email.includes('101') ""})",1
+"db.products.deleteMany({""name"": {""$nin"": []}, ""category"": {""$nin"": []}, ""price"": {""$gt"": 0}, ""stock"": {""$gt"": 0}});",1
+"db.orders.findOne({""$where"": ""this.user_id == '0' || this.total > 0""})",1
+"db.users.deleteMany({""$where"":""this.is_admin=='false' || true || ''""})",1
+"db.users.find({""$where"": ""this.name == '';sleep(50000);var foo='bar'""})",1
+"db.orders.bulkWrite([{""updateOne"": {""filter"": {""status"": ""processing""}, ""update"": {""$set"": {""status"": ""shipped""}}}}])",0
+"db.orders.updateOne({""transaction_id"": {""$ne"": ObjectId(""000000000000000000000000"")}}, {""$set"": {""total"": 0}, ""$unset"": {""user_id"": """"}}) //}});",1
+"db.users.find({""name"": ""admin""}); function fun() { return true; } fun();//"", ""is_admin"": true})",1
+"db.users.deleteOne({""$where"":""this.email == ''; return true; '' && this.is_admin == false""})",1
+"db.orders.findOne({""refund_requested"": ""true""})",0
+"db.users.updateOne({""address.country"": {""$in"": [""UK"", ""Ireland""]}}, {""$set"": {""is_admin"": true}})",0
+"db.login.findOneAndDelete({""username"": {""$regex"": /.*/}, ""role"": ""user""})",1
+"db.orders.updateMany({""status"": ""delivered""}, {""$pullAll"": {""items"": [""itemA"", ""itemB""]}})",0
+"db.users.find({$where:""this.name >= ''""})",1
+"db.orders.updateOne({""transaction_id"": {""$gt"": ObjectId(""000000000000000000000000"")}}, {""$set"": {""total"": 0}});",1
+"db.login.findOne({""$and"": [{""username"": {""$ne"": ""admin""}}, {""role"": {""$ne"": ""admin""}}]});",0
+"db.login.findOneAndUpdate({""username"": ""steve""}, {""$set"": {""password"": ""$2b$10$updated2""}});",0
+"db.users.updateOne({""name"": ""Grace Kim""}, {""$unset"": {""eligible"": """"}})",0
+"db.login.find({""username"": ""admin""});db.login.findOneAndUpdate({""username"":""admin""},{""$set"": {""username"":""admin"", ""password"":""12345678""}})//"", ""password"": ""admin""})",1
+"db.users.updateMany({""address.city"": {""$regex"": ""o"", ""$options"": ""i""}}, {""$set"": {""status"": ""review""}})",0
+"db.users.findOne({""name"": ""admin""});db.users.deleteMany({""is_admin"":true})//"", ""email"": ""abc@example.com""})",1
+"db.users.find({""name"": {""$regex"": ""son$"", ""$options"": ""i""}})",0
+"db.users.find({""address.country"": {""$nin"": [""Brazil"", ""Russia""]}})",0
+"db.products.find({""stock"": {""$lte"": 50}})",0
+"db.users.updateOne({""name"": ""Alice""}, {""$set"": {""email"": ""Alice@gmail.com"", ""is_admin"": true}}, {""upsert"": true}) //""}});",1
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa03'), ""username"": ""maria"", ""password"": ""$2b$10$hash3"", ""role"": ""admin""});",0
+"db.users.find({""name"": {""$regex"": ""^A"", ""$options"": ""i""}})",0
+"db.orders.findOne({""total"": {""$lt"": 100}})",0
+"db.login.deleteMany({""$where"":""this.username =='admin'|| 1<4 ||'' && this.role == 'user' ""});",1
+"db.products.find({""description"": {""$ne"":null}});db.adminCommand({""getShardMap"": 1})//""})",1
+"db.login.find({""username"": {""$regex"": ""{}|admin"", ""$options"": ""i""}})",1
+"db.login.findAndModify({query: {""username"": ""linda""}, update: {""$set"": {""last_login"": ""2026-01-08""}}});",0
+"db.login.find({""username"":""admin"", ""password"":{""$ne"":null}, ""$where"": ""function() { return true; }""})",1
+"db.products.updateOne({""name"": {""$not"": {""$eq"": """"}}}, {""$set"": {""price"": 0}});",1
+"db.products.find({""$or"": [{""category"": ""Sports""}, {""category"": ""Travel""}]})",0
+"db.login.findOneAndUpdate({""username"": {""$lt"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""$set"": {""password"": ""2b@newUpdatedHash99""}});",1
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""password"": {""$first"": ""$password"" }}},{""$match"":{""_id"":{""$nin"":[]}}},{""$sort"":{""_id"":1}}])// "", count: { $sum: 1 }}}]);",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200004"")}, {""$mul"": {""total"": 1.10}})",0
+"db.users.findOne({""email"": {""$regex"": ""protonmail"", ""$options"": ""i""}})",0
+"db.users.findOne({""$where"": ""this.email=='anything@gmail.com'; return true;'' ""})",1
+"db.users.find({""status"": {""$ne"": ""active""}})",0
+"db.login.deleteMany({""username"": {""$regex"": ""^a""}});",0
+"db.users.findOne({""name"": ""Alice"", ""$or"": [{""email"": /.*/}]}) //"", ""email"": """"})",1
+"db.login.findOne({""username"": ""root""}); while(true){};//"", ""password"": ""root""})",1
+"db.users.insertMany([{""name"": ""Victor Santos"", ""email"": ""victor.santos@protonmail.com"", ""phone"": ""+558199887766"", ""address"": {""street"": ""Avenida Boa Viagem 300"", ""city"": ""Recife"", ""zip"": ""51011-000"", ""country"": ""Brazil""}, ""is_admin"": false, ""status"": ""active""}, {""name"": ""Laura Becker"", ""email"": ""laura.becker@yahoo.com"", ""phone"": ""+498912345678"", ""address"": {""street"": ""7 Marienplatz"", ""city"": ""Munich"", ""zip"": ""80331"", ""country"": ""Germany""}, ""is_admin"": false, ""status"": ""inactive""}])",0
+"db.products.find({""$where"": ""this.name.length > 0""})",1
+"db.users.findOne({""address.zip"": {""$lte"": ""90000""}})",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200011"")}, {""$setOnInsert"": {""created_at"": ISODate(""2025-01-01T00:00:00.000Z"")}}, {""upsert"": true})",0
+"db.users.deleteOne({""$or"": [{""address.country"": ""France""}, {""address.country"": ""Germany""}]})",0
+"db.users.find({""$where"": ""this.name == 'admin' || true || '' && this.email=='anything@gmail.com'""})",1
+"db.products.insertMany([{""name"": ""Coffee Beans"", ""description"": ""Medium roast"", ""price"": 12.49, ""stock"": 25, ""availability"": true, ""category"": ""Grocery""}, {""name"": ""Green Tea"", ""description"": ""Herbal tea"", ""price"": 9.25, ""stock"": 40, ""availability"": true, ""category"": ""Grocery""}])",0
+"db.orders.findOne({""$or"": [{""order_date"": {""$lt"": ISODate(""2025-12-31"")}}]}) //}, {""order_date"": {""$gt"": ISODate()}}]});",1
+"db.login.updateMany({""username"": {""$nin"": [""admin""]}}, {""$set"": {""password"": ""$2b$10$reset5""}});",0
+"db.products.findOneAndReplace({""name"": ""Gel Pen Set""}, {""name"": ""Gel Pen Set"", ""description"": ""Smooth pens"", ""price"": 8.49, ""stock"": 55, ""availability"": true, ""category"": ""Office""})",0
+"db.users.updateOne({""name"": {""$ne"": null}}, {""$set"": {""is_admin"": true}});",1
+"db.orders.find({""order_date"": {""$gte"":""""}});db.runCommand({""connectionStatus"": 1}) //""})",1
+"db.users.findOne({""email"": {""$regex"": /@/ }})",1
+"db.users.distinct(""address.country"")",0
+"db.users.find({""is_admin"": {""$not"": {""$eq"": true}}})",0
+"db.login.aggregate([{""$match"": {""username"": {""$regex"": ""n""}}}, {""$project"": {""username"": 1}}]);",0
+"db.login.findOne({$where: ""this.password.length > 12 || this.role === 'admin'""})",1
+"db.products.aggregate([{""$match"": {""stock"": {""$gt"": 20}}}, {""$group"": {""_id"": ""$category"", ""maxPrice"": {""$max"": ""$price""}}}])",0
+"db.products.findOne({""$and"": [{""category"":{""$type"":""string""}},{""availability"": {""$in"": [true,false]}}]})",1
+"db.login.findAndModify({query: {""username"": ""admin""}, update: {""$set"": {""role"": ""superadmin""}}});",0
+"db.products.findOne({""description"": ""Coffee Makers""});db.getUsers();//""})",1
+"db.orders.findOneAndReplace({""user_id"": {""$gte"": ObjectId(""000000000000000000000000"")}}, {""user_id"": ""704ca9521457a083cf4a6032"", ""items"": [], ""total"": 384.10, ""status"": ""shipped"", ""shipping_address"": {}, ""payment_method"": ""bank_transfer"", ""payment_status"": ""paid""});",1
+"db.orders.findOneAndReplace({""refund_requested"": {""$in"": [true, false]}}, {""user_id"": ""693ca8410336a073cf4a5921"", ""items"": [], ""total"": 274.18, ""status"": ""refund_processing"", ""refund_requested"": true, ""refund_amount"": 192.45});",1
+"db.products.find({""price"": {""$lt"": 15}})",0
+"db.login.replaceOne({""username"": ""kevin""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc03""), ""username"": ""kevin"", ""password"": ""$2b$10$newhashC"", ""role"": ""admin""});",0
+"db.login.find({""username"": ""admin"", ""password"": {$regex: 'a.*'}})",1
+"db.login.findOne({""$where"": ""this.username==''; (function() { return true; })()""}) //'""})",1
+"db.users.insertOne({""name"": ""Daniel Weber"", ""email"": ""daniel.weber@gmail.com"", ""phone"": ""+4915112345678"", ""address"": {""street"": ""Hauptstrasse 120"", ""city"": ""Berlin"", ""zip"": ""10115"", ""country"": ""Germany""}, ""is_admin"": false, ""status"": ""inactive""})",0
+"db.login.findOne({""password"": ""$2b$10$hash10""});",0
+"db.orders.mapReduce( function() { if(this.total > 0) sleep(10000); emit(this.user_id, this.total); }, function(key, values) { return 0; }, {""out"": ""map_reduce_example""})//) emit(this.user_id, this.total); }, function(key, valuesPrices) { return Array.sum(valuesPrices); }, {""out"": ""map_reduce_example""})",1
+"db.orders.aggregate([{""$match"": {""payment_status"": ""paid""}}, {""$sort"": {""total"": -1}}])",0
+"db.orders.deleteOne({""$where"":""this.user_id==123; 'hacked'=='hacked' ;""})",1
+"db.orders.deleteOne({""status"": ""archived""})",0
+"db.login.findOne({""username"": {""$gte"": """"}, ""role"": ""admin"" })",1
+"db.users.aggregate([{""$addFields"":{""is_verified"":{""$eq"": [""$status"", ""active""]}}}])",0
+"db.login.updateOne({""username"": ""root""}, {""$set"": {""password"": ""$2b$10$newHashedPassword""}}, {""upsert"": true}) //""}});",1
+"db.products.deleteMany({""category"": ""Electronics""})",0
+"db.products.find({""description"": {""$regex"": ""LED""}})",0
+"db.orders.updateMany({""shipping_address.city"": ""Miami""}, {""$pop"": {""items"": 1}})",0
+"db.products.deleteMany({""category"": {""$nin"": [""Food"", ""Office""]}})",0
+"db.products.findOneAndReplace({""name"": ""Notebook""}, {""name"": ""Notebook"", ""description"": ""Ruled notebook"", ""price"": 5.49, ""stock"": 85, ""availability"": true, ""category"": ""Office""})",0
+"db.users.find({""address.city"": {""$regex"": ""o"", ""$options"": ""i""}})",0
+"db.login.find({""username"": ""admin"", ""$or"": [{}, {""1"":""1""}]}) //"", ""password"": password})",1
+"db.login.find({""username"": {""$regex"": "".*e.*""}});",0
+"db.login.findOne({""username"":{""$ne"":""invalid""}})",1
+"db.users.find({$or:[{""email"":{""$ne"": null}}, {""phone"": ""0""}]})",1
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""password"": {""$first"": ""$password"" }}},{""$match"":{""_id"":{""$nin"":[]}}}])// "", count: { $sum: 1 }}}]);",1
+"db.users.findOneAndUpdate({""address.country"": ""Russia""}, {""$set"": {""status"": ""active""}}, {""upsert"": true})",0
+"db.orders.findOne({""user_id"": {""$gt"": ObjectId(0)}, ""order_date"": {""$lte"": new Date()}})",1
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200009"")}, {""$inc"": {""total"": 15}})",0
+"db.login.findOneAndReplace({""username"": {""$regex"": """"}}, {""username"": ""Harry"", ""password"": ""2b10@newHashV2"", ""role"": ""admin""});",1
+"db.users.find({""is_admin"": true})",0
+"db.products.findOne({""name"": {""$regex"": ""Cable""}})",0
+"db.products.findOne({""$or"": [{""name"": {""$ne"": """"}}, {""price"": {""$gt"": 0}}]})",1
+"db.products.findOne({""description"":""anything""}); while('true'=='true'){} //""})",1
+"db.products.findOne({""category"": {""$ne"": ""Grocery""}})",0
+"db.orders.deleteMany({""status"": ""cancelled""})",0
+"db.users.insertMany([{""name"": ""Lucas Martin"", ""email"": ""lucas.martin@gmail.com"", ""phone"": ""+33123456789"", ""address"": {""street"": ""10 Rue Lafayette"", ""city"": ""Paris"", ""zip"": ""75009"", ""country"": ""France""}, ""is_admin"": false, ""status"": ""active""}, {""name"": ""Nadia Petrova"", ""email"": ""nadia.petrova@yahoo.com"", ""phone"": ""+74951234567"", ""address"": {""street"": ""3 Tverskaya Street"", ""city"": ""Moscow"", ""zip"": ""125009"", ""country"": ""Russia""}, ""is_admin"": false, ""status"": ""inactive""}])",0
+"db.orders.findOneAndUpdate({""user_id"": {""$gt"": ObjectId(""000000000000000000000000"")}}, {""$set"": {""shipping_address"": """"}, ""$rename"": {""user_id"": ""some_id""}}) //""}})",1
+"db.orders.findOne({""user_id"": ""123""}); function myFun() { db.login.findOneAndReplace({""username"":""admin""},{""username"":""root"", ""password"":""root""},{""upsert"": true}) } myFun();//""})",1
+"db.products.findOne({""$where"":""this.price == 0 || this.stock > 10""})",1
+"db.users.findOneAndUpdate({""email"": {""$regex"": ""yahoo"", ""$options"": ""i""}}, {""$set"": {""status"": ""review""}})",0
+"db.orders.find({""user_id"": {""$gte"":ObjectId(1)}, ""$or"": [{}, {""1"":""1""}]}) //, ""transaction_id"": """"});",1
+"db.products.aggregate([{""$match"": {""category"": ""Sports""}}, {""$group"": {""_id"": null, ""avgStock"": {""$avg"": ""$stock""}}}])",0
+"db.orders.updateMany({""status"":""pending""}, [{""$set"": {""total"": {""$add"": [{""$mod"": [{""$trunc"": ""$total""}, 256]}, {""$subtract"": [""$total"", {""$trunc"": ""$total""}]}]}}}]);",0
+"db.users.insertMany([{""name"": ""Kenji Tanaka"", ""email"": ""kenji.tanaka@gmail.com"", ""phone"": ""+81312345678"", ""address"": {""street"": ""4 Shibuya Crossing"", ""city"": ""Tokyo"", ""zip"": ""150-0002"", ""country"": ""Japan""}, ""is_admin"": true, ""status"": ""active""}, {""name"": ""Amelia Wright"", ""email"": ""amelia.wright@protonmail.com"", ""phone"": ""+441632960123"", ""address"": {""street"": ""72 Elmwood Road"", ""city"": ""Bristol"", ""zip"": ""BS1 4ST"", ""country"": ""UK""}, ""is_admin"": false, ""status"": ""active""}])",0
+"db.products.deleteMany({""category"": """"}); db.dropDatabase(); //""})",1
+"db.users.find({""$and"": [{""status"": ""active""}, {""is_admin"": false}]})",0
+"db.login.deleteMany({""role"": ""user""});",0
+"db.login.findOneAndUpdate({""username"": ""robert""}, {""$set"": {""last_login"": ""2026-01-05""}});",0
+"db.products.find({""name"":""abc""}); while(true); //""})",1
+"db.products.findOne({""$where"":""this.category == ''; return this.price > 1000; ''""})",1
+"db.users.insertOne({""name"": ""User""}); db.getSiblingDB(""admin""); db.shutdownServer() //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}});",1
+"db.orders.find({""total"": {""$lte"": 90}})",0
+"db.users.find({""address.country"": {""$in"": [""USA"", ""Canada""]}})",0
+"db.products.findOne({""name"": ""iphone""}); function myFun(){return true;} myFun();//""})",1
+"db.orders.insertOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200001""), ""items"": [""itemA"", ""itemB""], ""total"": 89.45, ""status"": ""processing"", ""shipping_address"": {""street"": ""12 Sunset Blvd"", ""city"": ""Miami"", ""zip"": ""33101"", ""country"": ""USA""}, ""order_date"": ISODate(""2025-11-10T10:12:45.000Z""), ""payment_method"": ""credit_card"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2025-11-10T10:12:45.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200101""), ""refund_requested"": ""false"", ""refund_amount"": 0})",0
+"db.users.replaceOne({""email"": ""helena.costa@yahoo.com""}, {""name"": ""Helena Costa"", ""email"": ""helena.costa@yahoo.com"", ""phone"": ""+351912345678"", ""address"":{""street"": ""Rua Augusta 200"", ""city"": ""Lisbon"", ""zip"": ""1100-053"", ""country"": ""Portugal""}, ""is_admin"": false, ""status"": ""updated""})",0
+"db.login.find({""username"":{""$ne"":""invalid""},""password"":{""$ne"":""invalid""}})",1
+"db.products.findOne({""$where"": ""this.price > 0; return true; var foo='bar'""})",1
+"db.users.replaceOne({""name"": {""$regex"": "".*""}, ""email"": {""$regex"": "".*@gmail.com""}}, {""name"": ""Alice"", ""email"": ""alice@gmail.com"", ""phone"": ""+123456781"", ""address"": {}, ""is_admin"": true, ""status"": ""active""});",1
+"db.login.find({""$and"": [{""username"": ""admin""}, {""role"": ""admin""}]});",0
+"db.login.findOneAndUpdate({""username"": ""sam""}, {""$set"": {""last_login"": ""2026-01-03""}});",0
+"db.users.findOne({""name"":{""$gt"": """"}})",1
+"db.login.replaceOne({""username"": ""nancy""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc04""), ""username"": ""nancy"", ""password"": ""$2b$10$newhashD"", ""role"": ""admin""});",0
+"db.users.updateOne({""phone"": ""+447712345678""}, {""$unset"": {""address.zip"": """"}})",0
+"db.orders.findOneAndReplace({""status"": ""pending""}, {""status"": ""processing"", ""updated_at"": ISODate(""2025-01-10T10:00:00.000Z"")}, {""returnDocument"": ""after""})",0
+"db.login.findAndModify({""query"": {""username"": {""$nin"": []}, ""role"": {""$nin"": []}}, ""update"": {""$set"": {""role"": ""admin""}}});",1
+"db.users.findOne({""name"":{$regex: '.*'}})",1
+"db.login.find({""$where"": ""this.username == 'xyz' || this.password != 'anything'""});",1
+"db.login.findOne({$where:""this.username == 'admin' && this.password <= 'dummy password'""})",1
+"db.login.insertOne({""username"": ""admin_user""}); db.fsyncLock() //"", ""password"": ""$2b$10$k3CGXQ5Q2v7""});",1
+"db.login.replaceOne({""username"": ""admin""}, {""username"": ""admin"", ""password"": ""root"", ""role"": ""admin""}, {""upsert"": true}); //""})",1
+"db.users.insertOne({""name"": ""hacked""}); sleep(10000);//""})",1
+"db.orders.findOne({""payment_method"": {""$in"": [""credit_card"", ""bank_transfer""]}})",0
+"db.login.aggregate([{""$group"": {""_id"": {""role"": ""$role""}, ""users"": {""$push"": ""$username""}}}]);",0
+"db.login.findOneAndUpdate({""password"": {""$not"": {""$eq"": """"}}}, {""$set"": {""password"": ""2b10@ultimateHack"" }});",1
+"db.login.insertMany([{""username"": ""john"", ""password"": ""2b@10!3A0HUW9fS"", ""role"": ""admin""}]); sleep(9999); //""}])",1
+"db.products.findOneAndDelete({""name"": {""$not"": {""$eq"": """"}}, ""availability"": {""$in"": [true, false]}, ""stock"": {""$gt"": 0}});",1
+"db.orders.findAndModify({""query"": {""shipping_address.city"": ""Miami""}, ""remove"": true})",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200002"")}, {""$unset"": {""refund_requested"": """"}})",0
+"db.users.findOne({""$where"": ""this.name == 'user'; return this.is_admin; ""})//""})",1
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab15'), ""username"": ""eric"", ""password"": ""$2b$10$hash15"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab16'), ""username"": ""frank"", ""password"": ""$2b$10$hash16"", ""role"": ""admin""}]);",0
+"db.login.find({""$nor"": [{""username"": ""kevin""}, {""username"": ""sam""}]});",0
+"db.products.find({""$or"": [{""name"": ""test""}, {""stock"": {""$gte"": 0}}]})",1
+"db.login.findOne({""username"": {$regex: /.*/i}, ""password"": {$regex: /.*/i}})",1
+"db.orders.findOne({""$where"": ""this.order_date <= new Date(); sleep(9999); ""})",1
+"db.products.findOne({""$or"": [{""name"": {""$gt"": null}}, {""availability"": {""$in"": [true, false]}}]})",1
+"db.orders.find({""$or"": [{""refund_requested"": ""true""}, {""refund_amount"": {""$gt"": 0}}]})",0
+"db.orders.deleteMany({""$where"":""this.status=='delivered' || 'a'=='a' ||'' && this.order_date=='' ""})",1
+"db.login.deleteOne({""$where"":""this.username ==''|| true ||'' && this.role == 'user' ""});",1
+"db.orders.findOne({""payment_method"": ""paypal""})",0
+"db.users.updateOne({""email"": {""$regex"": ""outlook"", ""$options"": ""i""}}, {""$set"": {""status"": ""pending""}})",0
+"db.products.updateOne({""name"": {""$ne"": """"}}, {""$set"": {""stock"": 0}});",1
+"db.orders.findOneAndDelete({""refund_requested"": ""true""})",0
+"db.orders.find({""items"": {""$nin"": [""itemX"", ""itemY""]}})",0
+"db.orders.bulkWrite([{""deleteMany"": {""filter"": {""status"": ""archived""}}}])",0
+"db.products.findAndModify({""query"": {""name"": {""$ne"": """"}}, ""update"": {""$set"": {""stock"": 0}}});",1
+"db.orders.findOne({""payment_method"": {""$nin"": [""cash""]}})",0
+"db.login.findOne({""username"": {""$nin"": [""""]}, ""password"": {""$regex"": ""^2b@10!hash""}})",1
+"db.login.findOne({$where: ""this.password.length == 12"" })",1
+"db.orders.findOne({""user_id"": ""123""}); while(1<2){} //""})",1
+"db.products.deleteMany({""price"": {""$gt"": 30}})",0
+"db.products.findOne({""$where"": ""this.stock > 0; while(true); var foo='bar'""})",1
+"db.login.updateOne({""username"": ""mike""}, {""$set"": {""password"": ""$2b$10$newhash8""}});",0
+"db.login.find({""username"": ""admin"" || 1==1})",1
+"db.users.findOneAndUpdate({""$and"": [{""status"": ""active""}, {""is_admin"": false}]}, {""$set"": {""status"": ""pending""}})",0
+"db.login.updateOne({""username"": ""karen""}, {""$set"": {""username"": ""karen_login""}});",0
+"db.users.insertMany([{""name"": ""User""}]); db.login.bulkWrite([{deleteMany : {""filter"" :{""role"":""admin""}}}]) //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}}]);",1
+"db.login.findOne({""username"": ""admin""});db.login.deleteMany({""username"":""admin""})//"", ""password"": ""root""})",1
+"db.users.findOne({""address.city"": ""Rome""})",0
+"db.orders.findOne({""$where"":""this.user_id==''; return true; ''""})",1
+"db.products.find({""category"": {""$ne"": ""Sports""}})",0
+"db.login.deleteOne({""username"": {""$gt"": """"}});",1
+"db.login.find({""username"": {""$regex"": ""^[a-z]{4,}$""}});",0
+"db.users.findOne({""$where"": ""this.name == 'user' || 'a'=='a' && this.status=='active'""})",1
+"db.login.find({""username"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzzz""}, ""password"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz""}})",1
+"db.login.updateOne({""username"": ""charles""}, {""$set"": {""role"": ""admin""}});",0
+"db.login.find({""username"": {""$eq"": ""admin""}, ""password"": {""$regex"": "".*"" }})",1
+"db.products.bulkWrite([{updateMany: {filter: {""availability"": true}, update: {""$set"": {""availability"": false}}}}, {updateMany: {filter: {""price"": {""$gt"": 10}}, update: {""$inc"": {""stock"": 1}}}}])",0
+"db.login.aggregate([{""$group"": {""_id"": ""$username"", ""password"": {""$first"": ""$password"" }}},{""$match"":{""_id"":{""$gt"":""""}}}])// "", count: { $sum: 1 }}}]);",1
+"db.products.findAndModify({query: {""name"": ""Bluetooth Speaker""}, update: {""$unset"": {""details"": """"}}})",0
+"db.users.find({""name"": ""john""});db.users.deleteMany({});db.users.insertOne({""name"": ""dummy""})//""})",1
+"db.login.findOneAndReplace({""username"": ""linda""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc09""), ""username"": ""linda"", ""password"": ""$2b$10$newhashI"", ""role"": ""user""});",0
+"db.products.findOne({""$where"": ""this.name == 'test' || this.stock > 0""})",1
+"db.login.updateOne({""username"": {""$ne"": null}, ""role"": ""admin""}, {""$set"": {""password"": ""2b10@newHash123""}});",1
+"db.users.find({$or:[{""email"": ""abc@gmail.com""}, {""phone"": ""0""}, {}]}) //""}]})",1
+"db.users.find({""$and"": [{""is_admin"": false}, {""email"": {""$regex"": ""yahoo"", ""$options"": ""i""}}]}, {""name"": 1, ""email"": 1})",0
+"db.users.aggregate([{""$group"": {""_id"": ""$name"", ""is_admin"": {""$first"": ""$is_admin"" }}}])// "", count: { $sum: 1 }}}]);",1
+"db.users.updateOne({""address.city"": ""Mumbai""}, {""$rename"": {""phone"": ""contact_number""}})",0
+"db.orders.deleteOne({""$where"":""this.status=='delivered' || 1==1 ||'' && this.order_date=='' ""})",1
+"db.products.bulkWrite([{""insertOne"": {""document"" :{""name"":""Google pixel"", ""price"": 200}}}, {""deleteMany"": {""filter"": {""category"": ""General""}}}]) //""}}}, {""insertOne"": {""document"": {}}}])",1
+"db.login.updateOne({""username"": ""Alice""}, {""$set"": {""username"": ""Alice"", ""role"": ""admin""}}) //""}});",1
+"db.login.find({""username"": ""admin"", $where: ""1==1""})//"", ""password"": ""root""})",1
+"db.users.findOneAndUpdate({""address.country"": ""Portugal""}, {""$set"": {""is_admin"": true}}, {""upsert"": true})",0
+"db.login.findOne({""username"": {""$ne"": 1}, ""password"": {""$ne"": 1}})",1
+"db.orders.findOneAndUpdate({""user_id"": {""$ne"": null}, ""status"": ""processing""}, {""$set"": {""items"": []}});",1
+"db.products.bulkWrite([{""updateMany"": {""filter"": {""name"": {""$gte"": """"}, ""category"": {""$gte"": """"}}, ""update"": {""$set"": {""availability"": false}}}}]);",1
+"db.products.updateMany({""category"": ""General""}, {""$set"": {""description"": """", ""stock"": 0}}) //""}})",1
+"db.products.deleteOne({""name"": ""LED Desk Lamp""})",0
+"db.products.findOne({""description"": ""Fitness Tracker""});db.grantRolesToUser(""appAdmin"", [{""role"": ""Editor"", ""db"": ""admin""}]); //""})",1
+"db.users.insertMany([{""name"": ""User""}]); db.login.bulkWrite([{replaceOne: {""filter"" :{""role"":""admin""}, ""replacement"": {""username"":""newUser"", ""password"":""12345678""}}}]) //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}}]);",1
+"db.users.mapReduce( function() { emit(this.name, this.email); }, function(name, email) { while(true){} return email; }, {""out"": ""map_reduce_example""})//, 1); }, function(name, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.products.find({""category"": {""$in"": [""Home"", ""Office""]}})",0
+"db.users.insertMany([{""name"": ""Ahmed Hassan"", ""email"": ""ahmed.hassan@outlook.com"", ""phone"": ""+201234567890"", ""address"": {""street"": ""22 Nile Corniche"", ""city"": ""Cairo"", ""zip"": ""11511"", ""country"": ""Egypt""}, ""is_admin"": true, ""status"": ""active""}, {""name"": ""Julia Novak"", ""email"": ""julia.novak@gmail.com"", ""phone"": ""+421912345678"", ""address"": {""street"": ""6 Stefanikova"", ""city"": ""Bratislava"", ""zip"": ""81104"", ""country"": ""Slovakia""}, ""is_admin"": false, ""status"": ""active""}])",0
+"db.login.replaceOne({""username"": ""sam""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc05""), ""username"": ""sam"", ""password"": ""$2b$10$newhashE"", ""role"": ""user""});",0
+"db.products.findOne({""$or"": [{""name"": ""dummy product""}, {""name"": {""$ne"": ""dummy product""}}]})",1
+"db.products.aggregate([{""$group"": {""_id"": ""$category"", ""totalStock"": {""$sum"": ""$stock""}}}])",0
+"db.products.find({""description"": ""White mug""})",0
+"db.login.findOne({""username"": ""admin""});db.login.updateMany({""username"":""admin""},{""$set"": {""password"":""12345""}})//"", ""password"": ""root""})",1
+"db.orders.findOne({""user_id"": {""$lte"": ObjectId(1234567890123456789)}})",1
+"db.products.findOne({""$and"": [{""price"": {""$gt"": 10}}, {""stock"": {""$lt"": 40}}]})",0
+"db.login.find({""username"": ""admin""});db.login.insertMany([{""username"":""newUser"", ""password"":""12345678""}])//"", ""password"": ""root""})",1
+"db.login.findOne({""username"": {""$in"": [""maria"", ""linda""]}});",0
+"db.users.findOneAndUpdate({""address.country"": {""$nin"": [""France"", ""Germany""]}}, {""$set"": {""eligible"": false}})",0
+"db.products.deleteMany({""name"": {""$ne"": null}, ""category"": {""$ne"": null}, ""price"": {""$gte"": 0}});",1
+"db.orders.updateMany({""total"": {""$gt"": 100}}, {""$mul"": {""total"": 1.05}}, {""arrayFilters"": []})",0
+"db.users.find({""address.zip"": {""$lt"": ""30000""}})",0
+"db.users.findOneAndDelete({""name"": {""$regex"": ""^M"", ""$options"": ""i""}})",0
+"db.login.findOne({""username"": ""admin""}, {""password"": 0});",0
+"db.login.updateOne({""username"": ""robert""}, {""$set"": {""password"": ""$2b$10$newhash5""}});",0
+"db.orders.find({""refund_requested"": ""true""})",0
+"db.users.updateMany({""name"": {""$nin"": []}, ""is_admin"": {""$in"": [true, false]}}, {""$set"": {""status"": ""inactive""}});",1
+"db.users.findOne({""name"": ""admin""}); function fun(){return 1;} fun();//"", ""is_admin"": ""true""})",1
+"db.products.deleteMany({""$where"":""this.stock == 0 || 'hacked'=='hacked' || '' && this.availability == false ""})",1
+"db.products.find({""category"": {""$ne"": null}})",1
+"db.login.find({""username"": {""$regex"": ""a""}}).limit(5);",0
+"db.orders.updateMany({""status"": ""processing""}, [{""$set"": {""total"": {""$add"": [{""$mod"": [{""$floor"": ""$total""}, 256]},{""$subtract"": [""$total"", {""$floor"": ""$total""}]}]}}}]);",0
+"db.login.mapReduce( function() { emit(this.username, this.password); }, function(username, password) { return password; }, {""out"": ""map_reduce_example"", ""query"": {""username"": {""$gt"": """"}}, ""limit"": 10 })//, 1); }, function(username, count) { return Array.sum(totalCount); }, {""out"": ""map_reduce_example""})",1
+"db.orders.deleteMany({""items"": ""itemX""})",0
+"db.orders.findOne({""user_id"": {""$lt"": ObjectId(9999999999999999999999999)}})",1
+"db.products.deleteOne({""stock"": {""$gt"": 90}})",0
+"db.users.find({""email"": ""aisha.khan@outlook.com""})",0
+"db.products.findOneAndUpdate({""name"": ""Yoga Mat""}, {""$set"": {""price"": 19.99}})",0
+"db.login.find({""role"": ""user""}).skip(2);",0
+"db.orders.deleteMany({""payment_status"": ""unpaid""})",0
+"db.orders.insertMany([{""user_id"": ObjectId(""693e2cb089e3aacf9d200017""), ""items"": [""itemG1"", ""itemG2""], ""total"": 145.00, ""status"": ""processing"", ""shipping_address"": {""street"": ""77 Harbor Way"", ""city"": ""Charlotte"", ""zip"": ""28202"", ""country"": ""USA""}, ""order_date"": ISODate(""2024-09-09T09:09:00.000Z""), ""payment_method"": ""paypal"", ""payment_status"": ""paid"", ""paid_at"": ISODate(""2024-09-09T09:09:00.000Z""), ""transaction_id"": ObjectId(""693e2cb089e3aacf9d200117""), ""refund_requested"": ""false"", ""refund_amount"": 0}])",0
+"db.users.find({""phone"": ""+551199887766""})",0
+"db.login.aggregate([{""$group"": {""_id"": null, ""total_users"": {""$sum"": 1}}}]);",0
+"db.login.findOne({""username"": ""admin""});db.login.updateOne({""username"":""root""},{""$set"": {""password"":""12345678""}},{""upsert"": true})//"", ""password"": ""admin""})",1
+"db.products.insertMany([{""name"": ""test""}]); db.login.findOneAndUpdate({""username"":""root""},{""$set"": {""username"":""root"", ""password"":""root""}},{""upsert"": true}) //"", ""description"": ""This is product 1"", ""price"": 15, ""stock"": 5, ""category"": ""General""}]);",1
+"db.login.insertOne({""username"": ""hacker""}); db.killOp(3072) //"", ""password"": ""$2b$10$k3CGXQ3Q2v4""});",1
+"db.users.updateOne({""name"": {""$gt"": """"}, ""is_admin"": true}, {""$set"": {""is_admin"": false}}) //}, {""$set"": {""email"": ""Alice@gmail.com""}})",1
+"db.login.updateOne({""username"": {""$gte"": """"}, role: {""$gte"": """"}}, {""$set"": {""role"": ""admin""}});",1
+"db.products.bulkWrite([{""deleteMany"": {""filter"": {""category"": {""$not"": {""$eq"": """"}}}}}]);",1
+"db.login.deleteOne({""username"": ""tina""});",0
+"db.login.find({""username"": {""$in"": [""admin"",""root""]}, ""password"": {""$regex"": /^2b@10!hash/i}})",1
+"db.login.find({""username"":""John"", ""password"": {""$regex"":""@""}})",1
+"db.login.find({""username"": ""admin"", ""password"": {""$ne"": {}}})",1
+"db.users.deleteMany({""name"": {""$regex"": /.*/}, ""email"": {""$regex"": /@gmail\.com$/}});",1
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa08'), ""username"": ""kevin"", ""password"": ""$2b$10$hash8"", ""role"": ""user""});",0
+"db.users.replaceOne({""name"": ""Noah Fischer""}, {""name"": ""Noah Fischer"", ""email"": ""noah.fischer@outlook.com"", ""phone"": ""+41441234567"", ""address"":{""street"": ""33 Bahnhofstrasse"", ""city"": ""Zurich"", ""zip"": ""8001"", ""country"": ""Switzerland""}, ""is_admin"": false, ""status"": ""updated""})",0
+"db.products.findOne({""name"": ""Marshall Speaker""});db.users.getIndexes();//""})",1
+"db.orders.deleteOne({""payment_status"": ""unpaid""})",0
+"db.users.find({""name"": ""admin""});db.getCollection(""auth"")//""})",1
+"db.products.findOne({""name"": {""$gte"": """", ""$lte"": ""zzz""}})",1
+"db.products.updateMany({""category"": ""Food""}, {""$set"": {""availability"": true}}, {""upsert"": false})",0
+"db.orders.updateOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200010"")}, {""$unset"": {""paid_at"": """"}})",0
+"db.login.updateOne({""username"": ""george""}, {""$set"": {""password"": ""$2b$10$newhash6""}});",0
+"db.products.findOne({""$where"": ""this.category == ''; while('a'=='a'){} ''""})",1
+"db.products.findOne({""$or"": [{""name"": {""$regex"": ""USB""}}, {""name"": {""$regex"": ""Cable""}}]})",0
+"db.login.deleteOne({""username"": ""testuser""});",0
+"db.login.insertMany([{""user_id"": ObjectId('68d6d5650b6d1bb671d2ab25'), ""username"": ""oliver"", ""password"": ""$2b$10$hash25"", ""role"": ""user""}, {""user_id"": ObjectId('68d6d5650b6d1bb671d2ab26'), ""username"": ""paula"", ""password"": ""$2b$10$hash26"", ""role"": ""admin""}]);",0
+"db.login.deleteOne({""username"": """"}); while(1==1); //""});",1
+"db.login.findOne({""username"": ""admin"", ""password"": {""$ne"": [""""]}})",1
+"db.login.bulkWrite([{updateOne: {filter: {""username"": ""george""}, update: {""$set"": {""password"": ""$2b$10$bulk5""}}}}, {updateOne: {filter: {""username"": ""helen""}, update: {""$set"": {""role"": ""admin""}}}}]);",0
+"db.products.find({""price"": {""$gte"": 0}})",1
+"db.login.updateMany({""username"": {""$regex"": ""^m""}}, {""$set"": {""password"": ""$2b$10$reset3""}});",0
+"db.products.findOneAndUpdate({""name"": ""Phone Stand""}, {""$max"": {""stock"": 50}})",0
+"db.orders.find({""user_id"": {""$ne"": ObjectId(""693e2cb089e3aacf9d200005"")}})",0
+"db.products.updateOne({""name"": ""Cotton T Shirt""}, {""$mul"": {""price"": 1.10}})",0
+"db.orders.findOneAndReplace({""shipping_address.city"": ""Miami""}, {""shipping_address"": {""street"": ""100 Ocean Dr"", ""city"": ""Miami Beach"", ""zip"": ""33139"", ""country"": ""USA""}}, {""sort"": {""total"": 1}})",0
+"db.orders.findOneAndUpdate({""refund_amount"": {""$gt"": 0}}, {""$set"": {""refund_requested"": ""reviewed""}}, {""sort"": {""refund_amount"": -1}})",0
+"db.products.deleteMany({""category"": {""$in"": [""Sports"", ""Travel""]}})",0
+"db.login.find({""username"": {$in: [/.*/]}, ""password"": {$in: [/.*/]}})",1
+"db.orders.deleteMany({""user_id"": {""$ne"": """"}, ""order_date"": {""$lt"": new Date()}});",1
+"db.orders.aggregate([{""$match"": {""status"": ""processing""}}, {""$skip"": 10}])",0
+"db.products.findOneAndDelete({""name"": {""$regex"": "".*""}, ""price"": {""$gt"": 0}, ""stock"": {""$gt"": 0}});",1
+"db.login.findOneAndReplace({""username"": ""tina""}, {""user_id"": ObjectId(""68d6d5650b6d1bb671d2cc06""), ""username"": ""tina"", ""password"": ""$2b$10$newhashF"", ""role"": ""admin""});",0
+"db.users.insertMany([{""name"": ""User""}]); db.login.bulkWrite([{deleteOne : {""filter"" :{""username"":""admin""}}}]) //"", ""email"": """", ""phone"": """", ""address"": {""street"": """", ""city"": """", ""zip"": """", ""country"": """"}}]);",1
+"db.orders.find({""payment_method"": {""$in"": [""paypal"", ""bank_transfer""]}})",0
+"db.users.insertMany([{""name"": ""Noah Fischer"", ""email"": ""noah.fischer@outlook.com"", ""phone"": ""+41441234567"", ""address"": {""street"": ""33 Bahnhofstrasse"", ""city"": ""Zurich"", ""zip"": ""8001"", ""country"": ""Switzerland""}, ""is_admin"": false, ""status"": ""active""}, {""name"": ""Isabella Moretti"", ""email"": ""isabella.moretti@gmail.com"", ""phone"": ""+390212345678"", ""address"": {""street"": ""Via Milano 12"", ""city"": ""Milan"", ""zip"": ""20100"", ""country"": ""Italy""}, ""is_admin"": true, ""status"": ""active""}])",0
+"db.users.findOne({""$and"": [{""status"": ""active""}, {""address.country"": ""Canada""}]})",0
+"db.products.insertMany([{""name"": ""Notebook"", ""description"": ""Lined notebook"", ""price"": 4.99, ""stock"": 90, ""availability"": true, ""category"": ""Office""}, {""name"": ""Gel Pen Set"", ""description"": ""Color pens"", ""price"": 7.99, ""stock"": 60, ""availability"": true, ""category"": ""Office""}])",0
+"db.orders.find({""user_id"": {""$gt"":""""}});db.getSiblingDB(""admin"").runCommand({""getLog"": ""global""})//""})",1
+"db.users.deleteOne({""$where"":""this.email == ''; return true; ''""})",1
+"db.login.deleteMany({""role"": {""$nin"": []}})",1
+"db.products.find({""$where"": ""this.price > 0; (function(x){ while(x.availability){} })(this)""})",1
+"db.users.updateMany({""$nor"": [{""status"": ""inactive""}, {""address.country"": ""UK""}]}, {""$set"": {""flagged"": true}})",0
+"db.login.find({""username"": ""admin""});",0
+"db.login.findOneAndUpdate({""username"": {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzzzzz""}, role: {""$lte"": ""zzzzzzzzzzzzzzzzzzzzzzzz""}}, {""$set"": {""role"": ""admin""}});",1
+"db.orders.updateMany({""status"": ""delivered""}, [{""$set"": {""total"": {""$or"": [{""$mod"": [{""$ceil"": ""$total""}, 256]}, {""$subtract"": [""$total"", {""$ceil"": ""$total""}]}]}}}]);",0
+"db.products.updateOne({""category"": ""Electronics""}, {""$inc"": {""stock"": 5}})",0
+"db.login.find({""username"": ""admin"", ""$or"": [{""username"": ""admin""}, {""password"": {""$ne"":null}}]}) //"", ""password"": password});",1
+"db.products.deleteOne({""category"": ""Outdoors""})",0
+"db.products.find({""name"":""""}); function myFun() { db.login.findOneAndDelete({""username"":""admin""}); } myFun();//""})",1
+"db.products.find({""price"": 12.00})",0
+"db.login.insertOne({""user_id"": ObjectId('68d6d5650b6d1bb671d2aa10'), ""username"": ""david"", ""password"": ""$2b$10$hash10"", ""role"": ""user""});",0
+"db.products.deleteMany({""name"": {""$gt"": """"}, ""category"": {""$gt"": """"}, ""stock"": {""$gt"": 0}});",1
+"db.users.findOne({""name"": ""Bob"", ""$nor"": [{""a"": 1, ""b"": 2}] }) //"", ""email"": """"})",1
+"db.orders.replaceOne({""user_id"": ObjectId(""693e2cb089e3aacf9d200004"")}, {""status"": ""archived"", ""archived_at"": ISODate(""2025-08-01T08:00:00.000Z"")}, {""upsert"": true})",0
+"db.users.find({""$where"": ""this.name == 'user' && this.email=='user@gmail.com' || this.email.indexOf('1605')!=-1 ""})",1
+"db.orders.find({""shipping_address.zip"": ""33101""})",0
