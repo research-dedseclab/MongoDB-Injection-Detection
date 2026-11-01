@@ -199,7 +199,7 @@ To improve transparency and understand model decision-making, explainability tec
 - Permutation Importance
 
 <p align="center">
-  <img src="permutation_importance_heatmap.png" width="600">
+  <img src="perm_importance_heatmap.png" width="600">
 </p>
 
 <p align="center">
