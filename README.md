@@ -72,16 +72,6 @@ and several additional MongoDB operations to provide broad operational coverage.
 
 ---
 
-## Study Workflow
-
-<p align="center">
-  <img src="images/workflow.png" alt="Study Workflow" width="850"/>
-</p>
-
-*Overview of dataset construction, model evaluation, cross-dataset testing, and explainability analysis.*
-
----
-
 ## Repository Structure
 
 ```text
