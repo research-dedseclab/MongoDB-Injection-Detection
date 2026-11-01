@@ -199,11 +199,11 @@ To improve transparency and understand model decision-making, explainability tec
 - Permutation Importance
 
 <p align="center">
-  <img src="images/permutation_importance.png" width="800">
+  <img src="permutation_importance_heatmap.png" width="600">
 </p>
 
 <p align="center">
-  <img src="images/tree_importance.png" width="800">
+  <img src="tree_importance_heatmap.png" width="600">
 </p>
 
 ### Deep Learning
